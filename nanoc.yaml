@@ -1,4 +1,4 @@
-version: 0.1
+version: 0.2.1
 
 # A list of file extensions that nanoc will consider to be textual rather than
 # binary. If an item with an extension not in this list is found,  the file

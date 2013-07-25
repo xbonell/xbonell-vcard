@@ -31,6 +31,7 @@ html
   font-size: 100%
   -ms-text-size-adjust: 100%
   -webkit-text-size-adjust: 100%
+  -webkit-font-smoothing: antialiased
 
 body
   padding: 2em
@@ -203,6 +204,7 @@ body > article
     font-size: 1em
     line-height: 3em
     text-align: center
+    -webkit-font-smoothing: antialiased
   .twitter
     .icon
       background-color: $twitter
@@ -243,10 +245,10 @@ body > article
     &:first-child
       margin-left: 0
     &:hover .flip-icon
-      -moz-transform: rotateY(180deg)
-      -ms-transform: rotateY(180deg) 
-      -webkit-transform: rotateY(180deg) 
-      transform: rotateY(180deg)
+      -moz-transform: rotateY(180deg) translate3d( 0, 0, 0)
+      -ms-transform: rotateY(180deg) translate3d( 0, 0, 0)
+      -webkit-transform: rotateY(180deg) translate3d( 0, 0, 0)
+      transform: rotateY(180deg) translate3d( 0, 0, 0)
   .flip-icon
     display: block
     width: 100%
@@ -268,10 +270,14 @@ body > article
     backface-visibility: hidden  
   .face.back
     display: block
-    -moz-transform: rotateY(180deg)
-    -ms-transform: rotateY(180deg)
-    -webkit-transform: rotateY(180deg)
-    transform: rotateY(180deg)
+    -moz-transform: rotateY(180deg) translate3d( 0, 0, 0)
+    -ms-transform: rotateY(180deg) translate3d( 0, 0, 0)
+    -webkit-transform: rotateY(180deg) translate3d( 0, 0, 0)
+    transform: rotateY(180deg) translate3d( 0, 0, 0)
+
+.no-csstransforms3d
+  .face.back
+    display: none
 
 .copyright
   font-size: 0.650em

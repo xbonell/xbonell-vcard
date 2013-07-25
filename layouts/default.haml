@@ -18,12 +18,13 @@
     %meta{ :name => "geo.position", :content => "41.485884;2.067146" }
     %meta{ :name => "ICBM", :content => "41.485884, 2.067146" }
     
-    %link{ :rel => "apple-touch-icon", :href => "/assets/ico/apple-touch-icon.png"}/
-    %link{ :rel => "apple-touch-icon", :sizes => "57x57", :href => "/assets/ico/apple-touch-icon-57x57.png"}/
-    %link{ :rel => "apple-touch-icon", :sizes => "72x72", :href => "/assets/ico/apple-touch-icon-72x72.png"}/
-    %link{ :rel => "apple-touch-icon", :sizes => "114x114", :href => "/assets/ico/apple-touch-icon-114x114.png"}/
-    %link{ :rel => "apple-touch-icon", :sizes => "144x144", :href => "/assets/ico/apple-touch-icon-144x144.png"}/
+    %link{ :rel => "apple-touch-icon-precomposed", :href => "/assets/ico/apple-touch-icon-precomposed.png"}/
+    %link{ :rel => "apple-touch-icon-precomposed", :sizes => "57x57", :href => "/assets/ico/apple-touch-icon-57x57-precomposed.png"}/
+    %link{ :rel => "apple-touch-icon-precomposed", :sizes => "72x72", :href => "/assets/ico/apple-touch-icon-72x72-precomposed.png"}/
+    %link{ :rel => "apple-touch-icon-precomposed", :sizes => "114x114", :href => "/assets/ico/apple-touch-icon-114x114-precomposed.png"}/
+    %link{ :rel => "apple-touch-icon-precomposed", :sizes => "144x144", :href => "/assets/ico/apple-touch-icon-144x144-precomposed.png"}/
     %link{ :rel => "shortcut icon", :type => "image/x-icon", :href => "/assets/ico/favicon.ico"}/
+    %link{ :rel => "author", :type => "text/plain", :href => "/humans.txt" }/
     
     %link{ :href => "/assets/css/style.css?v=#{@config[:version]}", :rel => "stylesheet" }/
     %script{ :src => "/assets/js/modernizr.custom.js?v=#{@config[:version]}" }            
@@ -38,27 +39,27 @@
       
       %div{ :role => "main" }
         
-        %section{ :itemscope => true, :itemtype => "http://schema.org/Person"}
+        %section{ :itemscope => true, :itemtype => "http://schema.org/Person" }
           .description{:itemprop => "description"}
             = yield
           .hcard.cf
-            %img.image{:src => "/assets/img/portrait.jpg", :itemprop => "image", :alt => "Xavier Bonell"}
+            %img.image{ :src => "/assets/img/portrait.jpg", :itemprop => "image", :alt => "Xavier Bonell" }
             .fields-group
-              %strong.name{:itemprop => "name"}
+              %strong.name{ :itemprop => "name" }
                 %span{:itemprop => "givenName"} #{@item[:vcard][:givenName]}
                 %span{:itemprop => "familyName"} #{@item[:vcard][:familyName]}
               %div.address{:itemprop => "address", :itemscope => true, :itemtype => "http://schema.org/PostalAddress" }
                 %span{:itemprop => "addressLocality"} #{@item[:vcard][:addressLocality]}
                 %span{:itemprop => "addressRegion"} #{@item[:vcard][:addressRegion]}
                 %span{:itemprop => "addressCountry"} #{@item[:vcard][:addressCountry]}
-              %a.contact.phone{:href => "tel:#{@item[:vcard][:telephone].gsub(/\s+/, '')}", :itemprop => "telephone"}
-                %i.icon-phone
+              %a.contact.phone{ :href => "tel:#{@item[:vcard][:telephone].gsub(/\s+/, '')}", :itemprop => "telephone" }
+                %i.icon-phone{ "aria-hidden" => "true" }
                 #{@item[:vcard][:telephone]}
-              %a.contact.mail{:href => "mailto:#{@item[:vcard][:email]}", :itemprop => "email"}
-                %i.icon-envelop
+              %a.contact.mail{ :href => "mailto:#{@item[:vcard][:email]}", :itemprop => "email" }
+                %i.icon-envelop{ "aria-hidden" => "true" }
                 #{@item[:vcard][:email]}
-              %a.contact.web{:href => "http://#{@item[:vcard][:url]}", :itemprop => "url"}
-                %i.icon-earth
+              %a.contact.web{ :href => "http://#{@item[:vcard][:url]}", :itemprop => "url" }
+                %i.icon-earth{ "aria-hidden" => "true" }
                 #{@item[:vcard][:url]}
         
         - if @item[:services] != nil        
@@ -73,11 +74,11 @@
             %ul.social-icons.fliping-icons
               - @item[:networks].each do |network|
                 %li{ :class => "flip-container #{network[:name]}" }
-                  %a.flip-icon{:href => "#{network[:url]}"}
-                    %i{ :class => "icon face icon-#{network[:name]}"}
+                  %a.flip-icon{:href => "#{network[:url]}", :rel => "author"}
+                    %i{ :class => "icon face icon-#{network[:name]}", "aria-hidden" => "true" }
                     %span.label.face.back #{network[:label]}
       
-      %footer{ :role => "contentinfo"}
-        %p.copyright © 2013 Xavier Bonell
+      %footer{ :role => "contentinfo" }
+        %p.copyright © #{Time.now.strftime("%Y")} Xavier Bonell
     
     %script{ :src => "/assets/js/scripts.js?v=#{@config[:version]}"}
