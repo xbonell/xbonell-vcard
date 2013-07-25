@@ -1,0 +1,16 @@
+/* TEAM */
+  Web designer and developer: Xavier Bonell
+  Contact: mail [at] xbonell.com
+  Twitter: @xbonell
+  From: Sant Cugat del Valles, Catalonia, Spain
+        
+/* SITE */
+  Last update: <%= Time.now.strftime("%Y/%m/%d") %>
+  Language: Spanish
+  Doctype: HTML5
+
+/* TECH */
+  HTML5, CSS3
+  Icons by Icomoon (http://icomoon.io)
+  Webfonts: Runda by "ps Type" and League Gothic by "The League of Moveable Type" served via TypeKit (http://typekit.com)
+  Software: Nanoc, HAML, SASS, Modernizr, Sublime Text, Transmit, Illustrator

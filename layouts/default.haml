@@ -1,0 +1,83 @@
+!!! 5
+%html.no-js{ :dir => "ltr", :lang => "es" }
+  
+  %head
+    
+    %meta{ :charset => "utf-8" }/
+    %meta{ "http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1" }/
+    
+    %title #{@item[:title]} 
+    
+    %meta{ :name => "description", :content => "#{@item[:description]}" }/
+    %meta{ :name => "keywords", :content => "#{@item[:keywords]}" }/
+    %meta{ :name => "generator", :content => "nanoc #{Nanoc::VERSION}" }/
+    %meta{ :name => "format-detection", :content => "telephone=no" }/
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1" }/
+    %meta{ :name => "geo.region", :content => "ES-B" }
+    %meta{ :name => "geo.placename", :content => "Sant Cugat del Vallès" }
+    %meta{ :name => "geo.position", :content => "41.485884;2.067146" }
+    %meta{ :name => "ICBM", :content => "41.485884, 2.067146" }
+    
+    %link{ :rel => "apple-touch-icon", :href => "/assets/ico/apple-touch-icon.png"}/
+    %link{ :rel => "apple-touch-icon", :sizes => "57x57", :href => "/assets/ico/apple-touch-icon-57x57.png"}/
+    %link{ :rel => "apple-touch-icon", :sizes => "72x72", :href => "/assets/ico/apple-touch-icon-72x72.png"}/
+    %link{ :rel => "apple-touch-icon", :sizes => "114x114", :href => "/assets/ico/apple-touch-icon-114x114.png"}/
+    %link{ :rel => "apple-touch-icon", :sizes => "144x144", :href => "/assets/ico/apple-touch-icon-144x144.png"}/
+    %link{ :rel => "shortcut icon", :type => "image/x-icon", :href => "/assets/ico/favicon.ico"}/
+    
+    %link{ :href => "/assets/css/style.css?v=#{@config[:version]}", :rel => "stylesheet" }/
+    %script{ :src => "/assets/js/modernizr.custom.js?v=#{@config[:version]}" }            
+  
+  %body
+    
+    %article
+      
+      %header{ :role => "banner" }
+        %h1.logo{ :href => "/", :title => "Xavier Bonell - Front-End Web Developer" }
+          %img{ :src => "/assets/img/logo.png", :alt => "Xavier Bonell - Front-End Web Developer", :width => "520", :height => "98" }
+      
+      %div{ :role => "main" }
+        
+        %section{ :itemscope => true, :itemtype => "http://schema.org/Person"}
+          .description{:itemprop => "description"}
+            = yield
+          .hcard.cf
+            %img.image{:src => "/assets/img/portrait.jpg", :itemprop => "image", :alt => "Xavier Bonell"}
+            .fields-group
+              %strong.name{:itemprop => "name"}
+                %span{:itemprop => "givenName"} #{@item[:vcard][:givenName]}
+                %span{:itemprop => "familyName"} #{@item[:vcard][:familyName]}
+              %div.address{:itemprop => "address", :itemscope => true, :itemtype => "http://schema.org/PostalAddress" }
+                %span{:itemprop => "addressLocality"} #{@item[:vcard][:addressLocality]}
+                %span{:itemprop => "addressRegion"} #{@item[:vcard][:addressRegion]}
+                %span{:itemprop => "addressCountry"} #{@item[:vcard][:addressCountry]}
+              %a.contact.phone{:href => "tel:#{@item[:vcard][:telephone].gsub(/\s+/, '')}", :itemprop => "telephone"}
+                %i.icon-phone
+                #{@item[:vcard][:telephone]}
+              %a.contact.mail{:href => "mailto:#{@item[:vcard][:email]}", :itemprop => "email"}
+                %i.icon-envelop
+                #{@item[:vcard][:email]}
+              %a.contact.web{:href => "http://#{@item[:vcard][:url]}", :itemprop => "url"}
+                %i.icon-earth
+                #{@item[:vcard][:url]}
+        
+        - if @item[:services] != nil        
+          %section.services
+            %h2 Servicios
+            %ul
+              - @item[:services].each do |service|
+                %li= service
+        
+        - if @item[:networks] != nil 
+          %section.social
+            %ul.social-icons.fliping-icons
+              - @item[:networks].each do |network|
+                %li{ :class => "flip-container #{network[:name]}" }
+                  %a.flip-icon{:href => "#{network[:url]}"}
+                    %i{ :class => "icon face icon-#{network[:name]}"}
+                    %span.label.face.back #{network[:label]}
+      
+      %footer{ :role => "contentinfo"}
+        %p.copyright © 2013 Xavier Bonell
+    
+    %script{ :src => "/assets/js/scripts.js?v=#{@config[:version]}"}
