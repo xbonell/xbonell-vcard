@@ -1,6 +1,6 @@
-$site_languages = ['ca','en','es']
-
 module Localization
+
+  $site_languages = ['ca','en','es']
 
   def language_code_of(item)
     # "/en/foo/" becomes "en"
