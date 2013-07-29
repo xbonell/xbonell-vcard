@@ -25,7 +25,7 @@
     %link{ :rel => "apple-touch-icon-precomposed", :sizes => "144x144", :href => "/assets/ico/apple-touch-icon-144x144-precomposed.png"}/
     %link{ :rel => "shortcut icon", :type => "image/x-icon", :href => "/assets/ico/favicon.ico"}/
     %link{ :rel => "author", :type => "text/plain", :href => "/humans.txt" }/
-    - [ 'ca','en','es' ].each do |lang|
+    - $site_languages.each do |lang|
       %link{ :rel => "alternate", :href => "#{ translation_of(@item, :in => lang) ? translation_of(@item, :in => lang).reps[0].path : '#' }", :hreflang => "#{lang}" }
     
     %link{ :href => "/assets/css/style.css?v=#{@config[:version]}", :rel => "stylesheet" }/
@@ -88,11 +88,11 @@
       %footer{ :role => "contentinfo" }
         %p.copyright © #{Time.now.strftime("%Y")} Xavier Bonell
         %ul.lang
-          - [ [ 'ca', 'Català' ], [ 'en', 'English' ], [ 'es', 'Español' ] ].each do |lang|
+          - $site_languages.each do |lang|
             %li
-              - if language_code_of(@item) == lang[0]
-                %span{ :lang => "#{lang[0]}" }= lang[1]
+              - if language_code_of(@item) == lang
+                %span{ :lang => "#{lang}" }= language_name_for_code(lang)
               - else
-                %a{ :href => "#{ translation_of(@item, :in => lang[0]) ? translation_of(@item, :in => lang[0]).reps[0].path : '#' }", :lang => "#{lang[0]}" }= lang[1]
+                %a{ :href => "#{ translation_of(@item, :in => lang ) ? translation_of(@item, :in => lang).reps[0].path : '#' }", :lang => "#{lang}" }= language_name_for_code(lang)
     
     %script{ :src => "/assets/js/scripts.js?v=#{@config[:version]}"}

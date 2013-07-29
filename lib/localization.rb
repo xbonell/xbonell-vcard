@@ -1,3 +1,5 @@
+$site_languages = ['ca','en','es']
+
 module Localization
 
   def language_code_of(item)
