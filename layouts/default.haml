@@ -1,5 +1,5 @@
 !!! 5
-%html.no-js{ :dir => "ltr", :lang => "es" }
+%html.no-js{ :dir => "ltr", :lang => "#{language_code_of(@item)}" }
   
   %head
     
@@ -25,6 +25,8 @@
     %link{ :rel => "apple-touch-icon-precomposed", :sizes => "144x144", :href => "/assets/ico/apple-touch-icon-144x144-precomposed.png"}/
     %link{ :rel => "shortcut icon", :type => "image/x-icon", :href => "/assets/ico/favicon.ico"}/
     %link{ :rel => "author", :type => "text/plain", :href => "/humans.txt" }/
+    - [ 'ca','en','es' ].each do |lang|
+      %link{ :rel => "alternate", :href => "#{ translation_of(@item, :in => lang) ? translation_of(@item, :in => lang).reps[0].path : '#' }", :hreflang => "#{lang}" }
     
     %link{ :href => "/assets/css/style.css?v=#{@config[:version]}", :rel => "stylesheet" }/
     %script{ :src => "/assets/js/modernizr.custom.js?v=#{@config[:version]}" }            
@@ -64,7 +66,12 @@
         
         - if @item[:services] != nil        
           %section.services
-            %h2 Servicios
+            - if language_code_of(@item) == 'ca'
+              %h2 Serveis
+            - elsif language_code_of(@item) == 'es'
+              %h2 Servicios
+            - else
+              %h2 Services
             %ul
               - @item[:services].each do |service|
                 %li= service
@@ -80,5 +87,12 @@
       
       %footer{ :role => "contentinfo" }
         %p.copyright © #{Time.now.strftime("%Y")} Xavier Bonell
+        %ul.lang
+          - [ [ 'ca', 'Català' ], [ 'en', 'English' ], [ 'es', 'Español' ] ].each do |lang|
+            %li
+              - if language_code_of(@item) == lang[0]
+                %span{ :lang => "#{lang[0]}" }= lang[1]
+              - else
+                %a{ :href => "#{ translation_of(@item, :in => lang[0]) ? translation_of(@item, :in => lang[0]).reps[0].path : '#' }", :lang => "#{lang[0]}" }= lang[1]
     
     %script{ :src => "/assets/js/scripts.js?v=#{@config[:version]}"}

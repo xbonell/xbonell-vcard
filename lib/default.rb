@@ -3,3 +3,6 @@
 
 # nutils
 require 'nutils'
+
+# Localization helper 
+include Localization

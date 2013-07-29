@@ -277,8 +277,27 @@ body > article
     display: none
 
 .copyright
+  display: inline-block
   font-size: 0.650em
   color: $grey
+
+.lang
+  display: inline-block
+  margin-left: 1em
+  li
+    display: inline-block
+    font-size: 0.650em
+    color: $grey
+    &:not(:first-child):before
+      content: "|"
+  a
+    color: white
+    &:hover
+      color: $red
+      text-decoration: underline
+  span
+    color: $red
+
 
 /* Media Queries */
 

@@ -1,5 +1,6 @@
 ---
 title: Xavier Bonell - Front-End Web Developer
+slug: home
 description: Freelance, diseñador web y desarrollador front-end ubicado en Sant Cugat del Vallès (Barcelona, ES).
 keywords: xavier bonell, xavi bonell, freelance, desarrollo web, desarrollador web, front-end, front-end web developer, html, html5, css, css3, jquery, javascript, accesibilidad, usabilidad, wordpress
 vcard:
