@@ -38,5 +38,5 @@ networks:
     url: http://www.facebook.com/xbonell
 ---
 
-%p <strong>Diseñador web</strong> y <strong>desarrollador front-end</strong> con amplia experiencia en todos los aspectos del desarrollo de proyectos en Internet. Particularmente interesado en los <strong>estándares web</strong>, sistemas de <strong>gestión de contenidos</strong>, <strong>accesibilidad</strong> y <strong>usabilidad</strong>.</p>
+**Diseñador web** y **desarrollador front-end** con amplia experiencia en todos los aspectos del desarrollo de proyectos en Internet. Particularmente interesado en los **estándares web**, sistemas de **gestión de contenidos**, **accesibilidad** y **usabilidad**.
 

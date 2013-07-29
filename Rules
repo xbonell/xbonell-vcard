@@ -28,10 +28,28 @@ end
 
 compile '*' do
   if item.binary?
-    # don’t filter binary items
+    # don't filter binary items
   else
-    filter :haml, :format => :html5, :attr_wrapper => '"'
+
+    ext = item[:extension].nil? ? nil : item[:extension].split('.').last
+
+    if ext == 'erb'
+      filter :erb
+    elsif ext == 'haml' || ext.nil?
+      filter :haml, :format => :html5, :attr_wrapper => '"'
+    elsif ext == 'md' || ext == 'markdown'
+      filter :erb
+      filter :rdiscount
+    elsif ext == 'html'
+      # don't filter
+    elsif ext == 'php'
+      # don't filter
+    else
+      raise "Filter is not configured for #{item.identifier} in Rules file."
+    end
+
     layout 'default'
+
   end
 end
 
