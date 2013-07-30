@@ -17,7 +17,7 @@ vcard:
 services:
   - Disseny web
   - Disseny UX
-  - '<acronym title="Responsive Web Design">RWD</acronym>'
+  - '<abbr title="Responsive Web Design">RWD</abbr>'
   - '<abbr title="Desenvolupament">Desenv.</abbr> web'
   - HTML5
   - CSS3
