@@ -1,4 +1,5 @@
-version: 0.2.4
+version: 0.3
+base_url: http://xbonell.com
 
 # A list of file extensions that nanoc will consider to be textual rather than
 # binary. If an item with an extension not in this list is found,  the file

@@ -1,0 +1,1 @@
+= xml_sitemap :items => @items.reject{ |i| ( i.identifier == '/humans/' || i.identifier == '/sitemap/' || i.identifier.start_with?('/assets/') ) }

@@ -8,6 +8,8 @@ $twitter: #00ACED
 $linkedin: #007BB6
 $facebook: #3B5998
 $google-plus: #DD4B39
+$font1: runda, sans-serif
+$font2: league-gothic, sans-serif
 
 /* Webfonts */
 @font-face
@@ -35,10 +37,10 @@ body
   padding: 2em
   background-color: $bgcolor
   color: $color
-  font: 400 1.25em/1.4 "runda", sans-serif  
+  font: 400 1.25em/1.4 $font1  
 
 h2
-  font-family: "league-gothic", sans-serif
+  font-family: $font2
   font-size: 2.5em
   letter-spacing: -0.03em
   color: $grey
@@ -197,7 +199,7 @@ body > article
   .label
     background-color: $grey
     color: $bgcolor
-    font-family: "league-gothic", sans-serif
+    font-family: $font2
     font-size: 1em
     line-height: 3em
     text-align: center
@@ -300,7 +302,6 @@ body > article
 
 
 /* Media Queries */
-
 @media screen and (max-width: 480px)
   body
     padding: 1em

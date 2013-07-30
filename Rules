@@ -26,6 +26,14 @@ compile '/humans/' do
   filter :erb
 end
 
+compile '/sitemap/' do
+  filter :haml
+end
+
+compile '/' do
+  filter :erb
+end
+
 compile '*' do
   if item.binary?
     # don't filter binary items
@@ -63,6 +71,14 @@ end
 
 route '/humans/' do
   item.identifier.chop + '.txt'
+end
+
+route '/sitemap/' do
+  item.identifier.chop + '.xml'
+end
+
+route '/' do
+  '/index.php'
 end
 
 route '*' do

@@ -4,5 +4,7 @@
 # nutils
 require 'nutils'
 
-# Localization helper 
-include Localization
+# Helpers
+include Nanoc3::Helpers::XMLSitemap
+include Nanoc3::Helpers::Rendering 
+include Nanoc3::Helpers::Localization

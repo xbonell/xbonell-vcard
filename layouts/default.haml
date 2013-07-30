@@ -75,7 +75,8 @@
             %ul
               - @item[:services].each do |service|
                 %li= service
-        
+          / END: .services
+
         - if @item[:networks] != nil 
           %section.social
             %ul.social-icons.fliping-icons
@@ -84,7 +85,10 @@
                   %a.flip-icon{:href => "#{network[:url]}", :rel => "author"}
                     %i{ :class => "icon face icon-#{network[:name]}", "aria-hidden" => "true" }
                     %span.label.face.back #{network[:label]}
+          / END: .social
       
+      / END: role=main
+
       %footer{ :role => "contentinfo" }
         %p.copyright © #{Time.now.strftime("%Y")} Xavier Bonell
         %ul.lang
