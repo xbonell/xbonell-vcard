@@ -31,7 +31,7 @@ compile '/sitemap/' do
 end
 
 compile '/' do
-  filter :erb
+  filter :haml
 end
 
 compile '*' do
@@ -78,7 +78,7 @@ route '/sitemap/' do
 end
 
 route '/' do
-  '/index.php'
+  item.identifier + 'index.php'
 end
 
 route '*' do
