@@ -26,6 +26,10 @@ compile '/humans/' do
   filter :erb
 end
 
+compile '/robots/' do
+  filter :erb
+end
+
 compile '/sitemap/' do
   filter :haml
 end
@@ -70,6 +74,10 @@ route '/assets/js/*/' do
 end
 
 route '/humans/' do
+  item.identifier.chop + '.txt'
+end
+
+route '/robots/' do
   item.identifier.chop + '.txt'
 end
 
