@@ -34,7 +34,7 @@
     %link{ :rel => "shortcut icon", :type => "image/x-icon", :href => "/assets/ico/favicon.ico"}/
 
     %link{ :rel => "author", :type => "text/plain", :href => "/humans.txt" }/
-    - $site_languages.each do |lang|
+    - $site_languages.reject{ |lang| lang == language_code_of(@item) }.each do |lang|
       %link{ :rel => "alternate", :href => "#{ translation_of(@item, :in => lang) ? translation_of(@item, :in => lang).reps[0].path : '#' }", :hreflang => "#{lang}" }
     
     %link{ :href => "/assets/css/style.css?v=#{@config[:version]}", :rel => "stylesheet" }/
