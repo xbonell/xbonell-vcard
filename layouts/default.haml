@@ -1,28 +1,38 @@
 !!! 5
 %html.no-js{ :dir => "ltr", :lang => "#{language_code_of(@item)}" }
   
-  %head
+  %head{ :prefix => "og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#" }
     
     %meta{ :charset => "utf-8" }/
     
     %title #{@item[:title]} 
     
-    %meta{ :name => "description", :content => "#{@item[:description]}" }/
-    %meta{ :name => "keywords", :content => "#{@item[:keywords]}" }/
-    %meta{ :name => "generator", :content => "nanoc #{Nanoc::VERSION}" }/
-    %meta{ :name => "format-detection", :content => "telephone=no" }/
-    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1" }/
+    %meta{ :name => "description", :content => "#{@item[:description]}" }
+    %meta{ :name => "keywords", :content => "#{@item[:keywords]}" }
+    %meta{ :name => "generator", :content => "nanoc #{Nanoc::VERSION}" }
+    %meta{ :name => "format-detection", :content => "telephone=no" }
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1" }
+
     %meta{ :name => "geo.region", :content => "ES-B" }
     %meta{ :name => "geo.placename", :content => "Sant Cugat del Vallès" }
     %meta{ :name => "geo.position", :content => "41.485884;2.067146" }
     %meta{ :name => "ICBM", :content => "41.485884, 2.067146" }
-    
+
+    %meta{ :property => "og:title", :content => "#{@item[:title]}"}
+    %meta{ :property => "og:type", :content => "website"}
+    %meta{ :property => "og:url", :content => "#{@config[:base_url]}#{item.identifier.chop}/"}
+    %meta{ :property => "og:site_name", :content => "#{@item[:title]}"}
+    %meta{ :property => "og:description", :content => "#{@item[:description]}"}
+    %meta{ :property => "og:image", :content => "#{@config[:base_url]}/assets/ico/facebook-image.png" }
+    %meta{ :property => "fb:admins", :content => "1216186745"}
+
     %link{ :rel => "apple-touch-icon-precomposed", :href => "/assets/ico/apple-touch-icon-precomposed.png"}/
     %link{ :rel => "apple-touch-icon-precomposed", :sizes => "57x57", :href => "/assets/ico/apple-touch-icon-57x57-precomposed.png"}/
     %link{ :rel => "apple-touch-icon-precomposed", :sizes => "72x72", :href => "/assets/ico/apple-touch-icon-72x72-precomposed.png"}/
     %link{ :rel => "apple-touch-icon-precomposed", :sizes => "114x114", :href => "/assets/ico/apple-touch-icon-114x114-precomposed.png"}/
     %link{ :rel => "apple-touch-icon-precomposed", :sizes => "144x144", :href => "/assets/ico/apple-touch-icon-144x144-precomposed.png"}/
     %link{ :rel => "shortcut icon", :type => "image/x-icon", :href => "/assets/ico/favicon.ico"}/
+
     %link{ :rel => "author", :type => "text/plain", :href => "/humans.txt" }/
     - $site_languages.each do |lang|
       %link{ :rel => "alternate", :href => "#{ translation_of(@item, :in => lang) ? translation_of(@item, :in => lang).reps[0].path : '#' }", :hreflang => "#{lang}" }
