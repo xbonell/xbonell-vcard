@@ -6,11 +6,11 @@
         
 /* SITE */
   Last update: <%= Time.now.strftime("%Y/%m/%d") %>
-  Language: Spanish
+  Language: Catalan, English, Spanish
   Doctype: HTML5
 
 /* TECH */
   HTML5, CSS3
   Icons by Icomoon (http://icomoon.io)
   Webfonts: Runda by "ps Type" and League Gothic by "The League of Moveable Type" served via TypeKit (http://typekit.com)
-  Software: Nanoc, HAML, SASS, Markdown, Modernizr, Sublime Text, Transmit, Illustrator
+  Software: Nanoc, HAML, SASS, Markdown, Modernizr, Sublime Text
