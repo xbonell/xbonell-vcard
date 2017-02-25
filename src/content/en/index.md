@@ -1,6 +1,7 @@
 ---
 title: Xavier Bonell - Front-End Web Developer
 slug: home
+lang: en
 changefreq: weekly
 priority: 1
 description: Freelance, web designer and front-end developer based in Sant Cugat del Vallès (Barcelona, ES).
@@ -13,16 +14,15 @@ vcard:
   addressCountry: ES
   telephone: +34 667 600 842
   email: mail@xbonell.com
-  url: xbonell.com
+  url: https://xbonell.com
 services:
   - Web Design
   - UX Design
-  - '<abbr title="Responsive Web Design">RWD</abbr>'
-  - 'Web <abbr title="Development">Devel.</abbr>'
+  - Responsive Web Design
+  - Web Development
   - HTML5
   - CSS3
-  - JS (jQuery) 
-  - SEO/SEM
+  - JavaScript
   - Accessibility
   - Usability
   - WordPress
@@ -32,13 +32,10 @@ networks:
     url: https://twitter.com/xbonell
   - name: linkedin
     label: LinkedIn
-    url: http://linkedin.com/in/xbonell
-  - name: google-plus
-    label: Google+
-    url: https://plus.google.com/107425688574567967070
-  - name: facebook
-    label: Facebook
-    url: http://www.facebook.com/xbonell
+    url: https://linkedin.com/in/xbonell
+  - name: github
+    label: GitHub
+    url: https://github.com/xbonell    
 ---
 
 **Web designer** and **front-end developer** with wide experience in all aspects of web related projects. Particularly interested in **web standards**, **content management** systems, **accessibility** and **usability**.
