@@ -1,0 +1,24 @@
+/* Logo */
+
+.logo {
+  
+  display: block;
+  width: 100%;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .svg.backgroundsize & {
+
+    background: url("../images/logo-vector.svg") no-repeat center center;
+    background-size: contain;
+
+    img {
+      visibility: hidden;
+    }
+
+  }
+
+}

@@ -1,0 +1,43 @@
+/* Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+
+  padding: 2em;
+  background-color: $bgcolor;
+  color: $color;
+  font: 400 1.25em / 1.4 $fontstack;
+
+  @media screen and (max-width: 480px) {    
+    padding: 1em;
+    font-size: 1em;
+  }
+
+}
+
+h2 {
+  margin: 1em auto .5em;
+  font-family: $fontstack;
+  font-weight: 400;
+  font-size: 2.5em;
+  color: $grey;
+}
+
+ul, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}

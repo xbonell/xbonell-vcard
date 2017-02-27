@@ -1,0 +1,20 @@
+/* Services */
+
+.services {
+
+  li:before {
+    content: "→";
+    padding-right: 0.25em;
+    position: relative;
+    color: $red;
+  }
+
+  @media(min-width: 600px) {
+
+    ul {
+      column-count: 2;
+    }
+
+  }
+
+}

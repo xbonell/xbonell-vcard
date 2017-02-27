@@ -1,0 +1,147 @@
+/* Social Icons */
+
+.social-icons {
+
+  margin: 3em 0 2em;
+
+  .icon {
+    display: block;
+    padding: .5em;
+    background-color: $color;
+    color: $bgcolor;
+    font-size: 1em;
+    line-height: 1;
+    text-align: center;
+  }
+
+  .label {
+    background-color: $grey;
+    color: $bgcolor;
+    font-size: .7em;
+    line-height: 4em;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .twitter {
+
+    .icon {
+      background-color: $twitter;
+      fill: white;
+    }
+
+    .label {
+      background-color: darken($twitter, 20%);
+      color: white;
+    }
+  
+  }
+
+  .facebook {
+  
+    .icon {
+      background-color: $facebook;
+      fill: white;
+    }
+
+    .label {
+      background-color: darken($facebook, 20%);
+      color: white;
+    }
+  
+  }
+
+  .linkedin {
+  
+    .icon {
+      background-color: $linkedin;
+      fill: white;
+    }
+
+    .label {
+      background-color: darken($linkedin, 20%);
+      color: white;
+    }
+  
+  }
+
+  .google-plus {
+
+    .icon {
+      background-color: $google-plus;
+      fill: white;
+    }
+
+    .label {
+      background-color: darken($google-plus, 20%);
+      color: white;
+    }
+
+  }
+
+  .github {
+
+    .icon {
+      background-color: $github;
+      fill: white;
+    }
+
+    .label {
+      background-color: darken($github, 20%);
+      color: white;
+    }
+
+  }
+
+}
+
+// Fliping icons FX
+
+.fliping-icons {
+
+  .flip-container {
+
+    display: inline-block;
+    margin: 0 0.25em;
+    position: relative;
+    width: 3em;
+    height: 3em;
+    z-index: 1;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:hover .flip-icon {
+      transform: rotateY(180deg) translate3d(0, 0, 0);
+    }
+
+  }
+
+  .flip-icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: all 0.5s linear;
+  }
+
+  .face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+
+  .face.back {
+
+    display: block;
+    transform: rotateY(180deg) translate3d(0, 0, 0);
+
+    .no-csstransforms3d & {
+      display: none;      
+    }  
+
+  }
+
+}

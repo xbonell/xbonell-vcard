@@ -1,0 +1,85 @@
+/* Hcard */
+
+.hcard {
+  
+  margin-top: 2em;
+  display: inline-block;
+  padding: 1em 1em 2em;
+  background-color: $color;
+  color: $bgcolor;
+  position: relative;
+
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    width: 2em;
+    height: 1.5em;
+    position: absolute;
+    bottom: -0.25em;
+    background: $bgcolor;
+  }
+
+  &:before {
+    left: 3em;
+  }
+
+  &:after {
+    right: 3em;
+  }
+
+  .image {
+    float: left;
+    display: block;
+    width: 5em;
+    height: 5em;
+  }
+
+  .fields-group {
+    margin-left: 6em;
+  }
+
+  .name,
+  .address,
+  .contact {
+    display: block;
+  }
+
+  .name {
+    font-size: 1.25em;
+  }
+
+  .address {
+    font-size: 0.75em;
+    margin-bottom: 0.625em;
+
+    span:after {
+      content: ", ";
+    }
+
+    span:last-child:after {
+      content: none;
+    }
+  }
+
+  .contact {
+
+    margin-top: 0.167em;
+    font-size: 0.875em;
+    color: $bgcolor;
+
+    > * {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    svg {
+      width: 1em;
+      height: 1em;
+      margin-right: .5em;
+      fill: $red;
+    }
+
+  }
+
+}
