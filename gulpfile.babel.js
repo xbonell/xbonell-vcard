@@ -5,8 +5,7 @@ import autoprefixer from 'autoprefixer';
 import browser      from 'browser-sync';
 import browserify   from 'browserify';
 import buffer       from 'vinyl-buffer';
-import colors       from 'colors';
-import critical     from 'critical';
+import colors       from 'colors';  
 import cssnano      from 'cssnano';
 import mqpacker     from 'css-mqpacker';
 import gulp         from 'gulp';
@@ -14,6 +13,7 @@ import babel        from 'gulp-babel';
 import image        from 'gulp-image';
 import htmlmin      from 'gulp-htmlmin';
 import plugins      from 'gulp-load-plugins';
+import rsync        from 'gulp-rsync';
 import gutil        from 'gulp-util';
 import handlebars   from 'handlebars';
 import metalsmith   from 'metalsmith';
@@ -24,8 +24,6 @@ import permalinks   from 'metalsmith-permalinks';
 import rimraf       from 'rimraf';
 import source       from 'vinyl-source-stream';
 import yargs        from 'yargs';
-
-const criticalStream = critical.stream;
 
 // Load Gulp plugins
 const $ = plugins();
@@ -67,7 +65,7 @@ const processors = [
 ];
 
 // Build the "dist" folder by running all of the above tasks
-gulp.task('build', gulp.series(clean, gulp.parallel(bundle, css, html, images, svg, minify)));
+gulp.task('build', gulp.series(clean, gulp.parallel(bundle, css, html, images, svg, copy, minify)));
 
 // Build site, run the server, and watch for file changes
 gulp.task('default', gulp.series('build', minify, server, watch));
@@ -92,28 +90,22 @@ function clean(done) {
   rimraf('dist', done);
 }
 
-// Optimize CSS delivery
+// Copy static files to root
 // ----------------------------------------------------------------------------
-function optimizeCSS(done) {
-  
-  if (PRODUCTION) {
-  
-    return gulp.src('dist/**/*.html')
-      .pipe(criticalStream({
-        base: 'dist/',
-        inline: true,
-        css: ['dist/assets/css/style.css'],
-        minify: true
-      }))
-      .on('error', function(err) { gutil.log(gutil.colors.red(err.message)); })
-      .pipe(gulp.dest('dist'));
+function copy() {
+  return gulp.src('src/_static/*.*')
+    .pipe(gulp.dest('dist'));
+}
 
-  } else {
-
-    done();
-
-  }
-
+function deploy() {
+  return gulp.src('dist/**')
+    .pipe(rsync({
+      root: 'dist/',
+      hostname: 'tatooine',
+      destination: '/var/www/xbonell.com/public_html/',
+      recursive: true,
+      progress: true
+    }));  
 }
 
 // Compile Sass into CSS and apply PostCSS filters
