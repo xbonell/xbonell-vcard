@@ -1,6 +1,6 @@
 /*!
  * modernizr v3.3.1
- * Build https://modernizr.com/download?-backgroundsize-svg-setclasses-dontmin
+ * Build https://modernizr.com/download?-backgroundsize-csstransforms-svg-setclasses-dontmin
  *
  * Copyright (c)
  *  Faruk Ates
@@ -789,6 +789,22 @@ Detects support for SVG in `<embed>` or `<object>` elements.
 !*/
 
   Modernizr.addTest('backgroundsize', testAllProps('backgroundSize', '100%', true));
+
+/*!
+{
+  "name": "CSS Transforms",
+  "property": "csstransforms",
+  "caniuse": "transforms2d",
+  "tags": ["css"]
+}
+!*/
+
+  Modernizr.addTest('csstransforms', function() {
+    // Android < 3.0 is buggy, so we sniff and blacklist
+    // http://git.io/hHzL7w
+    return navigator.userAgent.indexOf('Android 2.') === -1 &&
+           testAllProps('transform', 'scale(1)', true);
+  });
 
 
   // Run each test

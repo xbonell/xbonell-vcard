@@ -8,6 +8,7 @@ import buffer       from 'vinyl-buffer';
 import colors       from 'colors';  
 import cssnano      from 'cssnano';
 import mqpacker     from 'css-mqpacker';
+import fs           from 'fs';
 import gulp         from 'gulp';
 import babel        from 'gulp-babel';
 import image        from 'gulp-image';
@@ -64,16 +65,23 @@ const processors = [
   cssnano()
 ];
 
+// Declar var so it can be used to load the deploy config
+var CONFIG;
+
 // Build the "dist" folder by running all of the above tasks
 gulp.task('build', gulp.series(clean, gulp.parallel(bundle, css, html, images, svg, copy, minify)));
+
+// Deploy task
+gulp.task('deploy', gulp.series(creds, deploy));
 
 // Build site, run the server, and watch for file changes
 gulp.task('default', gulp.series('build', minify, server, watch));
 
+
 // Create JS bundle
 // ----------------------------------------------------------------------------
 function bundle() {
-  return browserify('src/scripts/main.js')
+  return browserify(dir.source + 'scripts/main.js')
     .bundle()
     .pipe(source('app.js'))
     .pipe(buffer())
@@ -81,42 +89,54 @@ function bundle() {
     .pipe($.if(!PRODUCTION, $.sourcemaps.init({loadMaps: true})))
     .pipe($.if(PRODUCTION, $.uglify()))
     .pipe($.if(!PRODUCTION, $.sourcemaps.write('./')))
-    .pipe(gulp.dest('dist/assets/js'));
+    .pipe(gulp.dest(dir.dest + 'assets/js'));
 };
 
 // Delete the "dist" folder (this happens every time a build starts)
 // ----------------------------------------------------------------------------
 function clean(done) {
-  rimraf('dist', done);
+  rimraf(dir.dest, done);
 }
 
 // Copy static files to root
 // ----------------------------------------------------------------------------
 function copy() {
-  return gulp.src('src/_static/*.*')
-    .pipe(gulp.dest('dist'));
-}
-
-function deploy() {
-  return gulp.src('dist/**')
-    .pipe(rsync({
-      root: 'dist/',
-      hostname: 'tatooine',
-      destination: '/var/www/xbonell.com/public_html/',
-      recursive: true,
-      progress: true
-    }));  
+  return gulp.src(dir.source + '_static/*.*')
+    .pipe(gulp.dest(dir.dest));
 }
 
 // Compile Sass into CSS and apply PostCSS filters
 // ----------------------------------------------------------------------------
 function css() {
-  return gulp.src('src/scss/style.scss')
+  return gulp.src(dir.source + 'scss/style.scss')
     .pipe($.if(!PRODUCTION, $.sourcemaps.init()))
     .pipe($.sass().on('error', $.sass.logError))
     .pipe($.postcss(processors))
     .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
-    .pipe(gulp.dest('dist/assets/css'));
+    .pipe(gulp.dest(dir.dest + 'assets/css'));
+}
+
+// Ensure creds for Litmus are at least there.
+function creds(done) {
+  var configPath = './secret.json';
+  try { CONFIG = JSON.parse(fs.readFileSync(configPath)); }
+  catch(e) {
+    console.log('Sorry, there was an issue locating your secret.json.');
+    process.exit();
+  }
+  done();
+}
+
+function deploy() {
+  return gulp.src(dir.dest + '**')
+    .pipe(rsync({
+      root: dir.dest,
+      hostname: CONFIG.staging.host,
+      username: CONFIG.staging.username,
+      destination: CONFIG.staging.destination,
+      recursive: true,
+      progress: true
+    }));  
 }
 
 // Build HTML
@@ -124,7 +144,7 @@ function css() {
 function html(done) {
   
   var ms = metalsmith(dir.base)
-    .clean(PRODUCTION)
+    .clean(false)
     .source(dir.source + 'content/')
     .destination(dir.dest)
     .metadata(siteMeta)  
@@ -141,7 +161,7 @@ function html(done) {
 // Process images
 // ----------------------------------------------------------------------------
 function images() {
-  return gulp.src('src/images/**/*')
+  return gulp.src(dir.source + 'images/**/*')
     .pipe(image({
       pngquant: false,
       optipng: true,
@@ -153,22 +173,23 @@ function images() {
       svgo: true,
       concurrent: 8
     }))
-    .pipe(gulp.dest('dist/assets/images'));  
+    .pipe(gulp.dest(dir.dest + 'assets/images'));  
 }
 
 // Minify HTML
 // ----------------------------------------------------------------------------
 function minify() {
-  return gulp.src('dist/**/*.html')
+  return gulp.src(dir.dest + '**/*.html')
     .pipe($.if(PRODUCTION, htmlmin({collapseWhitespace: true})))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest(dir.dest));
 }
 
 // Start a server with LiveReload to preview the site in
 // ----------------------------------------------------------------------------
 function server(done) {
   browser.init({
-    server: 'dist'
+    server: dir.dest,
+    startPath: 'ca/'
   });
   done();
 }
@@ -177,7 +198,7 @@ function server(done) {
 // ----------------------------------------------------------------------------
 function svg() {
   
-  return gulp.src(['src/svg/*.svg'])
+  return gulp.src([dir.source + 'svg/*.svg'])
     .pipe($.rename(function (path) {
         path.basename = path.basename.replace(/__icon_prefix__/, '');
         return path;
@@ -199,26 +220,26 @@ function svg() {
       }))
       .pipe($.svgstore())
       .pipe($.rename('sprite.svg'))
-      .pipe(gulp.dest('./dist/assets/svg'));
+      .pipe(gulp.dest(dir.dest + 'assets/images'));
 }
 
 // Watch for file changes
 // ----------------------------------------------------------------------------
 function watch() {
 
-  gulp.watch(['src/content/**/*.md', 'src/_templates/**/*.haml', 'src/_partials/**/*.hbs'])
-    .on('change', gulp.series(html, browser.reload));
+  gulp.watch([dir.source + 'content/**/*.md', dir.source + '_templates/**/*.haml', dir.source + '_partials/**/*.hbs'])
+    .on('change', gulp.series(html, minify, browser.reload));
   
-  gulp.watch(['src/scss/**/*.scss'])
+  gulp.watch([dir.source + 'scss/**/*.scss'])
     .on('change', gulp.series(css, browser.reload));
   
-  gulp.watch(['src/scripts/**/*.js'])
+  gulp.watch([dir.source + 'scripts/**/*.js'])
     .on('change', gulp.series(bundle, browser.reload));
   
-  gulp.watch(['src/svg/**/*.svg'])
+  gulp.watch([dir.source + 'svg/**/*.svg'])
     .on('change', gulp.series(svg, browser.reload));
   
-  gulp.watch(['src/images/**/*.{gif,jpg,jpeg,png}'])
+  gulp.watch([dir.source + 'images/**/*.{gif,jpg,jpeg,png}'])
     .on('change', gulp.series(images, browser.reload));
 
 }

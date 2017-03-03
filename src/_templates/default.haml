@@ -71,11 +71,11 @@
                 %span{itemprop: "addressCountry"}= vcard.addressCountry
               %a.contact.mail{ href: "mailto:" + vcard.email, itemprop: "email" }
                 %svg.icon.email{ "aria-hidden": "true" }
-                  %use{ "xlink:href": "/assets/svg/sprite.svg#email" }
+                  %use{ "xlink:href": "/assets/images/sprite.svg#email" }
                   %span= vcard.email
               %a.contact.web{ href: "http://" + vcard.url, itemprop: "url" }
                 %svg.icon.web{ "aria-hidden": "true" }
-                  %use{ "xlink:href": "/assets/svg/sprite.svg#web" }
+                  %use{ "xlink:href": "/assets/images/sprite.svg#web" }
                   %span= vcard.url
         
         - if (services)        
@@ -93,13 +93,13 @@
 
         - if (networks) 
           %section.social
-            %ul.social-icons.fliping-icons
+            %ul.social__icons
               - each network in networks
-                %li{ class: "flip-container " + network.name }
-                  %a.flip-icon{href: network.url, rel: "author"}
-                    %svg{ class: "face icon icon-" + network.name, "aria-hidden": "true" }
-                      %use{ "xlink:href": "/assets/svg/sprite.svg#" + network.name }
-                    %span.label.face.back
+                %li{ class: network.name }
+                  %a{href: network.url, rel: "author"}
+                    %svg{ class: "icon icon-" + network.name, "aria-hidden": "true" }
+                      %use{ "xlink:href": "/assets/images/sprite.svg#" + network.name }
+                    %span.label
                       = network.label
 
       %footer{ role: "contentinfo" }

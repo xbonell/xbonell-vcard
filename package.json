@@ -1,6 +1,6 @@
 {
   "name": "xbonell-vcard",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "Source for the xbonell.com vcard site.",
   "main": "gulpfile.babel.js",
   "scripts": {
@@ -63,8 +63,6 @@
     "yargs": "^5.0.0"
   },
   "dependencies": {
-    "ga-browser": "^1.0.0",
-    "jump.js": "^1.0.1",
     "svgxuse": "^1.1.22"
   },
   "optionalDependencies": {}

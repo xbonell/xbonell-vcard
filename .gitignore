@@ -1,9 +1,7 @@
 _Store
 node_modules
 npm-debug.log
-bower_components
 .sass-cache
-.awspublish*
-config.json
+secret.json
 dist
 

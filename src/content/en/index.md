@@ -20,8 +20,7 @@ services:
   - UX Design
   - Responsive Web Design
   - Web Development
-  - HTML5
-  - CSS3
+  - HTML5 / CSS3
   - JavaScript
   - Accessibility
   - Usability
