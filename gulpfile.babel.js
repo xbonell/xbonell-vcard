@@ -166,7 +166,7 @@ function images() {
       pngquant: false,
       optipng: true,
       zopflipng: false,
-      jpegRecompress: false,
+      jpegRecompress: true,
       jpegoptim: true,
       mozjpeg: true,
       gifsicle: true,
