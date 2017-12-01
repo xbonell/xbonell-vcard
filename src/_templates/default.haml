@@ -103,7 +103,11 @@
                       = network.label
 
       %footer{ role: "contentinfo" }
-        %p.copyright © 2009-#{(new Date()).getFullYear()} Xavier Bonell
+        %p.copyright
+          %span © 2009-#{(new Date()).getFullYear()} Xavier Bonell.
+          %span
+            %span #{build} build,
+            %span version #{version}.
         %ul.lang
           - if (lang == "ca")
             %li

@@ -42,6 +42,7 @@ const dir = {
 
 const siteMeta = {
   devBuild: !PRODUCTION,
+  build: !PRODUCTION ? 'Development' : 'Production',  
   version: pkg.version,
   name: 'Xavier Bonell',
   desc: 'Front-End Web Developer',

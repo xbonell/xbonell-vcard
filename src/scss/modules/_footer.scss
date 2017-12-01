@@ -1,12 +1,21 @@
 .copyright {
-  display: inline-block;
+
   font-size: 0.7em;
   color: $grey;
+
+  > span {
+
+    display: block;
+
+    @media (min-width: 375px) {
+      display: inline;
+    }
+
+  }
+
 }
 
 .lang {
-
-  float: right;
 
   li {
     display: inline-block;

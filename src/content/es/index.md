@@ -16,15 +16,13 @@ vcard:
   email: mail@xbonell.com
   url: https://xbonell.com
 services:
-  - Diseño web
-  - Diseño UX
-  - Responsive Web Design
-  - Desarrollo web
+  - UX / Diseño y desarrollo web
+  - Responsive web design
   - HTML5 / CSS3
   - JavaScript
+  - WordPress
   - Accesibilidad
   - Usabilidad
-  - WordPress
 networks:
   - name: twitter
     label: "@xbonell"
