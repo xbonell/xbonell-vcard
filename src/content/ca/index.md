@@ -12,14 +12,13 @@ vcard:
   addressLocality: Sant Cugat del Vallès
   addressRegion: Barcelona
   addressCountry: ES
-  telephone: +34 667 600 842
   email: mail@xbonell.com
   url: https://xbonell.com
 services:
   - UX / Disseny i desenvolupament web
-  - Responsive web design
   - HTML5 / CSS3
   - JavaScript
+  - Vue.js / Nuxt.js
   - WordPress
   - Accessibilitat
   - Usabilitat
