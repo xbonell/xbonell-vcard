@@ -18,10 +18,29 @@ services:
   - UX / Web Design & Development
   - HTML5 / CSS3
   - JavaScript
-  - Vue.js / Nuxt.js  
+  - Vue.js / Nuxt.js / Vuex 
   - WordPress
   - Accessibility
   - Usability
+toolkit:
+  - MacBook Pro
+  - MacOS
+  - iTerm
+  - ZSH
+  - Sketch
+  - Visual Studio Code
+  - Grunt
+  - Gulp
+  - Webpack
+  - Yarn
+  - Markdown
+  - Sass
+  - PostCSS
+  - Git
+  - Vagrant
+  - Bootstrap
+  - Foundation
+  - MJML
 networks:
   - name: twitter
     label: "@xbonell"

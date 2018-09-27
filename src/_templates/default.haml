@@ -90,6 +90,14 @@
               - each service in services
                 %li
                   != service
+        
+        - if (toolkit)
+          %section.toolkit
+            %h3 Toolkit
+            %ul
+              - each tool in toolkit
+                %li
+                  != tool
 
         - if (networks) 
           %section.social
