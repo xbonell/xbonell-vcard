@@ -1,12 +1,10 @@
 /* Services */
 
 .services {
-
   li:before {
-    content: "→";
+    content: '→';
     padding-right: 0.25em;
     position: relative;
     color: $red;
   }
-
 }

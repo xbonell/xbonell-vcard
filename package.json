@@ -33,7 +33,7 @@
     "cssnano": "^4.1.9",
     "gulp": "^4.0.0",
     "gulp-babel": "7",
-    "gulp-cli": "^2.0.1",
+    "gulp-cli": "^2.2.0",
     "gulp-htmlmin": "^3.0.0",
     "gulp-if": "^2.0.2",
     "gulp-image": "^4.1.0",
@@ -63,6 +63,7 @@
     "yargs": "^10.0.3"
   },
   "dependencies": {
+    "global": "^4.4.0",
     "svgxuse": "^1.2.6"
   },
   "optionalDependencies": {}

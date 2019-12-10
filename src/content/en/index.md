@@ -18,10 +18,10 @@ services:
   - UX / Web Design & Development
   - HTML5 / CSS3
   - JavaScript
-  - Vue.js / Nuxt.js / Vuex 
+  - Vue.js / Nuxt.js / Vuex
+  - React / Redux
   - WordPress
   - Accessibility
-  - Usability
 toolkit:
   - MacBook Pro
   - MacOS
@@ -43,15 +43,14 @@ toolkit:
   - MJML
 networks:
   - name: twitter
-    label: "@xbonell"
+    label: '@xbonell'
     url: https://twitter.com/xbonell
   - name: linkedin
     label: LinkedIn
     url: https://linkedin.com/in/xbonell
   - name: github
     label: GitHub
-    url: https://github.com/xbonell    
+    url: https://github.com/xbonell
 ---
 
 **Web designer** and **front-end developer** with wide experience in all aspects of web related projects. Particularly interested in **web standards**, **content management** systems, **accessibility** and **usability**.
-

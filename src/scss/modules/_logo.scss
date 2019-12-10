@@ -1,7 +1,6 @@
 /* Logo */
 
 .logo {
-  
   display: block;
   width: 100%;
 
@@ -11,14 +10,11 @@
   }
 
   .svg.backgroundsize & {
-
-    background: url("../images/logo-vector.svg") no-repeat center center;
+    background: url('../images/logo-vector.svg') no-repeat center center;
     background-size: contain;
 
     img {
       visibility: hidden;
     }
-
   }
-
 }

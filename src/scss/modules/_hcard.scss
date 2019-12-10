@@ -1,7 +1,6 @@
 /* Hcard */
 
 .hcard {
-  
   margin-top: 2em;
   display: inline-block;
   padding: 1em 1em 2em;
@@ -11,7 +10,7 @@
 
   &:before,
   &:after {
-    content: "";
+    content: '';
     display: block;
     width: 2em;
     height: 1.5em;
@@ -54,7 +53,7 @@
     margin-bottom: 0.625em;
 
     span:after {
-      content: ", ";
+      content: ', ';
     }
 
     span:last-child:after {
@@ -63,7 +62,6 @@
   }
 
   .contact {
-
     margin-top: 0.167em;
     font-size: 0.875em;
     color: $bgcolor;
@@ -76,10 +74,8 @@
     svg {
       width: 1em;
       height: 1em;
-      margin-right: .5em;
+      margin-right: 0.5em;
       fill: $red;
     }
-
   }
-
 }

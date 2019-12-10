@@ -19,9 +19,9 @@ services:
   - HTML5 / CSS3
   - JavaScript
   - Vue.js / Nuxt.js / Vuex
+  - React / Redux
   - WordPress
   - Accesibilidad
-  - Usabilidad
 toolkit:
   - MacBook Pro
   - MacOS
@@ -43,7 +43,7 @@ toolkit:
   - MJML
 networks:
   - name: twitter
-    label: "@xbonell"
+    label: '@xbonell'
     url: https://twitter.com/xbonell
   - name: linkedin
     label: LinkedIn
@@ -54,4 +54,3 @@ networks:
 ---
 
 **Diseñador web** y **desarrollador front-end** con amplia experiencia en todos los aspectos del desarrollo de proyectos en Internet. Particularmente interesado en los **estándares web**, sistemas de **gestión de contenidos**, **accesibilidad** y **usabilidad**.
-

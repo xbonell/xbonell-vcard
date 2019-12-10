@@ -22,12 +22,9 @@
  * of control over the experience.
 */
 
-;(function(window, document, undefined){
+; (function (window, document, undefined) {
   var classes = [];
-  
-
   var tests = [];
-  
 
   /**
    *
@@ -54,7 +51,7 @@
     _q: [],
 
     // Stub these for people who are listening
-    on: function(test, cb) {
+    on: function (test, cb) {
       // I don't really think people should do this, but we can
       // safe guard it a bit.
       // -- NOTE:: this gets WAY overridden in src/addTest for actual async tests.
@@ -62,53 +59,53 @@
       // but the code to *disallow* sync tests in the real version of this
       // function is actually larger than this.
       var self = this;
-      setTimeout(function() {
+      setTimeout(function () {
         cb(self[test]);
       }, 0);
     },
 
-    addTest: function(name, fn, options) {
-      tests.push({name: name, fn: fn, options: options});
+    addTest: function (name, fn, options) {
+      tests.push({ name: name, fn: fn, options: options });
     },
 
-    addAsyncTest: function(fn) {
-      tests.push({name: null, fn: fn});
+    addAsyncTest: function (fn) {
+      tests.push({ name: null, fn: fn });
     }
   };
 
-  
+
 
   // Fake some of Object.create so we can force non test results to be non "own" properties.
-  var Modernizr = function() {};
+  var Modernizr = function () { };
   Modernizr.prototype = ModernizrProto;
 
   // Leak modernizr globally when you `require` it rather than force it here.
   // Overwrite name so constructor name is nicer :D
   Modernizr = new Modernizr();
 
-  
-/*!
-{
-  "name": "SVG",
-  "property": "svg",
-  "caniuse": "svg",
-  "tags": ["svg"],
-  "authors": ["Erik Dahlstrom"],
-  "polyfills": [
-    "svgweb",
-    "raphael",
-    "amplesdk",
-    "canvg",
-    "svg-boilerplate",
-    "sie",
-    "dojogfx",
-    "fabricjs"
-  ]
-}
-!*/
-/* DOC
-Detects support for SVG in `<embed>` or `<object>` elements.
-*/
+
+  /*!
+  {
+    "name": "SVG",
+    "property": "svg",
+    "caniuse": "svg",
+    "tags": ["svg"],
+    "authors": ["Erik Dahlstrom"],
+    "polyfills": [
+      "svgweb",
+      "raphael",
+      "amplesdk",
+      "canvg",
+      "svg-boilerplate",
+      "sie",
+      "dojogfx",
+      "fabricjs"
+    ]
+  }
+  !*/
+  /* DOC
+  Detects support for SVG in `<embed>` or `<object>` elements.
+  */
 
   Modernizr.addTest('svg', !!document.createElementNS && !!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect);
 
@@ -207,7 +204,7 @@ Detects support for SVG in `<embed>` or `<object>` elements.
    */
 
   var docElement = document.documentElement;
-  
+
 
   /**
    * A convenience helper to check if the document we are running in is an SVG document
@@ -217,7 +214,7 @@ Detects support for SVG in `<embed>` or `<object>` elements.
    */
 
   var isSVG = docElement.nodeName.toLowerCase() === 'svg';
-  
+
 
   /**
    * setClasses takes an array of class names and adds them to the root element
@@ -271,11 +268,11 @@ Detects support for SVG in `<embed>` or `<object>` elements.
    */
 
   var omPrefixes = 'Moz O ms Webkit';
-  
+
 
   var cssomPrefixes = (ModernizrProto._config.usePrefixes ? omPrefixes.split(' ') : []);
   ModernizrProto._cssomPrefixes = cssomPrefixes;
-  
+
 
   /**
    * List of JavaScript DOM values used for tests
@@ -297,7 +294,7 @@ Detects support for SVG in `<embed>` or `<object>` elements.
 
   var domPrefixes = (ModernizrProto._config.usePrefixes ? omPrefixes.toLowerCase().split(' ') : []);
   ModernizrProto._domPrefixes = domPrefixes;
-  
+
 
 
   /**
@@ -352,7 +349,7 @@ Detects support for SVG in `<embed>` or `<object>` elements.
    */
 
   function cssToDOM(name) {
-    return name.replace(/([a-z])-([a-z])/g, function(str, m1, m2) {
+    return name.replace(/([a-z])-([a-z])/g, function (str, m1, m2) {
       return m1 + m2.toUpperCase();
     }).replace(/^-/, '');
   }
@@ -369,7 +366,7 @@ Detects support for SVG in `<embed>` or `<object>` elements.
    */
 
   function fnBind(fn, that) {
-    return function() {
+    return function () {
       return fn.apply(that, arguments);
     };
   }
@@ -425,11 +422,11 @@ Detects support for SVG in `<embed>` or `<object>` elements.
   };
 
   // Clean up this element
-  Modernizr._q.push(function() {
+  Modernizr._q.push(function () {
     delete modElem.elem;
   });
 
-  
+
 
   var mStyle = {
     style: modElem.elem.style
@@ -437,11 +434,11 @@ Detects support for SVG in `<embed>` or `<object>` elements.
 
   // kill ref for gc, must happen before mod.elem is removed, so we unshift on to
   // the front of the queue.
-  Modernizr._q.unshift(function() {
+  Modernizr._q.unshift(function () {
     delete mStyle.style;
   });
 
-  
+
 
   /**
    * domToCSS takes a camelCase string and converts it to kebab-case
@@ -454,7 +451,7 @@ Detects support for SVG in `<embed>` or `<object>` elements.
    */
 
   function domToCSS(name) {
-    return name.replace(/([A-Z])/g, function(str, m1) {
+    return name.replace(/([A-Z])/g, function (str, m1) {
       return '-' + m1.toLowerCase();
     }).replace(/^ms-/, '-ms-');
   }
@@ -592,7 +589,7 @@ Detects support for SVG in `<embed>` or `<object>` elements.
         conditionText.push('(' + domToCSS(props[i]) + ':' + value + ')');
       }
       conditionText = conditionText.join(' or ');
-      return injectElementWithStyles('@supports (' + conditionText + ') { #modernizr { position: absolute; } }', function(node) {
+      return injectElementWithStyles('@supports (' + conditionText + ') { #modernizr { position: absolute; } }', function (node) {
         return getComputedStyle(node, null).position == 'absolute';
       });
     }
@@ -669,7 +666,7 @@ Detects support for SVG in `<embed>` or `<object>` elements.
           // be avoided in most cases because `skipValueTest` will be used.
           try {
             mStyle.style[prop] = value;
-          } catch (e) {}
+          } catch (e) { }
 
           // If the property value has changed, we assume the value used is
           // supported. If `value` is empty string, it'll fail here (because
@@ -711,7 +708,7 @@ Detects support for SVG in `<embed>` or `<object>` elements.
   function testPropsAll(prop, prefixed, elem, value, skipValueTest) {
 
     var ucProp = prop.charAt(0).toUpperCase() + prop.slice(1),
-    props = (prop + ' ' + cssomPrefixes.join(ucProp + ' ') + ucProp).split(' ');
+      props = (prop + ' ' + cssomPrefixes.join(ucProp + ' ') + ucProp).split(' ');
 
     // did they call .prefixed('boxSizing') or are we just testing a prop?
     if (is(prefixed, 'string') || is(prefixed, 'undefined')) {
@@ -731,7 +728,7 @@ Detects support for SVG in `<embed>` or `<object>` elements.
   // Modernizr.testAllProps('boxSizing')
   ModernizrProto.testAllProps = testPropsAll;
 
-  
+
 
   /**
    * testAllProps determines whether a given CSS property is supported in the browser
@@ -774,36 +771,36 @@ Detects support for SVG in `<embed>` or `<object>` elements.
     return testPropsAll(prop, undefined, undefined, value, skipValueTest);
   }
   ModernizrProto.testAllProps = testAllProps;
-  
-/*!
-{
-  "name": "Background Size",
-  "property": "backgroundsize",
-  "tags": ["css"],
-  "knownBugs": ["This will false positive in Opera Mini - https://github.com/Modernizr/Modernizr/issues/396"],
-  "notes": [{
-    "name": "Related Issue",
-    "href": "https://github.com/Modernizr/Modernizr/issues/396"
-  }]
-}
-!*/
+
+  /*!
+  {
+    "name": "Background Size",
+    "property": "backgroundsize",
+    "tags": ["css"],
+    "knownBugs": ["This will false positive in Opera Mini - https://github.com/Modernizr/Modernizr/issues/396"],
+    "notes": [{
+      "name": "Related Issue",
+      "href": "https://github.com/Modernizr/Modernizr/issues/396"
+    }]
+  }
+  !*/
 
   Modernizr.addTest('backgroundsize', testAllProps('backgroundSize', '100%', true));
 
-/*!
-{
-  "name": "CSS Transforms",
-  "property": "csstransforms",
-  "caniuse": "transforms2d",
-  "tags": ["css"]
-}
-!*/
+  /*!
+  {
+    "name": "CSS Transforms",
+    "property": "csstransforms",
+    "caniuse": "transforms2d",
+    "tags": ["css"]
+  }
+  !*/
 
-  Modernizr.addTest('csstransforms', function() {
+  Modernizr.addTest('csstransforms', function () {
     // Android < 3.0 is buggy, so we sniff and blacklist
     // http://git.io/hHzL7w
     return navigator.userAgent.indexOf('Android 2.') === -1 &&
-           testAllProps('transform', 'scale(1)', true);
+      testAllProps('transform', 'scale(1)', true);
   });
 
 
@@ -825,6 +822,6 @@ Detects support for SVG in `<embed>` or `<object>` elements.
   window.Modernizr = Modernizr;
 
 
-;
+  ;
 
 })(window, document);

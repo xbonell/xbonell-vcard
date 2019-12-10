@@ -1,31 +1,14 @@
 // Define
-
-$bgcolor: #252525;
-$color: #fff;
-$grey: #657b83;
-$red: #E44424;
-$github: #111;
-$twitter: #00ACED;
-$linkedin: #007BB6;
-
-
-$fontstack: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+// ----------------------------------------------------------------------------
+@import 'utils/variables';
 
 // Import modules
-
-@import "modules/base";
-@import "modules/layout";
-@import "modules/logo";
-@import "modules/hcard";
-@import "modules/services";
-@import "modules/toolkit";
-@import "modules/icons";
-@import "modules/footer";
-
-
-
-
-
-
-
-
+// ----------------------------------------------------------------------------
+@import 'modules/base';
+@import 'modules/layout';
+@import 'modules/logo';
+@import 'modules/hcard';
+@import 'modules/services';
+@import 'modules/toolkit';
+@import 'modules/icons';
+@import 'modules/footer';

@@ -1,8 +1,9 @@
 /* Layout */
 
 // Micro Clearfix - http://nicolasgallagher.com/micro-clearfix-hack/
-.cf:before, .cf:after {
-  content: " ";
+.cf:before,
+.cf:after {
+  content: ' ';
   display: table;
 }
 
@@ -17,37 +18,33 @@ body > article {
   animation-name: zoomIn;
   animation-duration: 1s;
   animation-fill-mode: both;
-  transform-origin: center;  
+  transform-origin: center;
 }
 
-[role="banner"] {
-
+[role='banner'] {
   margin-bottom: 1em;
 
   @media screen and (max-width: 480px) {
     margin-bottom: 1.25em;
   }
-
 }
 
-[role="contentinfo"] {
-
+[role='contentinfo'] {
   margin-top: 1em;
 
   @media screen and (max-width: 480px) {
     margin-top: 1.25em;
   }
-
 }
 
-[role="main"] > section {
+[role='main'] > section {
   margin: 2em 0;
 }
 
 @keyframes zoomIn {
   from {
     opacity: 0;
-    transform: scale3d(.9, .9, .9);
+    transform: scale3d(0.9, 0.9, 0.9);
   }
 
   50% {

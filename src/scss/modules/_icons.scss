@@ -1,11 +1,9 @@
 /* Social Icons */
 
 .social__icons {
-
   margin: 3em 0 2em;
 
   > li {
-    
     display: inline-block;
     position: relative;
     width: 3em;
@@ -17,9 +15,8 @@
     }
 
     &:hover a {
-      transform: rotateY(180deg) translate3d(0, 0, 0);      
+      transform: rotateY(180deg) translate3d(0, 0, 0);
     }
-
   }
 
   a {
@@ -35,37 +32,35 @@
     display: block;
     position: absolute;
     width: 100%;
-    height: 100%;        
+    height: 100%;
   }
-  
-  .icon {  
-    padding: .5em;    
+
+  .icon {
+    padding: 0.5em;
     background-color: $color;
     color: $bgcolor;
     font-size: 1em;
     line-height: 1;
-    text-align: center;    
-    backface-visibility: hidden;    
+    text-align: center;
+    backface-visibility: hidden;
   }
 
-  .label {       
+  .label {
     background-color: $grey;
     color: $bgcolor;
-    font-size: .7em;
+    font-size: 0.7em;
     line-height: 4em;
     text-align: center;
-    backface-visibility: hidden;      
-    transform: rotateY(180deg) translate3d(0, 0, 0);    
+    backface-visibility: hidden;
+    transform: rotateY(180deg) translate3d(0, 0, 0);
     -webkit-font-smoothing: antialiased;
-  
-    .no-csstransforms3d & {
-      display: none;      
-    }      
 
+    .no-csstransforms3d & {
+      display: none;
+    }
   }
 
   .github {
-
     .icon {
       background-color: $github;
       fill: white;
@@ -75,11 +70,9 @@
       background-color: darken($github, 20%);
       color: white;
     }
-
   }
 
   .linkedin {
-  
     .icon {
       background-color: $linkedin;
       fill: white;
@@ -89,11 +82,9 @@
       background-color: darken($linkedin, 20%);
       color: white;
     }
-  
   }
 
   .twitter {
-
     .icon {
       background-color: $twitter;
       fill: white;
@@ -103,8 +94,5 @@
       background-color: darken($twitter, 20%);
       color: white;
     }
-  
   }
-
 }
-

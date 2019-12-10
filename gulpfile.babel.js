@@ -246,7 +246,7 @@ function svg() {
     }))
     .pipe($.svgstore())
     .pipe($.rename('sprite.svg'))
-    .pipe(gulp.dest(`${dir.dest }assets/images`));
+    .pipe(gulp.dest(`${dir.dest}assets/images`));
 }
 
 // Watch for file changes

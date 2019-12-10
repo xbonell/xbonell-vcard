@@ -1,2 +1,2 @@
-var modernizr = require('./modernizr-custom');
-var svgxuse   = require('svgxuse');
+require('./modernizr-custom');
+require('svgxuse');

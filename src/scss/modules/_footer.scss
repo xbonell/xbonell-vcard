@@ -1,22 +1,17 @@
 .copyright {
-
   font-size: 0.7em;
   color: $grey;
 
   > span {
-
     display: block;
 
     @media (min-width: 375px) {
       display: inline;
     }
-
   }
-
 }
 
 .lang {
-
   li {
     display: inline-block;
     font-size: 0.7em;
@@ -24,10 +19,9 @@
 
     + li:before {
       display: inline-block;
-      content: "|";
-      margin: 0 .5em;
+      content: '|';
+      margin: 0 0.5em;
     }
-
   }
 
   a {
@@ -42,5 +36,4 @@
   span {
     color: $red;
   }
-
 }

@@ -13,35 +13,34 @@ html {
 }
 
 body {
-
   padding: 2em;
   background-color: $bgcolor;
   color: $color;
   font: 400 1.25em / 1.4 $fontstack;
 
-  @media screen and (max-width: 480px) {    
+  @media screen and (max-width: 480px) {
     padding: 1em;
     font-size: 1em;
   }
-
 }
 
 h2 {
-  margin: 1em auto .5em;
+  margin: 1em auto 0.5em;
   font-weight: 100;
   font-size: 2.5em;
   color: $grey;
 }
 
 h3 {
-  margin: 1em auto .5em;
+  margin: 1em auto 0.5em;
   font-weight: 100;
   font-size: 1.75em;
-  letter-spacing: .05em;
+  letter-spacing: 0.05em;
   color: $grey;
 }
 
-ul, li {
+ul,
+li {
   list-style: none;
 }
 
