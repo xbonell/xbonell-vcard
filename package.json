@@ -49,7 +49,7 @@
     "gulp-uglify": "^3.0.1",
     "gulp-util": "^3.0.8",
     "hamljs": "^0.6.2",
-    "handlebars": "^4.0.11",
+    "handlebars": "^4.1.2",
     "handlebars-layouts": "^3.1.4",
     "metalsmith": "^2.3.0",
     "metalsmith-layouts": "^1.8.1",
