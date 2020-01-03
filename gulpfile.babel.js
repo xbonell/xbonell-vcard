@@ -80,7 +80,7 @@ gulp.task('build', gulp.series(clean, gulp.parallel(bundle, css, html, images, s
 gulp.task('deploy', gulp.series(creds, deploy));
 
 // Build site, run the server, and watch for file changes
-gulp.task('default', gulp.series('build', minify, server, watch));
+gulp.task('default', gulp.series('build', server, watch));
 
 
 // Create JS bundle
