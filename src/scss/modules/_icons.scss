@@ -95,4 +95,16 @@
       color: white;
     }
   }
+
+  .mastodon {
+    .icon {
+      background-color: $mastodon;
+      fill: white;
+    }
+
+    .label {
+      background-color: darken($mastodon, 20%);
+      color: white;
+    }
+  }
 }

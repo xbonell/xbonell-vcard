@@ -107,7 +107,7 @@
             %ul.social__icons
               - each network in networks
                 %li{ class: network.name }
-                  %a{href: network.url, rel: "author"}
+                  %a{href: network.url, rel: "me"}
                     %svg{ class: "icon icon-" + network.name, "aria-hidden": "true" }
                       %use{ "xlink:href": "/assets/images/sprite.svg#" + network.name }
                     %span.label

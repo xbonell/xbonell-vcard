@@ -45,6 +45,9 @@ networks:
   - name: twitter
     label: '@xbonell'
     url: https://twitter.com/xbonell
+  - name: mastodon
+    label: '@xbonell'
+    url: https://mastodon.social/@xbonell
   - name: linkedin
     label: LinkedIn
     url: https://linkedin.com/in/xbonell
