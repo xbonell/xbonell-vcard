@@ -38,7 +38,10 @@ body > article {
 }
 
 [role='main'] > section {
-  margin: 2em 0;
+  margin: 2em 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 @keyframes zoomIn {
