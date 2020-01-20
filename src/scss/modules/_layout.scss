@@ -1,20 +1,9 @@
 /* Layout */
 
-// Micro Clearfix - http://nicolasgallagher.com/micro-clearfix-hack/
-.cf:before,
-.cf:after {
-  content: ' ';
-  display: table;
-}
-
-.cf:after {
-  clear: both;
-}
-
 body > article {
   margin: 0 auto;
-  max-width: 26em;
-  backface-visibility: visible !important;
+  max-width: em(400);
+  backface-visibility: visible;
   animation-name: zoomIn;
   animation-duration: 1s;
   animation-fill-mode: both;
@@ -22,19 +11,11 @@ body > article {
 }
 
 [role='banner'] {
-  margin-bottom: 1em;
-
-  @media screen and (max-width: 480px) {
-    margin-bottom: 1.25em;
-  }
+  margin-bottom: em(20);
 }
 
 [role='contentinfo'] {
-  margin-top: 1em;
-
-  @media screen and (max-width: 480px) {
-    margin-top: 1.25em;
-  }
+  margin-top: em(20);
 }
 
 [role='main'] > section {

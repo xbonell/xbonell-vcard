@@ -4,17 +4,17 @@
   ul {
     display: flex;
     flex-flow: row wrap;
-    margin-left: -0.2em;
-    margin-right: -0.2em;
+    margin-left: em(-4);
+    margin-right: em(-4);
   }
 
   li {
     color: rgba(white, 0.4);
     background: rgba(white, 0.05);
     font-weight: 200;
-    font-size: 0.8em;
-    letter-spacing: 0.05em;
-    margin: 0.2em;
-    padding: 0 0.4em;
+    font-size: em(13);
+    letter-spacing: em(1, 13);
+    margin: em(3, 13);
+    padding: 0 em(5, 13);
   }
 }

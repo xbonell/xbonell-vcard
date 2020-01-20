@@ -1,11 +1,11 @@
 .copyright {
-  font-size: 0.7em;
+  font-size: em(11);
   color: $grey;
 
   > span {
     display: block;
 
-    @media (min-width: 375px) {
+    @include bp(mobile, min) {
       display: inline;
     }
   }
@@ -14,13 +14,13 @@
 .lang {
   li {
     display: inline-block;
-    font-size: 0.7em;
+    font-size: em(11);
     color: $grey;
 
     + li:before {
       display: inline-block;
       content: '|';
-      margin: 0 0.5em;
+      margin: 0 em(8);
     }
   }
 

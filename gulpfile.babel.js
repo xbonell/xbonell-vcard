@@ -252,7 +252,6 @@ function svg() {
 // Watch for file changes
 // ----------------------------------------------------------------------------
 function watch() {
-
   gulp.watch([`${dir.source}content/**/*.md`, `${dir.source}_templates/**/*.haml`, `${dir.source}_partials/**/*.hbs`])
     .on('change', gulp.series(html, minify, browser.reload));
 
@@ -267,5 +266,4 @@ function watch() {
 
   gulp.watch([`${dir.source}images/**/*.{gif,jpg,jpeg,png}`])
     .on('change', gulp.series(images, browser.reload));
-
 }

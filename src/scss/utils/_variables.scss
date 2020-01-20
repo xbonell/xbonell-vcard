@@ -1,3 +1,4 @@
+// Color palette
 $bgcolor: #252525;
 $color: #fff;
 $alt-color: #a79c8e;
@@ -8,5 +9,20 @@ $twitter: #00aced;
 $linkedin: #007bb6;
 $mastodon: #2f93d7;
 
+// Typography
+$browser-context: 16;
 $fontstack: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial,
   'Lucida Grande', sans-serif;
+
+// Breakpoints map
+$breakpoints: (
+  mobile: 480
+);
+
+// Social networks
+$social: (
+  github: #111,
+  twitter: #00aced,
+  linkedin: #007bb6,
+  mastodon: #2f93d7
+);

@@ -3,7 +3,7 @@
 .services {
   li:before {
     content: '→';
-    padding-right: 0.25em;
+    padding-right: em(4);
     position: relative;
     color: $red;
   }

@@ -2,7 +2,11 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  &,
+  &:before,
+  &:after {
+    box-sizing: border-box;
+  }
 }
 
 html {
@@ -13,29 +17,29 @@ html {
 }
 
 body {
-  padding: 2em;
+  padding: em(16);
   background-color: $bgcolor;
   color: $color;
-  font: 400 1.25em / 1.4 $fontstack;
+  font: 400 #{em(16)} / 1.4 $fontstack;
 
-  @media screen and (max-width: 480px) {
-    padding: 1em;
-    font-size: 1em;
+  @include bp(mobile, min) {
+    padding: em(40, 20);
+    font-size: em(20);
   }
 }
 
 h2 {
-  margin: 0 0 0.5em;
+  margin: 0 0 em(8);
   font-weight: 100;
-  font-size: 2.5em;
+  font-size: em(40);
   color: $grey;
 }
 
 h3 {
-  margin: 0 0 0.5em;
+  margin: 0 0 em(8);
   font-weight: 100;
-  font-size: 1.75em;
-  letter-spacing: 0.05em;
+  font-size: em(28);
+  letter-spacing: em(1);
   color: $grey;
 }
 

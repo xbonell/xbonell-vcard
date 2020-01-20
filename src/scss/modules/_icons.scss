@@ -1,17 +1,17 @@
 /* Social Icons */
 
 .social__icons {
-  margin: 0 0 2em;
+  margin: 0 0 em(32);
 
   > li {
     display: inline-block;
     position: relative;
-    width: 3em;
-    height: 3em;
+    width: em(48);
+    height: em(48);
     z-index: 1;
 
     + li {
-      margin-left: 0.75em;
+      margin-left: em(12);
     }
 
     &:hover a {
@@ -36,10 +36,10 @@
   }
 
   .icon {
-    padding: 0.5em;
+    padding: em(8);
     background-color: $color;
     color: $bgcolor;
-    font-size: 1em;
+    font-size: em(16);
     line-height: 1;
     text-align: center;
     backface-visibility: hidden;
@@ -48,63 +48,28 @@
   .label {
     background-color: $grey;
     color: $bgcolor;
-    font-size: 0.7em;
-    line-height: 4em;
+    font-size: em(11);
+    line-height: em(48, 11);
     text-align: center;
     backface-visibility: hidden;
     transform: rotateY(180deg) translate3d(0, 0, 0);
-    -webkit-font-smoothing: antialiased;
 
     .no-csstransforms3d & {
       display: none;
     }
   }
 
-  .github {
-    .icon {
-      background-color: $github;
-      fill: white;
-    }
+  @each $network, $color in $social {
+    .#{$network} {
+      .icon {
+        background-color: $color;
+        fill: white;
+      }
 
-    .label {
-      background-color: darken($github, 20%);
-      color: white;
-    }
-  }
-
-  .linkedin {
-    .icon {
-      background-color: $linkedin;
-      fill: white;
-    }
-
-    .label {
-      background-color: darken($linkedin, 20%);
-      color: white;
-    }
-  }
-
-  .twitter {
-    .icon {
-      background-color: $twitter;
-      fill: white;
-    }
-
-    .label {
-      background-color: darken($twitter, 20%);
-      color: white;
-    }
-  }
-
-  .mastodon {
-    .icon {
-      background-color: $mastodon;
-      fill: white;
-    }
-
-    .label {
-      background-color: darken($mastodon, 20%);
-      color: white;
+      .label {
+        background-color: darken($color, 20%);
+        color: white;
+      }
     }
   }
 }

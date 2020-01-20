@@ -1,12 +1,12 @@
 /* Hcard */
 
 .hcard {
-  margin-top: 2em;
+  margin-top: em(32);
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 1em 1em 2em;
+  padding: em(16) em(16) em(32);
   background-color: $color;
   background-image: repeating-radial-gradient(
       circle farthest-corner at right top,
@@ -40,13 +40,14 @@
 
   .image {
     display: block;
-    width: 5em;
-    height: 5em;
+    width: em(80);
+    height: em(80);
     mix-blend-mode: multiply;
+    transform: rotate(-2deg);
   }
 
   .fields-group {
-    margin-left: 1em;
+    margin-left: em(16);
   }
 
   .name,
@@ -56,25 +57,21 @@
   }
 
   .name {
-    font-size: 1.25em;
+    font-size: em(20);
   }
 
   .address {
-    font-size: 0.75em;
-    margin-bottom: 0.625em;
+    font-size: em(12);
+    margin-bottom: em(8, 12);
 
-    span:after {
+    span:not(:last-child):after {
       content: ', ';
-    }
-
-    span:last-child:after {
-      content: none;
     }
   }
 
   .contact {
-    margin-top: 0.167em;
-    font-size: 0.875em;
+    margin-top: em(2, 14);
+    font-size: em(14);
     color: $bgcolor;
 
     > * {
@@ -83,10 +80,19 @@
     }
 
     svg {
-      width: 1em;
-      height: 1em;
-      margin-right: 0.5em;
+      width: em(14, 14);
+      height: em(14, 14);
+      margin-right: em(7, 14);
       fill: $red;
+    }
+
+    span {
+      text-decoration: underline;
+      text-decoration-color: transparent;
+    }
+
+    &:hover span {
+      text-decoration-color: $red;
     }
   }
 }
