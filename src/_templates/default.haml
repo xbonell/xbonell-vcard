@@ -73,7 +73,7 @@
                 %svg.icon.email{ "aria-hidden": "true" }
                   %use{ "xlink:href": "/assets/images/sprite.svg#email" }
                   %span= vcard.email
-              %a.contact.web{ href: "http://" + vcard.url, itemprop: "url" }
+              %a.contact.web{ href: vcard.url, itemprop: "url" }
                 %svg.icon.web{ "aria-hidden": "true" }
                   %use{ "xlink:href": "/assets/images/sprite.svg#web" }
                   %span= vcard.url
