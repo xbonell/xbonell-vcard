@@ -65,7 +65,11 @@
   },
   "dependencies": {
     "global": "^4.4.0",
+    "gsap": "^3.2.6",
     "svgxuse": "^1.2.6"
   },
-  "optionalDependencies": {}
+  "browserslist": [
+    "last 2 versions",
+    "> 5%"
+  ]
 }

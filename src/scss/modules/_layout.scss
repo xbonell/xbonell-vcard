@@ -1,13 +1,14 @@
 /* Layout */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
 
 body > article {
   margin: 0 auto;
   max-width: em(400);
-  backface-visibility: visible;
-  animation-name: zoomIn;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-  transform-origin: center;
 }
 
 [role='banner'] {
@@ -19,19 +20,18 @@ body > article {
 }
 
 [role='main'] > section {
-  margin: 2em 0 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
+  padding: 0;
 
-@keyframes zoomIn {
-  from {
-    opacity: 0;
-    transform: scale3d(0.9, 0.9, 0.9);
+  .inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow: hidden;
   }
 
-  50% {
-    opacity: 1;
+  h2,
+  h3 {
+    padding-top: 0.75em;
   }
 }

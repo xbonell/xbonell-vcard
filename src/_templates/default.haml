@@ -57,26 +57,27 @@
       %main{ role: "main" }
         
         %section{ itemscope: true, itemtype: "http://schema.org/Person" }
-          .description{itemprop: "description"}
-            != contents
-          .hcard
-            %img.image{ src: "/assets/images/portrait.jpg", itemprop: "image", alt: "Xavier Bonell" }
-            .fields-group
-              %strong.name{ itemprop: "name" }
-                %span{itemprop: "givenName"}= vcard.givenName
-                %span{itemprop: "familyName"}= vcard.familyName
-              %div.address{itemprop: "address", itemscope: true, itemtype: "http://schema.org/PostalAddress" }
-                %span{itemprop: "addressLocality"}= vcard.addressLocality
-                %span{itemprop: "addressRegion"}= vcard.addressRegion
-                %span{itemprop: "addressCountry"}= vcard.addressCountry
-              %a.contact.mail{ href: "mailto:" + vcard.email, itemprop: "email" }
-                %svg.icon.email{ "aria-hidden": "true" }
-                  %use{ "xlink:href": "/assets/images/sprite.svg#email" }
-                  %span= vcard.email
-              %a.contact.web{ href: vcard.url, itemprop: "url" }
-                %svg.icon.web{ "aria-hidden": "true" }
-                  %use{ "xlink:href": "/assets/images/sprite.svg#web" }
-                  %span= vcard.url
+          .inner
+            .description{itemprop: "description"}
+              != contents
+            .hcard
+              %img.image{ src: "/assets/images/portrait.jpg", itemprop: "image", alt: "Xavier Bonell" }
+              .fields-group
+                %strong.name{ itemprop: "name" }
+                  %span{itemprop: "givenName"}= vcard.givenName
+                  %span{itemprop: "familyName"}= vcard.familyName
+                %div.address{itemprop: "address", itemscope: true, itemtype: "http://schema.org/PostalAddress" }
+                  %span{itemprop: "addressLocality"}= vcard.addressLocality
+                  %span{itemprop: "addressRegion"}= vcard.addressRegion
+                  %span{itemprop: "addressCountry"}= vcard.addressCountry
+                %a.contact.mail{ href: "mailto:" + vcard.email, itemprop: "email" }
+                  %svg.icon.email{ "aria-hidden": "true" }
+                    %use{ "xlink:href": "/assets/images/sprite.svg#email" }
+                    %span= vcard.email
+                %a.contact.web{ href: vcard.url, itemprop: "url" }
+                  %svg.icon.web{ "aria-hidden": "true" }
+                    %use{ "xlink:href": "/assets/images/sprite.svg#web" }
+                    %span= vcard.url
         
         - if (services)        
           %section.services

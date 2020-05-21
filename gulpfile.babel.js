@@ -61,9 +61,7 @@ const templateConfig = {
 
 // PostCSS filters 
 const processors = [
-  autoprefixer({
-    browsers: ['last 2 versions', '> 5%']
-  }),
+  autoprefixer(),
   mqpacker({
     sort: true
   }),

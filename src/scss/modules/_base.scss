@@ -29,14 +29,16 @@ body {
 }
 
 h2 {
-  margin: 0 0 em(8);
+  margin: 0;
+  padding: 0 0 em(8);
   font-weight: 100;
   font-size: em(40);
   color: $grey;
 }
 
 h3 {
-  margin: 0 0 em(8);
+  margin: 0;
+  padding: 0 0 em(8);
   font-weight: 100;
   font-size: em(28);
   letter-spacing: em(1);
