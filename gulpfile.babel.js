@@ -5,20 +5,15 @@ import autoprefixer from 'autoprefixer';
 import browser from 'browser-sync';
 import browserify from 'browserify';
 import buffer from 'vinyl-buffer';
-import colors from 'colors';
 import cssnano from 'cssnano';
 import mqpacker from 'css-mqpacker';
 import fs from 'fs';
 import gulp from 'gulp';
-import babel from 'gulp-babel';
 import image from 'gulp-image';
 import htmlmin from 'gulp-htmlmin';
 import plugins from 'gulp-load-plugins';
 import rsync from 'gulp-rsync';
-import gutil from 'gulp-util';
-import handlebars from 'handlebars';
 import metalsmith from 'metalsmith';
-import moment from 'moment';
 import layouts from 'metalsmith-layouts';
 import markdown from 'metalsmith-markdown';
 import permalinks from 'metalsmith-permalinks';
@@ -29,15 +24,18 @@ import yargs from 'yargs';
 // Load Gulp plugins
 const $ = plugins();
 
-// Look for the --production flag
+// Look for passed args
 const PRODUCTION = !!(yargs.argv.production);
+const DEST = yargs.argv.dest;
+
+console.log(DEST);
 
 // Main directories and Metalsmith configuration objects
 const dir = {
   base: __dirname + '/',
   lib: __dirname + '/src/_lib/',
   source: './src/',
-  dest: './dist/'
+  dest: DEST || './dist/'
 };
 
 const siteMeta = {
