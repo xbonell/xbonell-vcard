@@ -5,8 +5,7 @@
   "main": "gulpfile.babel.js",
   "scripts": {
     "dev": "gulp",
-    "build": "gulp build --production",
-    "deploy": "gulp deploy"
+    "build": "gulp build --production"
   },
   "repository": {
     "type": "git",

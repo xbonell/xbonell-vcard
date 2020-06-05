@@ -15,13 +15,13 @@ vcard:
   email: mail@xbonell.com
   url: https://xbonell.com
 services:
-  - UX / Diseño y desarrollo web
+  - Diseño y desarrollo web
   - HTML5 / CSS3
   - JavaScript
   - Vue.js / Nuxt.js / Vuex
   - React / Redux
   - WordPress
-  - Accesibilidad
+  - Plantillas HTML email
 toolkit:
   - MacBook Pro
   - MacOS
