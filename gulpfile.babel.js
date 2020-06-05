@@ -101,7 +101,7 @@ function bundle() {
 // Delete the "dist" folder (this happens every time a build starts)
 // ----------------------------------------------------------------------------
 function clean(done) {
-  rimraf(dir.dest, done);
+  rimraf(`${dir.dest}**/*`, done);
 }
 
 // Copy static files to root
