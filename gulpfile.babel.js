@@ -7,12 +7,9 @@ import browserify from 'browserify';
 import buffer from 'vinyl-buffer';
 import cssnano from 'cssnano';
 import mqpacker from 'css-mqpacker';
-import fs from 'fs';
 import gulp from 'gulp';
 import image from 'gulp-image';
-import htmlmin from 'gulp-htmlmin';
 import plugins from 'gulp-load-plugins';
-import rsync from 'gulp-rsync';
 import metalsmith from 'metalsmith';
 import layouts from 'metalsmith-layouts';
 import markdown from 'metalsmith-markdown';
@@ -24,11 +21,9 @@ import yargs from 'yargs';
 // Load Gulp plugins
 const $ = plugins();
 
-// Look for passed args
+// Look for args passed via cmd line parameters
 const PRODUCTION = !!(yargs.argv.production);
 const DEST = yargs.argv.dest;
-
-console.log(DEST);
 
 // Main directories and Metalsmith configuration objects
 const dir = {
@@ -66,22 +61,9 @@ const processors = [
   cssnano()
 ];
 
-// Declar var so it can be used to load the deploy config
-var CONFIG;
-
-// Build the "dist" folder by running all of the above tasks
-gulp.task('build', gulp.series(clean, gulp.parallel(bundle, css, html, images, svg, copy, minify)));
-
-// Deploy task
-gulp.task('deploy', gulp.series(creds, deploy));
-
-// Build site, run the server, and watch for file changes
-gulp.task('default', gulp.series('build', server, watch));
-
-
 // Create JS bundle
 // ----------------------------------------------------------------------------
-function bundle() {
+const bundle = () => {
   return browserify(`${dir.source}scripts/main.js`)
     .bundle()
     .pipe(source('app.js'))
@@ -100,20 +82,20 @@ function bundle() {
 
 // Delete the "dist" folder (this happens every time a build starts)
 // ----------------------------------------------------------------------------
-function clean(done) {
+const clean = (done) => {
   rimraf(`${dir.dest}**/*`, done);
 }
 
 // Copy static files to root
 // ----------------------------------------------------------------------------
-function copy() {
+const copy = () => {
   return gulp.src(`${dir.source}_static/*.*`)
     .pipe(gulp.dest(dir.dest));
 }
 
 // Compile Sass into CSS and apply PostCSS filters
 // ----------------------------------------------------------------------------
-function css() {
+const css = () => {
   return gulp.src(`${dir.source}scss/style.scss`)
     .pipe($.if(!PRODUCTION, $.sourcemaps.init()))
     .pipe($.sass().on('error', $.sass.logError))
@@ -122,33 +104,9 @@ function css() {
     .pipe(gulp.dest(`${dir.dest}assets/css`));
 }
 
-// Ensure creds for Litmus are at least there.
-function creds(done) {
-  const configPath = './secret.json';
-  try {
-    CONFIG = JSON.parse(fs.readFileSync(configPath));
-  } catch (e) {
-    console.log('Sorry, there was an issue locating your secret.json.');
-    process.exit();
-  }
-  done();
-}
-
-function deploy() {
-  return gulp.src(`${dir.dest}**`)
-    .pipe(rsync({
-      root: dir.dest,
-      hostname: CONFIG.staging.host,
-      username: CONFIG.staging.username,
-      destination: CONFIG.staging.destination,
-      recursive: true,
-      progress: true
-    }));
-}
-
 // Build HTML
 // ----------------------------------------------------------------------------
-function html(done) {
+const html = (done) => {
 
   metalsmith(dir.base)
     .clean(false)
@@ -167,7 +125,7 @@ function html(done) {
 
 // Process images
 // ----------------------------------------------------------------------------
-function images() {
+const images = () => {
   return gulp.src(`${dir.source}images/**/*`)
     .pipe(image({
       pngquant: false,
@@ -185,9 +143,9 @@ function images() {
 
 // Minify HTML
 // ----------------------------------------------------------------------------
-function minify() {
+const minify = () => {
   return gulp.src(`${dir.dest}**/*.html`)
-    .pipe($.if(PRODUCTION, htmlmin({
+    .pipe($.if(PRODUCTION, $.htmlmin({
       collapseWhitespace: true
     })))
     .pipe(gulp.dest(dir.dest));
@@ -195,7 +153,7 @@ function minify() {
 
 // Start a server with LiveReload to preview the site in
 // ----------------------------------------------------------------------------
-function server(done) {
+const server = (done) => {
   browser.init({
     server: dir.dest,
     startPath: 'ca/'
@@ -205,7 +163,7 @@ function server(done) {
 
 // Process SVG files and generate sprite
 // ----------------------------------------------------------------------------
-function svg() {
+const svg = () => {
 
   return gulp.src([`${dir.source}svg/*.svg`])
     .pipe($.rename(function (path) {
@@ -247,7 +205,7 @@ function svg() {
 
 // Watch for file changes
 // ----------------------------------------------------------------------------
-function watch() {
+const watch = () => {
   gulp.watch([`${dir.source}content/**/*.md`, `${dir.source}_templates/**/*.haml`, `${dir.source}_partials/**/*.hbs`])
     .on('change', gulp.series(html, minify, browser.reload));
 
@@ -263,3 +221,9 @@ function watch() {
   gulp.watch([`${dir.source}images/**/*.{gif,jpg,jpeg,png}`])
     .on('change', gulp.series(images, browser.reload));
 }
+
+// Build the "dist" folder by running all of the above tasks
+gulp.task('build', gulp.series(clean, gulp.parallel(bundle, css, html, images, svg, copy, minify)));
+
+// Build site, run the server, and watch for file changes
+gulp.task('default', gulp.series('build', server, watch));
