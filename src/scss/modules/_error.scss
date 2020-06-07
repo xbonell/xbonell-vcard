@@ -61,6 +61,27 @@
     font-weight: 300;
     font-size: calc(10vw + #{rem(150)});
     line-height: 1;
+    color: rgba(white,.5);
+  }
+
+  &__home {
+    position: relative;
+    margin-top: 4vw;
+    font-size: calc(1vw + #{rem(18)});
     color: $red;
+    &:after {
+      content: "";
+      display: block;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      width: 0;
+      background: rgba($red, .5);
+      transition: all .3s cubic-bezier(.694, .0482, .335, 1);
+    }
+
+    &:hover:after {
+      width: 100%;
+    }
   }
 }

@@ -23,12 +23,10 @@
     %link{ href: "/assets/css/style.css?v=" + version, rel: "stylesheet", media: "screen" }
    
   %body
-
     .e
-
       %figure{ class: "e__bg" }
-        %img{ src: img.src , alt: img.alt }
-      
+        %img{ src: img.src, alt: img.alt }
       %header{ class: "e__content" }
-        %h1{ class: "e__title"}= title
-        %p{ class: "e__txt"}= info
+        %h1{ class: "e__title" }= title
+        %p{ class: "e__txt" }= info
+        %a{ href: "/", class: "e__home" } Home →
