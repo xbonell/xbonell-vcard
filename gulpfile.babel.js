@@ -206,7 +206,7 @@ const svg = () => {
 // Watch for file changes
 // ----------------------------------------------------------------------------
 const watch = () => {
-  gulp.watch([`${dir.source}content/**/*.md`, `${dir.source}_templates/**/*.haml`, `${dir.source}_partials/**/*.hbs`])
+  gulp.watch([`${dir.source}content/**/*.md`, `${dir.source}_templates/**/*.haml`])
     .on('change', gulp.series(html, minify, browser.reload));
 
   gulp.watch([`${dir.source}scss/**/*.scss`])
