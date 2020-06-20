@@ -221,7 +221,7 @@ const watch = () => {
 }
 
 // Build the "dist" folder by running all of the above tasks
-gulp.task('build', gulp.series(clean, gulp.parallel(bundle, css, html, images, svg, copy, minify)));
+gulp.task('build', gulp.series(clean, gulp.parallel(bundle, css, html, images, svg, copy), minify));
 
 // Build site, run the server, and watch for file changes
 gulp.task('default', gulp.series('build', server, watch));
