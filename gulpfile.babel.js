@@ -6,7 +6,7 @@ import browser from 'browser-sync';
 import browserify from 'browserify';
 import buffer from 'vinyl-buffer';
 import cssnano from 'cssnano';
-import mqpacker from 'css-mqpacker';
+import combineMediaQuery from 'postcss-combine-media-query';
 import gulp from 'gulp';
 import image from 'gulp-image';
 import plugins from 'gulp-load-plugins';
@@ -55,9 +55,7 @@ const templateConfig = {
 // PostCSS filters 
 const processors = [
   autoprefixer(),
-  mqpacker({
-    sort: true
-  }),
+  combineMediaQuery(),
   cssnano()
 ];
 
