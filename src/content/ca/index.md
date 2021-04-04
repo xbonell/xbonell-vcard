@@ -18,8 +18,8 @@ services:
   - Disseny i desenvolupament web
   - HTML5 / CSS3
   - JavaScript
-  - Vue.js / Nuxt.js / Vuex
   - React / Redux
+  - Vue.js / Nuxt.js / Vuex
   - WordPress
   - Plantilles HTML email
 toolkit:

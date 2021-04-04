@@ -18,8 +18,8 @@ services:
   - Web Design & Development
   - HTML5 / CSS3
   - JavaScript
-  - Vue.js / Nuxt.js / Vuex
   - React / Redux
+  - Vue.js / Nuxt.js / Vuex
   - WordPress
   - HTML Email Templates
 toolkit:
