@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html class="no-js" dir="ltr" lang="{{lang}}">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <meta name="description" content="{{description}}">
+    <meta name="keywords" content="{{keywords}}">
+    <meta name="generator" content="Metalsmith 2.3.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="geo.region" content="ES-B">
+    <meta name="geo.placename" content="Sant Cugat del Vallès">
+    <meta name="geo.position" content="41.485884;2.067146">
+    <meta name="ICBM" content="41.485884, 2.067146">
+    <meta property="og:title" content="{{title}}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/ca">
+    <meta property="og:site_name" content="{{title}}">
+    <meta property="og:description" content="{{description}}">
+    <meta property="og:image" content="/assets/images/ico/facebook-image.png">
+    <meta property="fb:admins" content="1216186745">
+    <link rel="apple-touch-icon-precomposed" href="/assets/images/ico/apple-touch-icon-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/images/ico/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/images/ico/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/images/ico/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/images/ico/apple-touch-icon-144x144-precomposed.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/ico/favicon.ico">
+    <link rel="author" type="text/plain" href="/humans.txt">
+    {{#if (eq lang "ca")}}
+      <link rel="alternate" href="/en" hreflang="en">
+      <link rel="alternate" href="/es" hreflang="es">
+    {{/if}}
+    {{#if (eq lang "en")}}
+      <link rel="alternate" href="/ca" hreflang="ca">
+      <link rel="alternate" href="/es" hreflang="es">
+    {{/if}}
+    {{#if (eq lang "es")}}
+      <link rel="alternate" href="/ca" hreflang="ca">
+      <link rel="alternate" href="/en" hreflang="en">
+    {{/if}}
+    <link href="/assets/css/style.css?v={{version}}" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <article>
+      <header role="banner">
+        <h1 class="logo">
+          <img src="/assets/images/logo.png" alt="Xavier Bonell - Front-End Web Developer" width="520" height="98">
+        </h1>
+      </header>
+      <main role="main">
+        <section itemscope itemtype="http://schema.org/Person">
+          <div class="inner">
+            <div class="description" itemprop="description">
+              {{{contents}}}
+            </div>
+            <div class="hcard">
+              <img class="image" src="/assets/images/portrait.jpg" itemprop="image" alt="Xavier Bonell">
+              <div class="fields-group">
+                <strong class="name" itemprop="name">
+                  <span itemprop="givenName">{{vcard.givenName}}</span>
+                  <span itemprop="familyName">{{vcard.familyName}}</span>
+                </strong>
+                <div class="address" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                  <span itemprop="addressLocality">{{vcard.addressLocality}}</span>
+                  <span itemprop="addressRegion">{{vcard.addressRegion}}</span>
+                  <span itemprop="addressCountry">{{vcard.addressCountry}}</span>
+                </div>
+                <a class="contact mail" href="mailto:{{vcard.email}}" itemprop="email">
+                  <svg class="icon email" aria-hidden="true">
+                    <use xlink:href="/assets/images/sprite.svg#email"></use>
+                  </svg>
+                  <span>{{vcard.email}}</span>
+                </a>
+                <a class="contact web" href="{{vcard.url}}" itemprop="url">
+                  <svg class="icon web" aria-hidden="true">
+                    <use xlink:href="/assets/images/sprite.svg#web"></use>
+                  </svg>
+                  <span>{{vcard.url}}</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+        {{#if services}}
+        <section class="services">
+          {{#if (eq lang 'ca')}}<h2>Serveis</h2>{{/if}}
+          {{#if (eq lang 'es')}}<h2>Servicios</h2>{{/if}}
+          {{#if (eq lang 'en')}}<h2>Services</h2>{{/if}}
+          <ul>
+            {{#each services}}
+              <li>{{{this}}}</li>
+            {{/each}}
+          </ul>
+        </section>
+        {{/if}}
+        {{#if toolkit}}
+        <section class="toolkit">
+          <h3>Toolkit</h3>
+          <ul>
+            {{#each toolkit}}
+              <li>{{{this}}}</li>
+            {{/each}}
+          </ul>
+        </section>
+        {{/if}}
+        {{#if networks}}
+        <section class="social">
+          <ul class="social__icons">
+            {{#each networks}}
+              <li class="{{name}}">
+                <a href="{{url}}" rel="me">
+                  <svg class="icon icon-{{name}}" aria-hidden="true">
+                    <use xlink:href="/assets/images/sprite.svg#{{name}}"></use>
+                  </svg>
+                  <span class="label">{{label}}</span>
+                </a>
+              </li>
+            {{/each}}
+          </ul>
+        </section>
+        {{/if}}
+      </main>
+      <footer role="contentinfo">
+        <p class="copyright">
+          <span>© {{year}} Xavier Bonell.</span>
+          <span>
+            <span>{{build}} build,</span>
+            <span>version {{version}}.</span>
+          </span>
+        </p>
+        <ul class="lang">
+          {{#if (eq lang "ca")}}
+            <li><span lang="ca">Català</span></li>
+            <li><a href="/en" lang="en">English</a></li>
+            <li><a href="/es" lang="es">Español</a></li>
+          {{/if}}
+          {{#if (eq lang "en")}}
+            <li><a href="/ca" lang="ca">Català</a></li>
+            <li><span lang="en">English</span></li>
+            <li><a href="/es" lang="es">Español</a></li>
+          {{/if}}
+          {{#if (eq lang "es")}}
+            <li><a href="/ca" lang="ca">Català</a></li>
+            <li><a href="/en" lang="en">English</a></li>
+            <li><span lang="es">Español</span></li>
+          {{/if}}
+        </ul>
+      </footer>
+    </article>
+    <script src="/assets/js/app.js?v={{version}}" defer></script>
+  </body>
+</html> 

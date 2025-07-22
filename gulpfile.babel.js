@@ -14,9 +14,10 @@ import gulp from 'gulp';
 import image from 'gulp-image';
 import plugins from 'gulp-load-plugins';
 import metalsmith from 'metalsmith';
-import layouts from 'metalsmith-layouts';
-import markdown from 'metalsmith-markdown';
-import permalinks from 'metalsmith-permalinks';
+import layouts from '@metalsmith/layouts';
+import markdown from '@metalsmith/markdown';
+import permalinks from '@metalsmith/permalinks';
+import jstransformerHandlebars from 'jstransformer-handlebars';
 import { rimraf } from 'rimraf';
 import source from 'vinyl-source-stream';
 import yargs from 'yargs';
@@ -52,10 +53,9 @@ const siteMeta = {
 };
 
 const templateConfig = {
-  engine: 'haml',
-  directory: dir.source + '_templates/',
-  partials: dir.source + '_partials/',
-  default: 'default.haml',
+  transform: jstransformerHandlebars,
+  directory: dir.source + '_templates',
+  default: 'default.hbs',
 };
 
 // PostCSS filters
@@ -107,9 +107,9 @@ const css = () => {
 // ----------------------------------------------------------------------------
 const html = (done) => {
   metalsmith(dir.base)
-    .clean(false)
     .source(`${dir.source}content/`)
     .destination(dir.dest)
+    .clean(false)
     .metadata(siteMeta)
     .use(markdown())
     .use(permalinks())
@@ -178,44 +178,7 @@ const svg = () => {
         return path;
       })
     )
-    .pipe(
-      $.svgmin(function (file) {
-        return {
-          // https://github.com/svg/svgo/tree/master/plugins
-          plugins: [
-            {
-              cleanupIDs: {
-                remove: true,
-                minify: true,
-              },
-            },
-            {
-              removeDoctype: true,
-            },
-            {
-              removeComments: true,
-            },
-            {
-              removeStyleElement: true,
-            },
-            {
-              removeDimensions: true,
-            },
-            {
-              cleanupNumericValues: {
-                floatPrecision: 2,
-              },
-            },
-            {
-              removeAttrs: {
-                attrs: ['(fill|stroke|class|style)', 'svg:(width|height)'],
-              },
-            },
-          ],
-          //, js2svg: { pretty: true } // uncomment for readability
-        };
-      })
-    )
+    .pipe($.svgmin())
     .pipe($.svgstore())
     .pipe($.rename('sprite.svg'))
     .pipe(gulp.dest(`${dir.dest}assets/images`));
