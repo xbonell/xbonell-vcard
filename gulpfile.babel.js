@@ -17,6 +17,10 @@ import permalinks from 'metalsmith-permalinks';
 import rimraf from 'rimraf';
 import source from 'vinyl-source-stream';
 import yargs from 'yargs';
+import gulpSass from 'gulp-sass';
+import dartSass from 'sass';
+
+const sass = gulpSass(dartSass);
 
 // Load Gulp plugins
 const $ = plugins();
@@ -96,7 +100,7 @@ const copy = () => {
 const css = () => {
   return gulp.src(`${dir.source}scss/style.scss`)
     .pipe($.if(!PRODUCTION, $.sourcemaps.init()))
-    .pipe($.sass().on('error', $.sass.logError))
+    .pipe(sass().on('error', sass.logError))
     .pipe($.postcss(processors))
     .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
     .pipe(gulp.dest(`${dir.dest}assets/css`));
