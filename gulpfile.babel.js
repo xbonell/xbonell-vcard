@@ -17,7 +17,6 @@ import metalsmith from 'metalsmith';
 import layouts from '@metalsmith/layouts';
 import markdown from '@metalsmith/markdown';
 import permalinks from '@metalsmith/permalinks';
-import jstransformerHandlebars from 'jstransformer-handlebars';
 import { rimraf } from 'rimraf';
 import source from 'vinyl-source-stream';
 import yargs from 'yargs';
@@ -47,15 +46,21 @@ const siteMeta = {
   name: 'Xavier Bonell',
   desc: 'Front-End Web Developer',
   author: 'Xavier Bonell',
-  contact: 'https://twitter.com/xbonell',
+  contact: 'https://x.com/xbonell',
   domain: PRODUCTION ? 'http://localhost' : 'https://xbonell.com', // set domain
   rootpath: PRODUCTION ? null : '/', // set absolute path (null for relative)
 };
 
 const templateConfig = {
-  transform: jstransformerHandlebars,
-  directory: dir.source + '_templates',
+  directory: dir.source + 'layouts',
   default: 'default.hbs',
+  transform: 'handlebars',
+  engineOptions: {
+    helpers: {
+      eq: (a, b) => a === b,
+      year: () => new Date().getFullYear(),
+    },
+  },
 };
 
 // PostCSS filters
@@ -107,10 +112,11 @@ const css = () => {
 // ----------------------------------------------------------------------------
 const html = (done) => {
   metalsmith(dir.base)
+    .env('DEBUG', '@metalsmith/layouts*')
+    .metadata(siteMeta)
     .source(`${dir.source}content/`)
     .destination(dir.dest)
     .clean(false)
-    .metadata(siteMeta)
     .use(markdown())
     .use(permalinks())
     .use(layouts(templateConfig))
@@ -135,7 +141,7 @@ const images = () => {
         mozjpeg: true,
         gifsicle: true,
         svgo: true,
-        concurrent: 8,
+        concurrent: 1,
       })
     )
     .pipe(gulp.dest(`${dir.dest}assets/images`));
@@ -163,6 +169,7 @@ const server = (done) => {
   browser.init({
     server: dir.dest,
     startPath: 'ca/',
+    open: false,
   });
   done();
 };

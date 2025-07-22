@@ -5249,7 +5249,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gulp-image@npm:^6.2.1":
+"gulp-image@npm:^6.3.1":
   version: 6.3.1
   resolution: "gulp-image@npm:6.3.1"
   dependencies:
@@ -11053,7 +11053,7 @@ __metadata:
     gulp-cli: "npm:^3.0.0"
     gulp-htmlmin: "npm:^5.0.0"
     gulp-if: "npm:^3.0.0"
-    gulp-image: "npm:^6.2.1"
+    gulp-image: "npm:^6.3.1"
     gulp-jslint: "npm:^1.0.10"
     gulp-load-plugins: "npm:^1.5.0"
     gulp-postcss: "npm:^10.0.0"
@@ -11067,6 +11067,7 @@ __metadata:
     jstransformer-handlebars: "npm:^1.2.0"
     metalsmith: "npm:^2.6.3"
     normalize-scss: "npm:^8.0.0"
+    postcss: "npm:^8.5.6"
     postcss-combine-media-query: "npm:^2.0.0"
     rimraf: "npm:^6.0.0"
     sass: "npm:^1.89.2"
