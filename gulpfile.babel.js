@@ -22,7 +22,7 @@ import source from 'vinyl-source-stream';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
-// Load Gulp plugins
+// Load plugins
 const $ = plugins();
 const sass = $.sass(dartSass);
 const argv = yargs(hideBin(process.argv)).parse();
@@ -54,6 +54,7 @@ const siteMeta = {
 const templateConfig = {
   directory: dir.source + 'layouts',
   default: 'default.hbs',
+  pattern: '**/*.html',
   transform: 'handlebars',
   engineOptions: {
     helpers: {
@@ -91,7 +92,7 @@ const clean = (done) => {
 // Copy static files to root
 // ----------------------------------------------------------------------------
 const copy = () => {
-  return gulp.src(`${dir.source}_static/*.*`).pipe(gulp.dest(dir.dest));
+  return gulp.src(`${dir.source}_static/*.*`, { encoding: false }).pipe(gulp.dest(dir.dest));
 };
 
 // Compile Sass into CSS and apply filters
@@ -112,7 +113,6 @@ const css = () => {
 // ----------------------------------------------------------------------------
 const html = (done) => {
   metalsmith(dir.base)
-    .env('DEBUG', '@metalsmith/layouts*')
     .metadata(siteMeta)
     .source(`${dir.source}content/`)
     .destination(dir.dest)
@@ -130,7 +130,7 @@ const html = (done) => {
 // ----------------------------------------------------------------------------
 const images = () => {
   return gulp
-    .src(`${dir.source}images/**/*`)
+    .src(`${dir.source}images/**/*`, { encoding: false })
     .pipe(
       image({
         pngquant: false,
@@ -141,7 +141,7 @@ const images = () => {
         mozjpeg: true,
         gifsicle: true,
         svgo: true,
-        concurrent: 1,
+        concurrent: 8,
       })
     )
     .pipe(gulp.dest(`${dir.dest}assets/images`));
@@ -178,7 +178,7 @@ const server = (done) => {
 // ----------------------------------------------------------------------------
 const svg = () => {
   return gulp
-    .src([`${dir.source}svg/*.svg`])
+    .src([`${dir.source}svg/*.svg`], { encoding: false })
     .pipe(
       $.rename(function (path) {
         path.basename = path.basename.replace(/__icon_prefix__/, '');
@@ -195,7 +195,7 @@ const svg = () => {
 // ----------------------------------------------------------------------------
 const watch = () => {
   gulp
-    .watch([`${dir.source}content/**/*.md`, `${dir.source}_templates/**/*.haml`])
+    .watch([`${dir.source}content/**/*.md`, `${dir.source}layouts/**/*.hbs`])
     .on('change', gulp.series(html, minify, browser.reload));
 
   gulp.watch([`${dir.source}scss/**/*.scss`]).on('change', gulp.series(css, browser.reload));

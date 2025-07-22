@@ -42,12 +42,6 @@ toolkit:
   - Foundation
   - MJML
 networks:
-  - name: twitter
-    label: '@xbonell'
-    url: https://twitter.com/xbonell
-  - name: mastodon
-    label: '@xbonell'
-    url: https://mastodon.social/@xbonell
   - name: linkedin
     label: LinkedIn
     url: https://linkedin.com/in/xbonell
@@ -56,4 +50,4 @@ networks:
     url: https://github.com/xbonell
 ---
 
-**Diseñador web** y **desarrollador front-end** con amplia experiencia en todos los aspectos del desarrollo de proyectos en Internet. Particularmente interesado en los **estándares web**, sistemas de **gestión de contenidos**, **accesibilidad** y **usabilidad**.
+**Desarrollador front-end** y **diseñador web** con amplia experiencia en tecnologías web modernas, incluyendo **HTML semántico**, **CSS responsivo** y **frameworks de JavaScript**. Especializado en la creación de interfaces **accesibles** y **compatibles con los estándares**, e integración con **plataformas CMS** como **WordPress**. Fuerte enfoque en el **rendimiento**, el **código mantenible** y las **buenas prácticas de UX** en todas las etapas del desarrollo web.
