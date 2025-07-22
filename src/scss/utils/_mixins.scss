@@ -1,17 +1,21 @@
+@use 'variables' as variables;
+@use 'functions' as functions;
+@use 'sass:map';
+
 //
 // Breakpoint
 // ----------------------------------------------------------------------------
 @mixin bp($breakpoint, $direction) {
-  @if map-has-key($breakpoints, $breakpoint) {
+  @if map.has-key(variables.$breakpoints, $breakpoint) {
     // Get the breakpoint value.
-    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    $breakpoint-value: map.get(variables.$breakpoints, $breakpoint);
 
     @if $direction == max {
-      @media (max-width: rem($breakpoint-value - 1)) {
+      @media (max-width: functions.rem($breakpoint-value - 1)) {
         @content;
       }
     } @else if $direction == min {
-      @media (min-width: rem($breakpoint-value)) {
+      @media (min-width: functions.rem($breakpoint-value)) {
         @content;
       }
     } @else {
@@ -22,11 +26,11 @@
   } @else {
     // If the breakpoint doesn't exist in the map.
     @if $direction == max {
-      @media (max-width: rem($breakpoint)) {
+      @media (max-width: functions.rem($breakpoint)) {
         @content;
       }
     } @else if $direction == min {
-      @media (min-width: rem($breakpoint)) {
+      @media (min-width: functions.rem($breakpoint)) {
         @content;
       }
     } @else {

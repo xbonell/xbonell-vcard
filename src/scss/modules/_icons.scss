@@ -1,16 +1,21 @@
+@use '../utils/variables' as variables;
+@use '../utils/functions' as functions;
+@use '../utils/mixins' as mixins;
+@use 'sass:color';
+
 /* Social Icons */
 .social__icons {
-  padding: em(32) 0;
+  padding: functions.em(32) 0;
 
   > li {
     display: inline-block;
     position: relative;
-    width: em(48);
-    height: em(48);
+    width: functions.em(48);
+    height: functions.em(48);
     z-index: 1;
 
     + li {
-      margin-left: em(12);
+      margin-left: functions.em(12);
     }
 
     &:hover a {
@@ -35,20 +40,20 @@
   }
 
   .icon {
-    padding: em(8);
-    background-color: $color;
-    color: $bgcolor;
-    font-size: em(16);
+    padding: functions.em(8);
+    background-color: variables.$color;
+    color: variables.$bgcolor;
+    font-size: functions.em(16);
     line-height: 1;
     text-align: center;
     backface-visibility: hidden;
   }
 
   .label {
-    background-color: $grey;
-    color: $bgcolor;
-    font-size: em(11);
-    line-height: em(48, 11);
+    background-color: variables.$grey;
+    color: variables.$bgcolor;
+    font-size: functions.em(11);
+    line-height: functions.em(48, 11);
     text-align: center;
     backface-visibility: hidden;
     transform: rotateY(180deg) translate3d(0, 0, 0);
@@ -58,7 +63,7 @@
     }
   }
 
-  @each $network, $color in $social {
+  @each $network, $color in variables.$social {
     .#{$network} {
       .icon {
         background-color: $color;
@@ -66,7 +71,7 @@
       }
 
       .label {
-        background-color: darken($color, 20%);
+        background-color: color.adjust($color, $lightness: 80%);
         color: white;
       }
     }

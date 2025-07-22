@@ -1,33 +1,36 @@
+@use 'variables' as variables;
+@use 'sass:math';
+
 //
 // Functions
 // ----------------------------------------------------------------------------
 
 // Unitless function to convert px to em
 // ----------------------------------------------------------------------------
-@function em($pixels, $context: $browser-context) {
-  @if (unitless($pixels)) {
+@function em($pixels, $context: variables.$browser-context) {
+  @if (math.is-unitless($pixels)) {
     $pixels: $pixels * 1px;
   }
 
-  @if (unitless($context)) {
+  @if (math.is-unitless($context)) {
     $context: $context * 1px;
   }
 
-  @return $pixels / $context * 1em;
+  @return math.div($pixels, $context) * 1em;
 }
 
 // Unitless function to convert px to rem
 // ----------------------------------------------------------------------------
-@function rem($pixels, $context: $browser-context) {
-  @if (unitless($pixels)) {
+@function rem($pixels, $context: variables.$browser-context) {
+  @if (math.is-unitless($pixels)) {
     $pixels: $pixels * 1px;
   }
 
-  @if (unitless($context)) {
+  @if (math.is-unitless($context)) {
     $context: $context * 1px;
   }
 
-  @return $pixels / $context * 1rem;
+  @return math.div($pixels, $context) * 1rem;
 }
 
 // Return z-index layer

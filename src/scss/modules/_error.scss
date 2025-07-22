@@ -1,3 +1,7 @@
+@use '../utils/variables' as variables;
+@use '../utils/functions' as functions;
+@use '../utils/mixins' as mixins;
+
 .error {
   padding: 0;
 }
@@ -7,10 +11,10 @@
   overflow: hidden;
   width: 100vw;
   height: 100vh;
-  margin: em(-16);
+  margin: functions.em(-16);
 
-  @include bp(mobile, min) {
-    margin: em(-40, 20);
+  @include mixins.bp(mobile, min) {
+    margin: functions.em(-40, 20);
   }  
 
   &:before {
@@ -23,7 +27,7 @@
     width: 100%;
     height: 100%;
     z-index: 1;
-    box-shadow: inset 0 0 rem(100) rgba(black,.5);
+    box-shadow: inset 0 0 functions.rem(100) rgba(black,.5);
   }
 
   &__bg,
@@ -52,14 +56,14 @@
   }
 
   &__txt {
-    font-size: calc(3vw + #{rem(18)});
+    font-size: calc(3vw + #{functions.rem(18)});
     line-height: 1;
   }
 
   &__title {
     margin: 0;
     font-weight: 300;
-    font-size: calc(10vw + #{rem(150)});
+    font-size: calc(10vw + #{functions.rem(150)});
     line-height: 1;
     color: rgba(white,.5);
   }
@@ -67,8 +71,8 @@
   &__home {
     position: relative;
     margin-top: 4vw;
-    font-size: calc(1vw + #{rem(18)});
-    color: $red;
+    font-size: calc(1vw + #{functions.rem(18)});
+    color: variables.$red;
     &:after {
       content: "";
       display: block;
@@ -76,7 +80,7 @@
       left: 0;
       height: 1px;
       width: 0;
-      background: rgba($red, .5);
+      background: rgba(variables.$red, .5);
       transition: all .3s cubic-bezier(.694, .0482, .335, 1);
     }
 

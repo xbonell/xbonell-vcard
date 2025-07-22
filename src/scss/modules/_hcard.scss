@@ -1,26 +1,31 @@
+@use '../utils/variables' as variables;
+@use '../utils/functions' as functions;
+@use '../utils/mixins' as mixins;
+@use 'sass:color';
+
 /* Hcard */
 
 .hcard {
-  margin-top: em(32);
+  margin-top: functions.em(32);
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: flex-start;
-  padding: em(16) em(16) em(32);
-  background-color: $color;
+  padding: functions.em(16) functions.em(16) functions.em(32);
+  background-color: variables.$color;
   background-image: repeating-radial-gradient(
       circle farthest-corner at right top,
-      rgba($alt-color, 0.75) 0%,
-      rgba($alt-color, 0) 100%
+      rgba(variables.$alt-color, 0.75) 0%,
+      rgba(variables.$alt-color, 0) 100%
     ),
     repeating-linear-gradient(
       45deg,
       white 0,
-      lighten($alt-color, 35%) 2px,
-      lighten($alt-color, 35%) 4px,
-      lighten($alt-color, 30%) 6px
+      color.adjust(variables.$alt-color, $lightness: 35%) 2px,
+      color.adjust(variables.$alt-color, $lightness: 35%) 4px,
+      color.adjust(variables.$alt-color, $lightness: 30%) 6px
     );
-  color: $bgcolor;
+  color: variables.$bgcolor;
   position: relative;
   clip-path: polygon(
     0% 0%,
@@ -40,14 +45,14 @@
 
   .image {
     display: block;
-    width: em(80);
-    height: em(80);
+    width: functions.em(80);
+    height: functions.em(80);
     mix-blend-mode: multiply;
     transform: rotate(-2deg);
   }
 
   .fields-group {
-    margin-left: em(16);
+    margin-left: functions.em(16);
   }
 
   .name,
@@ -57,12 +62,12 @@
   }
 
   .name {
-    font-size: em(20);
+    font-size: functions.em(20);
   }
 
   .address {
-    font-size: em(12);
-    margin-bottom: em(8, 12);
+    font-size: functions.em(12);
+    margin-bottom: functions.em(8, 12);
 
     span:not(:last-child):after {
       content: ', ';
@@ -70,9 +75,9 @@
   }
 
   .contact {
-    margin-top: em(2, 14);
-    font-size: em(14);
-    color: $bgcolor;
+    margin-top: functions.em(2, 14);
+    font-size: functions.em(14);
+    color: variables.$bgcolor;
 
     > * {
       display: inline-block;
@@ -80,10 +85,10 @@
     }
 
     svg {
-      width: em(14, 14);
-      height: em(14, 14);
-      margin-right: em(7, 14);
-      fill: $red;
+      width: functions.em(14, 14);
+      height: functions.em(14, 14);
+      margin-right: functions.em(7, 14);
+      fill: variables.$red;
     }
 
     span {
@@ -92,7 +97,7 @@
     }
 
     &:hover span {
-      text-decoration-color: $red;
+      text-decoration-color: variables.$red;
     }
   }
 }

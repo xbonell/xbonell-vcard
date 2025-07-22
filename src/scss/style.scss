@@ -1,17 +1,17 @@
 // Define
 // ----------------------------------------------------------------------------
-@import 'utils/variables';
-@import 'utils/functions';
-@import 'utils/mixins';
+@use 'utils/variables' as variables;
+@use 'utils/functions' as functions;
+@use 'utils/mixins' as mixins;
 
 // Import modules
 // ----------------------------------------------------------------------------
-@import 'modules/base';
-@import 'modules/layout';
-@import 'modules/logo';
-@import 'modules/hcard';
-@import 'modules/services';
-@import 'modules/toolkit';
-@import 'modules/icons';
-@import 'modules/footer';
-@import 'modules/error';
+@use 'modules/base';
+@use 'modules/layout';
+@use 'modules/logo';
+@use 'modules/hcard';
+@use 'modules/services';
+@use 'modules/toolkit';
+@use 'modules/icons';
+@use 'modules/footer';
+@use 'modules/error';

@@ -1,3 +1,7 @@
+@use '../utils/variables' as variables;
+@use '../utils/functions' as functions;
+@use '../utils/mixins' as mixins;
+
 /* Logo */
 
 .logo {

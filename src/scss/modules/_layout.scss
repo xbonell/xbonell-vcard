@@ -1,3 +1,7 @@
+@use '../utils/variables' as variables;
+@use '../utils/functions' as functions;
+@use '../utils/mixins' as mixins;
+
 /* Layout */
 body {
   display: flex;
@@ -8,15 +12,15 @@ body {
 
 body > article {
   margin: 0 auto;
-  max-width: em(400);
+  max-width: functions.em(400);
 }
 
 [role='banner'] {
-  margin-bottom: em(20);
+  margin-bottom: functions.em(20);
 }
 
 [role='contentinfo'] {
-  margin-top: em(20);
+  margin-top: functions.em(20);
 }
 
 [role='main'] > section {

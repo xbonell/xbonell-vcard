@@ -1,20 +1,24 @@
+@use '../utils/variables' as variables;
+@use '../utils/functions' as functions;
+@use '../utils/mixins' as mixins;
+
 /* Toolkit */
 
 .toolkit {
   ul {
     display: flex;
     flex-flow: row wrap;
-    margin-left: em(-4);
-    margin-right: em(-4);
+    margin-left: functions.em(-4);
+    margin-right: functions.em(-4);
   }
 
   li {
     color: rgba(white, 0.4);
     background: rgba(white, 0.05);
     font-weight: 200;
-    font-size: em(13);
-    letter-spacing: em(1, 13);
-    margin: em(3, 13);
-    padding: 0 em(5, 13);
+    font-size: functions.em(13);
+    letter-spacing: functions.em(1, 13);
+    margin: functions.em(3, 13);
+    padding: 0 functions.em(5, 13);
   }
 }

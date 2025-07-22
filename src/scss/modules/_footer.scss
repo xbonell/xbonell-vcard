@@ -1,11 +1,15 @@
+@use '../utils/variables' as variables;
+@use '../utils/functions' as functions;
+@use '../utils/mixins' as mixins;
+
 .copyright {
-  font-size: em(11);
-  color: $grey;
+  font-size: functions.em(11);
+  color: variables.$grey;
 
   > span {
     display: block;
 
-    @include bp(mobile, min) {
+    @include mixins.bp(mobile, min) {
       display: inline;
     }
   }
@@ -14,13 +18,13 @@
 .lang {
   li {
     display: inline-block;
-    font-size: em(11);
-    color: $grey;
+    font-size: functions.em(11);
+    color: variables.$grey;
 
     + li:before {
       display: inline-block;
       content: '|';
-      margin: 0 em(8);
+      margin: 0 functions.em(8);
     }
   }
 
@@ -28,12 +32,12 @@
     color: white;
 
     &:hover {
-      color: $red;
+      color: variables.$red;
       text-decoration: underline;
     }
   }
 
   span {
-    color: $red;
+    color: variables.$red;
   }
 }
