@@ -7,4 +7,4 @@ dist
 .cursor
 custom_modes
 memory-bank/** */
-.yarn
+.yarn/install-state.gz
