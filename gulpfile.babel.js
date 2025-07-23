@@ -41,14 +41,14 @@ const dir = {
 
 const siteMeta = {
   devBuild: !PRODUCTION,
-  build: !PRODUCTION ? 'Development' : 'Production',
+  build: PRODUCTION ? 'Production' : 'Development',
   version: pkg.version,
   name: 'Xavier Bonell',
   desc: 'Front-End Web Developer',
   author: 'Xavier Bonell',
   contact: 'https://x.com/xbonell',
-  domain: PRODUCTION ? 'http://localhost' : 'https://xbonell.com', // set domain
-  rootpath: PRODUCTION ? null : '/', // set absolute path (null for relative)
+  domain: PRODUCTION ? 'https://xbonell.com' : 'http://localhost',
+  rootpath: '/',
 };
 
 const templateConfig = {
