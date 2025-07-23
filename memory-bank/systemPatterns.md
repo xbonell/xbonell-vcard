@@ -6,7 +6,7 @@
 - **Pattern**: JAMstack architecture with build-time generation
 - **Implementation**: Metalsmith for content processing
 - **Benefits**: Fast delivery, security, scalability
-- **Content Flow**: Markdown → Metalsmith → HAML → HTML
+- **Content Flow**: Markdown → Metalsmith → Handlebars → HTML
 
 ### Multi-language Architecture
 - **Pattern**: Directory-based internationalization
@@ -25,7 +25,7 @@
 - **Implementation**: Gulp task orchestration
 - **Stages**:
   1. Content processing (Metalsmith)
-  2. Template rendering (HAML)
+  2. Template rendering (Handlebars)
   3. Style compilation (SCSS)
   4. JavaScript bundling (Browserify)
   5. Asset optimization
@@ -49,7 +49,7 @@
 - **Transpilation**: Babel for ES2015+ support
 
 ### Template Inheritance Pattern
-- **Pattern**: HAML template layouts
+- **Pattern**: Handlebars template layouts
 - **Implementation**: metalsmith-layouts
 - **Benefits**: DRY principle, consistent structure
 

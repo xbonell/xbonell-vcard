@@ -7,7 +7,7 @@
 - **Development Server**: Browser-sync with live reloading
 
 ## Frontend Technology Stack
-- **Templating Engine**: HAML via hamljs
+- **Templating Engine**: Handlebars via handlebars
 - **CSS Preprocessor**: Sass/SCSS with gulp-sass
 - **CSS Post-processing**: 
   - Autoprefixer for vendor prefixes
