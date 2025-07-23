@@ -13,8 +13,8 @@
   }
 
   li {
-    color: rgba(white, 0.9);
-    background: rgba(white, 0.05);
+    color: variables.$yellow;
+    background: rgba(variables.$yellow, 0.05);
     font-weight: 200;
     font-size: functions.em(13);
     letter-spacing: functions.em(1, 13);
