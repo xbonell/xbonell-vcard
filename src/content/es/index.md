@@ -16,31 +16,27 @@ vcard:
   url: https://xbonell.com
 services:
   - Diseño y desarrollo web
-  - HTML5 / CSS3
-  - JavaScript
-  - React / Redux
-  - Vue.js / Nuxt.js / Vuex
-  - WordPress
-  - Plantillas HTML email
+  - Desarrollo front-end
+  - Aplicaciones web responsive
+  - Desarrollo WordPress
+  - Desarrollo de plantillas de email
+  - Optimización de rendimiento
+  - Implementación de accesibilidad
 toolkit:
-  - MacBook Pro
-  - MacOS
-  - iTerm
-  - ZSH
-  - Sketch
-  - Visual Studio Code
-  - Grunt
-  - Gulp
-  - Webpack
-  - Yarn
-  - Markdown
-  - Sass
-  - PostCSS
-  - Git
-  - Vagrant
-  - Bootstrap
-  - Foundation
-  - MJML
+  - JavaScript
+  - React / Next.js
+  - Vue.js / Nuxt.js
+  - Tailwind CSS
+  - Sass / PostCSS
+  - Vite / Webpack
+  - Node.js / npm / Yarn
+  - Git / GitHub
+  - Figma
+  - VS Code / Cursor
+  - ESLint / Prettier
+  - Jest / Vitest
+  - Docker
+  - Netlify / Vercel
 networks:
   - name: linkedin
     label: LinkedIn
@@ -50,4 +46,4 @@ networks:
     url: https://github.com/xbonell
 ---
 
-**Desarrollador front-end** y **diseñador web** con amplia experiencia en tecnologías web modernas, incluyendo **HTML semántico**, **CSS responsivo** y **frameworks de JavaScript**. Especializado en la creación de interfaces **accesibles** y **compatibles con los estándares**, e integración con **plataformas CMS** como **WordPress**. Fuerte enfoque en el **rendimiento**, el **código mantenible** y las **buenas prácticas de UX** en todas las etapas del desarrollo web.
+**Desarrollador front-end** especializado en la creación de aplicaciones web modernas y eficientes. Experiencia en transformar diseños en código robusto y accesible, optimizando el rendimiento y manteniendo estándares de calidad elevados. Especializado en **React**, **Vue.js** y **WordPress**, con un enfoque particular en aplicaciones que necesitan velocidad, accesibilidad y escalabilidad.
