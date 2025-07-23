@@ -7,11 +7,7 @@
   color: variables.$grey;
 
   > span {
-    display: block;
-
-    @include mixins.bp(mobile, min) {
-      display: inline;
-    }
+    display: inline-block;
   }
 }
 
@@ -32,8 +28,10 @@
     color: white;
 
     &:hover {
-      color: variables.$red;
+      color: white;
       text-decoration: underline;
+      text-decoration-color: variables.$red;
+      text-underline-offset: functions.em(4);
     }
   }
 

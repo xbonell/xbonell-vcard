@@ -47,6 +47,7 @@
     line-height: 1;
     text-align: center;
     backface-visibility: hidden;
+    border-radius: functions.em(4);
   }
 
   .label {
@@ -56,6 +57,7 @@
     line-height: functions.em(48, 11);
     text-align: center;
     backface-visibility: hidden;
+    border-radius: functions.em(4);
     transform: rotateY(180deg) translate3d(0, 0, 0);
 
     .no-csstransforms3d & {
