@@ -5171,7 +5171,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gulp-uglify@npm:^3.0.1":
+"gulp-uglify@npm:^3.0.2":
   version: 3.0.2
   resolution: "gulp-uglify@npm:3.0.2"
   dependencies:
@@ -10452,7 +10452,7 @@ __metadata:
     gulp-sourcemaps: "npm:^3.0.0"
     gulp-svgmin: "npm:^4.1.0"
     gulp-svgstore: "npm:^9.0.0"
-    gulp-uglify: "npm:^3.0.1"
+    gulp-uglify: "npm:^3.0.2"
     jstransformer-handlebars: "npm:^1.2.0"
     metalsmith: "npm:^2.6.3"
     normalize-scss: "npm:^8.0.0"
