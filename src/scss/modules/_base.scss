@@ -70,3 +70,11 @@ a {
   padding: functions.em(2) functions.em(4);
   border-radius: functions.em(4);
 }
+
+.description em {
+  font-style: normal;
+  text-decoration: underline;
+  padding: functions.em(2) 0;
+  text-decoration-color: rgba(variables.$yellow, 0.5);
+  text-underline-offset: functions.em(2);
+}

@@ -46,4 +46,4 @@ networks:
     url: https://github.com/xbonell
 ---
 
-**Front-end developer** specializing in building modern, efficient web applications. Experience in transforming designs into robust, accessible code while optimizing performance and maintaining high quality standards. Specialized in **React**, **Vue.js**, and **WordPress**, with particular focus on applications requiring speed, accessibility, and scalability.
+**Front-end developer** specializing in building modern, efficient web applications. Experience in _transforming designs into robust, accessible code_ while optimizing performance and maintaining high quality standards. Specialized in **React**, **Vue.js**, and **WordPress**, with particular focus on applications requiring speed, accessibility, and scalability.
