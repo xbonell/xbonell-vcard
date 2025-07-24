@@ -23,13 +23,12 @@ services:
   - Performance Optimization
   - Accessibility Implementation
 toolkit:
+  - HTML5 / CSS / Sass
   - JavaScript
   - React / Next.js
   - Vue.js / Nuxt.js
-  - Tailwind CSS
-  - Sass / PostCSS
   - Vite / Webpack
-  - Node.js / npm / Yarn
+  - Node.js / Npm / Yarn
   - Git / GitHub
   - Figma
   - VS Code / Cursor
@@ -37,6 +36,7 @@ toolkit:
   - Jest / Vitest
   - Docker
   - Netlify / Vercel
+  - WordPress
 networks:
   - name: linkedin
     label: LinkedIn

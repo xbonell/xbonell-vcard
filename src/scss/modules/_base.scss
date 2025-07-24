@@ -38,6 +38,7 @@ h2 {
   font-weight: 100;
   font-size: functions.em(40);
   color: variables.$grey;
+  letter-spacing: functions.em(-0.5);
 }
 
 h3 {
@@ -45,7 +46,7 @@ h3 {
   padding: 0 0 functions.em(8);
   font-weight: 100;
   font-size: functions.em(28);
-  letter-spacing: functions.em(1);
+  letter-spacing: functions.em(-0.5);
   color: variables.$grey;
 }
 
@@ -56,6 +57,10 @@ li {
 
 a {
   text-decoration: none;
+}
+
+.description p {
+  letter-spacing: functions.em(-0.25);
 }
 
 .description strong {

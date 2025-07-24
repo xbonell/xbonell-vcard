@@ -17,7 +17,7 @@
     background: rgba(variables.$yellow, 0.05);
     font-weight: 200;
     font-size: functions.em(13);
-    letter-spacing: functions.em(1, 13);
+    letter-spacing: functions.em(-0.1, 13);
     margin: functions.em(3, 13);
     padding: 0 functions.em(5, 13);
     border-radius: functions.em(4);

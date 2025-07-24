@@ -66,10 +66,12 @@
 
   .name {
     font-size: functions.em(20);
+    letter-spacing: functions.em(-0.5);
   }
 
   .address {
     font-size: functions.em(12);
+    letter-spacing: functions.em(-0.5);
     margin-bottom: functions.em(8, 12);
 
     span:not(:last-child):after {
