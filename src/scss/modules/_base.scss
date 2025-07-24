@@ -66,4 +66,7 @@ a {
 .description strong {
   font-weight: 400;
   color: variables.$red;
+  background-color: rgba(variables.$red, 0.1);
+  padding: functions.em(2) functions.em(4);
+  border-radius: functions.em(4);
 }
