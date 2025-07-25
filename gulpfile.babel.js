@@ -40,8 +40,6 @@ const dir = {
 };
 
 const siteMeta = {
-  devBuild: !PRODUCTION,
-  build: PRODUCTION ? 'Production' : 'Development',
   version: pkg.version,
   name: 'Xavier Bonell',
   desc: 'Front-End Web Developer',
@@ -92,7 +90,7 @@ const clean = (done) => {
 // Copy static files to root
 // ----------------------------------------------------------------------------
 const copy = () => {
-  return gulp.src(`${dir.source}_static/*.*`, { encoding: false }).pipe(gulp.dest(dir.dest));
+  return gulp.src(`${dir.source}_static/**/*`, { encoding: false }).pipe(gulp.dest(dir.dest));
 };
 
 // Compile Sass into CSS and apply filters
@@ -144,7 +142,7 @@ const images = () => {
         concurrent: 8,
       })
     )
-    .pipe(gulp.dest(`${dir.dest}assets/images`));
+    .pipe(gulp.dest(`${dir.source}_static/assets/images`));
 };
 
 // Minify HTML
@@ -197,20 +195,19 @@ const watch = () => {
   gulp
     .watch([`${dir.source}content/**/*.md`, `${dir.source}layouts/**/*.hbs`])
     .on('change', gulp.series(html, minify, browser.reload));
-
   gulp.watch([`${dir.source}scss/**/*.scss`]).on('change', gulp.series(css, browser.reload));
-
   gulp.watch([`${dir.source}scripts/**/*.js`]).on('change', gulp.series(bundle, browser.reload));
-
   gulp.watch([`${dir.source}svg/**/*.svg`]).on('change', gulp.series(svg, browser.reload));
-
   gulp
     .watch([`${dir.source}images/**/*.{gif,jpg,jpeg,png}`])
-    .on('change', gulp.series(images, browser.reload));
+    .on('change', gulp.series(images, copy, browser.reload));
 };
 
+// Process images
+gulp.task('images', gulp.series(images));
+
 // Build the "dist" folder by running all of the above tasks
-gulp.task('build', gulp.series(clean, gulp.parallel(bundle, css, html, images, svg, copy), minify));
+gulp.task('build', gulp.series(clean, gulp.parallel(bundle, css, html, svg, copy), minify));
 
 // Build site, run the server, and watch for file changes
 gulp.task('default', gulp.series('build', server, watch));

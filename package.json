@@ -6,6 +6,7 @@
   "scripts": {
     "build": "gulp build --production",
     "dev": "gulp",
+    "images": "gulp images",
     "start": "npm run dev"
   },
   "repository": {
@@ -58,10 +59,6 @@
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
     "yargs": "^18.0.0"
-  },
-  "dependencies": {
-    "global": "^4.4.0",
-    "svgxuse": "^1.2.6"
   },
   "browserslist": [
     "last 2 versions",

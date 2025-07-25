@@ -67,7 +67,7 @@ a {
   font-weight: 400;
   color: var(--color-red);
   background-color: rgba(variables.$color-red, 0.1);
-  padding: functions.em(2) functions.em(4);
+  padding: functions.em(2);
   border-radius: functions.em(4);
 }
 
