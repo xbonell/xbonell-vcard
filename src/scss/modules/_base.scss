@@ -74,7 +74,7 @@ a {
 .description em {
   font-style: normal;
   text-decoration: underline;
-  padding: functions.em(2) 0;
-  text-decoration-color: rgba(variables.$yellow, .75);
+  text-decoration-color: rgba(variables.$yellow, 0.75);
   text-underline-offset: functions.em(4);
+  text-decoration-thickness: 1px;
 }

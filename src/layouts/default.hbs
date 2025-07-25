@@ -57,29 +57,31 @@
               {{{contents}}}
             </div>
             <div class="hcard">
-              <img class="image" src="/assets/images/portrait.jpg" itemprop="image" alt="Xavier Bonell">
-              <div class="fields-group">
-                <strong class="name" itemprop="name">
-                  <span itemprop="givenName">{{vcard.givenName}}</span>
-                  <span itemprop="familyName">{{vcard.familyName}}</span>
-                </strong>
-                <div class="address" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                  <span itemprop="addressLocality">{{vcard.addressLocality}}</span>
-                  <span itemprop="addressRegion">{{vcard.addressRegion}}</span>
-                  <span itemprop="addressCountry">{{vcard.addressCountry}}</span>
+              <div class="hcard__inner">
+                <img class="image" src="/assets/images/portrait.jpg" itemprop="image" alt="Xavier Bonell">
+                <div class="fields-group">
+                  <strong class="name" itemprop="name">
+                    <span itemprop="givenName">{{vcard.givenName}}</span>
+                    <span itemprop="familyName">{{vcard.familyName}}</span>
+                  </strong>
+                  <div class="address" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                    <span itemprop="addressLocality">{{vcard.addressLocality}}</span>
+                    <span itemprop="addressRegion">{{vcard.addressRegion}}</span>
+                    <span itemprop="addressCountry">{{vcard.addressCountry}}</span>
+                  </div>
+                  <a class="contact mail" href="mailto:{{vcard.email}}" itemprop="email">
+                    <svg class="icon email" aria-hidden="true">
+                      <use xlink:href="/assets/images/sprite.svg#email"></use>
+                    </svg>
+                    <span>{{vcard.email}}</span>
+                  </a>
+                  <a class="contact web" href="{{vcard.url}}" itemprop="url">
+                    <svg class="icon web" aria-hidden="true">
+                      <use xlink:href="/assets/images/sprite.svg#web"></use>
+                    </svg>
+                    <span>{{vcard.url}}</span>
+                  </a>
                 </div>
-                <a class="contact mail" href="mailto:{{vcard.email}}" itemprop="email">
-                  <svg class="icon email" aria-hidden="true">
-                    <use xlink:href="/assets/images/sprite.svg#email"></use>
-                  </svg>
-                  <span>{{vcard.email}}</span>
-                </a>
-                <a class="contact web" href="{{vcard.url}}" itemprop="url">
-                  <svg class="icon web" aria-hidden="true">
-                    <use xlink:href="/assets/images/sprite.svg#web"></use>
-                  </svg>
-                  <span>{{vcard.url}}</span>
-                </a>
               </div>
             </div>
           </div>
@@ -127,7 +129,6 @@
         <p class="copyright">
           <span>© {{year}} Xavier Bonell.</span>
           <span>
-            <span>{{build}} build,</span>
             <span>v{{version}}.</span>
           </span>
         </p>

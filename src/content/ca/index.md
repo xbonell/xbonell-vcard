@@ -46,4 +46,4 @@ networks:
     url: https://github.com/xbonell
 ---
 
-**Desenvolupador front-end** especialitzat en la creació d'aplicacions web modernes i eficients. Experiència en _transformar dissenys en codi robust i accessible_, optimitzant el rendiment i mantenint estàndards de qualitat elevats. Especialitzat en **React**, **Vue.js** i **WordPress**, amb un enfocament particular en aplicacions que necessiten velocitat, accessibilitat i escalabilitat.
+**Desenvolupador front-end** especialitzat en la creació d'aplicacions web modernes i eficients. _Experiència en transformar dissenys en codi robust i accessible_, optimitzant el rendiment i mantenint estàndards de qualitat elevats. Especialitzat en **React**, **Vue.js** i **WordPress**, amb un enfocament particular en aplicacions que necessiten velocitat, accessibilitat i escalabilitat.

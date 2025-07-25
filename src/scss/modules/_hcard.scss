@@ -7,48 +7,50 @@
 
 .hcard {
   margin-top: functions.em(32);
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: functions.em(16) functions.em(16) functions.em(32);
-  background-color: variables.$color;
-  background-image: repeating-radial-gradient(
-      circle farthest-corner at right top,
-      rgba(variables.$alt-color, 0.75) 0%,
-      rgba(variables.$alt-color, 0) 100%
-    ),
-    repeating-linear-gradient(
-      45deg,
-      white 0,
-      color.adjust(variables.$alt-color, $lightness: 35%) 2px,
-      color.adjust(variables.$alt-color, $lightness: 35%) 4px,
-      color.adjust(variables.$alt-color, $lightness: 30%) 6px
-    );
-  color: variables.$bgcolor;
-  position: relative;
-  clip-path: polygon(
-    0% 0%,
-    100% 0,
-    100% 100%,
-    85% 100%,
-    85% 85%,
-    75% 85%,
-    75% 100%,
-    25% 100%,
-    25% 85%,
-    15% 85%,
-    15% 100%,
-    0% 100%
-  );
   filter: drop-shadow(0 0.25em 0.5em rgba(black, 0.5));
-  border-radius: functions.em(4);
+
+  &__inner {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: functions.em(16) functions.em(16) functions.em(32);
+    background-color: variables.$color;
+    background-image: repeating-radial-gradient(
+        circle farthest-corner at right bottom,
+        rgba(variables.$alt-color, 0.75) 0%,
+        rgba(variables.$alt-color, 0) 100%
+      ),
+      repeating-linear-gradient(
+        135deg,
+        white 0,
+        color.adjust(variables.$alt-color, $lightness: 35%) 2px,
+        color.adjust(variables.$alt-color, $lightness: 35%) 4px,
+        color.adjust(variables.$alt-color, $lightness: 30%) 6px
+      );
+    color: variables.$bgcolor;
+    position: relative;
+    clip-path: polygon(
+      0% 0%,
+      100% 0,
+      100% 100%,
+      85% 100%,
+      85% 85%,
+      75% 85%,
+      75% 100%,
+      25% 100%,
+      25% 85%,
+      15% 85%,
+      15% 100%,
+      0% 100%
+    );
+    border-radius: functions.em(4);
+  }
 
   .image {
     display: block;
     width: functions.em(80);
     height: functions.em(80);
-    mix-blend-mode: multiply;
     transform: rotate(-4deg);
     box-shadow: 0 0 10px 1px rgba(variables.$bgcolor, 0.5);
     border-radius: functions.em(4);
