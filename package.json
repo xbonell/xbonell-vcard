@@ -1,6 +1,6 @@
 {
   "name": "xbonell-vcard",
-  "version": "1.7.8",
+  "version": "1.8.0",
   "description": "Source for the xbonell.com vcard site.",
   "main": "gulpfile.babel.js",
   "scripts": {
