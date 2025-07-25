@@ -4,7 +4,7 @@
 
 .copyright {
   font-size: functions.em(11);
-  color: variables.$grey;
+  color: var(--color-grey);
 
   > span {
     display: inline-block;
@@ -15,7 +15,7 @@
   li {
     display: inline-block;
     font-size: functions.em(11);
-    color: variables.$grey;
+    color: var(--color-grey);
 
     + li:before {
       display: inline-block;
@@ -25,17 +25,17 @@
   }
 
   a {
-    color: white;
+    color: var(--color-white);
 
     &:hover {
-      color: white;
+      color: var(--color-white);
       text-decoration: underline;
-      text-decoration-color: variables.$red;
+      text-decoration-color: var(--color-red);
       text-underline-offset: functions.em(4);
     }
   }
 
   span {
-    color: variables.$red;
+    color: var(--color-red);
   }
 }

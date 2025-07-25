@@ -9,6 +9,6 @@
     content: '\2192';
     padding-right: functions.em(4);
     position: relative;
-    color: variables.$red;
+    color: var(--color-red);
   }
 }

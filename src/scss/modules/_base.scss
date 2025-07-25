@@ -22,8 +22,8 @@ html {
 
 body {
   padding: functions.em(16);
-  background-color: variables.$bgcolor;
-  color: variables.$color;
+  background-color: var(--color-bg);
+  color: var(--color-text);
   font: 400 #{functions.em(16)} / 1.4 variables.$fontstack;
 
   @include mixins.bp(mobile, min) {
@@ -37,7 +37,7 @@ h2 {
   padding: 0 0 functions.em(8);
   font-weight: 100;
   font-size: functions.em(40);
-  color: variables.$grey;
+  color: var(--color-grey);
   letter-spacing: functions.em(-0.5);
 }
 
@@ -47,7 +47,7 @@ h3 {
   font-weight: 100;
   font-size: functions.em(28);
   letter-spacing: functions.em(-0.5);
-  color: variables.$grey;
+  color: var(--color-grey);
 }
 
 ul,
@@ -65,8 +65,8 @@ a {
 
 .description strong {
   font-weight: 400;
-  color: variables.$red;
-  background-color: rgba(variables.$red, 0.1);
+  color: var(--color-red);
+  background-color: rgba(var(--color-red), 0.1);
   padding: functions.em(2) functions.em(4);
   border-radius: functions.em(4);
 }
@@ -74,7 +74,7 @@ a {
 .description em {
   font-style: normal;
   text-decoration: underline;
-  text-decoration-color: rgba(variables.$yellow, 0.75);
+  text-decoration-color: var(--color-yellow);
   text-underline-offset: functions.em(4);
   text-decoration-thickness: 1px;
 }

@@ -41,8 +41,8 @@
 
   .icon {
     padding: functions.em(8);
-    background-color: variables.$color;
-    color: variables.$bgcolor;
+    background-color: var(--color-text);
+    color: var(--color-bg);
     font-size: functions.em(16);
     line-height: 1;
     text-align: center;
@@ -51,8 +51,8 @@
   }
 
   .label {
-    background-color: variables.$grey;
-    color: variables.$bgcolor;
+    background-color: var(--color-grey);
+    color: var(--color-bg);
     font-size: functions.em(11);
     line-height: functions.em(48, 11);
     text-align: center;
@@ -65,17 +65,51 @@
     }
   }
 
-  @each $network, $color in variables.$social {
-    .#{$network} {
-      .icon {
-        background-color: $color;
-        fill: white;
-      }
+  .github {
+    .icon {
+      background-color: var(--color-github);
+      fill: var(--color-white);
+    }
 
-      .label {
-        background-color: color.scale($color, $lightness: -50%);
-        color: white;
-      }
+    .label {
+      background-color: var(--color-github);
+      color: var(--color-white);
+    }
+  }
+
+  .twitter {
+    .icon {
+      background-color: var(--color-twitter);
+      fill: var(--color-white);
+    }
+
+    .label {
+      background: var(--color-twitter) linear-gradient(rgba(0,0,0,0.5));
+      color: var(--color-white);
+    }
+  }
+
+  .linkedin {
+    .icon {
+      background-color: var(--color-linkedin);
+      fill: var(--color-white);
+    }
+
+    .label {
+      background: var(--color-linkedin) linear-gradient(rgba(0,0,0,0.5));
+      color: var(--color-white);
+    }
+  }
+
+  .mastodon {
+    .icon {
+      background-color: var(--color-mastodon);
+      fill: var(--color-white);
+    }
+
+    .label {
+      background: var(--color-mastodon) linear-gradient(rgba(0,0,0,0.5));;
+      color: var(--color-white);
     }
   }
 }

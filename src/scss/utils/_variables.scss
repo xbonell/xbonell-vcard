@@ -1,14 +1,30 @@
-// Color palette
-$bgcolor: #252525;
-$color: #fff;
-$alt-color: #a79c8e;
-$grey: #657b83;
-$red: #e44424;
-$yellow: #f4c430;
-$github: #111;
-$twitter: #00aced;
-$linkedin: #007bb6;
-$mastodon: #2f93d7;
+// CSS Custom Properties (CSS Variables)
+:root {
+  --color-bg: #252525;
+  --color-text: #fff;
+  --color-alt: #a79c8e;
+  --color-grey: #657b83;
+  --color-red: #e44424;
+  --color-yellow: #f4c430;
+  --color-github: #111;
+  --color-twitter: #00aced;
+  --color-linkedin: #007bb6;
+  --color-mastodon: #2f93d7;
+  --color-black: #000;
+  --color-white: #fff;
+}
+
+// SCSS Variables (fallbacks for older browsers)
+$bgcolor: var(--color-bg, #252525);
+$color: var(--color-text, #fff);
+$alt-color: var(--color-alt, #a79c8e);
+$grey: var(--color-grey, #657b83);
+$red: var(--color-red, #e44424);
+$yellow: var(--color-yellow, #f4c430);
+$github: var(--color-github, #111);
+$twitter: var(--color-twitter, #00aced);
+$linkedin: var(--color-linkedin, #007bb6);
+$mastodon: var(--color-mastodon, #2f93d7);
 
 // Typography
 $browser-context: 16;
@@ -21,8 +37,8 @@ $breakpoints: (
 
 // Social networks
 $social: (
-  github: #111,
-  twitter: #00aced,
-  linkedin: #007bb6,
-  mastodon: #2f93d7
+  github: var(--color-github, #111),
+  twitter: var(--color-twitter, #00aced),
+  linkedin: var(--color-linkedin, #007bb6),
+  mastodon: var(--color-mastodon, #2f93d7)
 );
