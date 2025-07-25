@@ -1,13 +1,12 @@
 @use '../utils/variables' as variables;
 @use '../utils/functions' as functions;
 @use '../utils/mixins' as mixins;
-@use 'sass:color';
 
 /* Hcard */
 
 .hcard {
   margin-top: functions.em(32);
-  filter: drop-shadow(0 0.25em 0.5em var(--color-black));
+  filter: drop-shadow(0 0.25em 0.5em var(--color-shadow));
 
   &__inner {
     display: flex;
@@ -16,18 +15,7 @@
     align-items: flex-start;
     padding: functions.em(16) functions.em(16) functions.em(32);
     background-color: var(--color-text);
-    background-image: repeating-radial-gradient(
-        circle farthest-corner at right bottom,
-              rgba(var(--color-alt), 0.75) 0%,
-      rgba(var(--color-alt), 0) 100%
-      ),
-      repeating-linear-gradient(
-        135deg,
-        var(--color-white) 0,
-/*         color.adjust(var(--color-alt), $lightness: 35%) 2px,
-        color.adjust(var(--color-alt), $lightness: 35%) 4px,
-        color.adjust(var(--color-alt), $lightness: 30%) 6px */
-      );
+    background-image: var(--hcard-gradient);
     color: var(--color-bg);
     position: relative;
     clip-path: polygon(
@@ -52,7 +40,7 @@
     width: functions.em(80);
     height: functions.em(80);
     transform: rotate(-4deg);
-    box-shadow: 0 0 5px 0 var(--color-black);
+    box-shadow: 0 0 functions.em(10) 0 var(--color-shadow);
     border-radius: functions.em(4);
   }
 

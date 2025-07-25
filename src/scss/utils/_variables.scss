@@ -1,30 +1,38 @@
+@use 'sass:color';
+
 // CSS Custom Properties (CSS Variables)
+$color-alt: #a79c8e;
+$color-white: #fff;
+$color-red: #e44424;
+$color-yellow: #f4c430;
+
 :root {
   --color-bg: #252525;
   --color-text: #fff;
-  --color-alt: #a79c8e;
+  --color-alt: #{$color-alt};
   --color-grey: #657b83;
-  --color-red: #e44424;
-  --color-yellow: #f4c430;
+  --color-red: #{$color-red};
+  --color-yellow: #{$color-yellow};
   --color-github: #111;
   --color-twitter: #00aced;
   --color-linkedin: #007bb6;
   --color-mastodon: #2f93d7;
   --color-black: #000;
-  --color-white: #fff;
+  --color-white: #{$color-white};
+  --color-shadow: rgba(0, 0, 0, 0.5);
+  --hcard-gradient: repeating-radial-gradient(
+      circle farthest-corner at right bottom,
+      #{rgba($color-alt, 0.5)} 0%,
+      #{rgba($color-alt, 0)} 100%
+    ),
+    repeating-linear-gradient(
+      135deg,
+      #{rgba($color-white, 1)} 0,
+      #{color.adjust($color-alt, $lightness: 35%)} 2px,
+      #{color.adjust($color-alt, $lightness: 35%)} 4px,
+      #{color.adjust($color-alt, $lightness: 30%)} 6px
+    );
 }
-
-// SCSS Variables (fallbacks for older browsers)
-$bgcolor: var(--color-bg, #252525);
-$color: var(--color-text, #fff);
-$alt-color: var(--color-alt, #a79c8e);
-$grey: var(--color-grey, #657b83);
-$red: var(--color-red, #e44424);
-$yellow: var(--color-yellow, #f4c430);
-$github: var(--color-github, #111);
-$twitter: var(--color-twitter, #00aced);
-$linkedin: var(--color-linkedin, #007bb6);
-$mastodon: var(--color-mastodon, #2f93d7);
 
 // Typography
 $browser-context: 16;
@@ -32,7 +40,7 @@ $fontstack: 'Libre Franklin', sans-serif;
 
 // Breakpoints map
 $breakpoints: (
-  mobile: 480
+  mobile: 480,
 );
 
 // Social networks
@@ -40,5 +48,5 @@ $social: (
   github: var(--color-github, #111),
   twitter: var(--color-twitter, #00aced),
   linkedin: var(--color-linkedin, #007bb6),
-  mastodon: var(--color-mastodon, #2f93d7)
+  mastodon: var(--color-mastodon, #2f93d7),
 );
