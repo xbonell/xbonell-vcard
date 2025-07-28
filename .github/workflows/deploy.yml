@@ -25,7 +25,7 @@ jobs:
         run: npm run build  # Make sure this runs your Gulp build
 
       - name: Deploy via rsync over SSH
-        uses: burnett01/rsync-deployments@v2.0.0
+        uses: burnett01/rsync-deployments@v1.1.0
         with:
           switches: -avzr --delete
           path: dist/
