@@ -11,7 +11,6 @@ import combineMediaQuery from 'postcss-combine-media-query';
 import dartSass from 'sass';
 import envify from 'envify';
 import gulp from 'gulp';
-import image from 'gulp-image';
 import plugins from 'gulp-load-plugins';
 import metalsmith from 'metalsmith';
 import layouts from '@metalsmith/layouts';
@@ -21,6 +20,14 @@ import { rimraf } from 'rimraf';
 import source from 'vinyl-source-stream';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
+
+let image;
+if (process.env.CI !== 'true') {
+  image = (await import('gulp-image')).default;
+} else {
+  console.warn('Skipping image processing in CI (gulp-image not installed)');
+}
+
 
 // Load plugins
 const $ = plugins();
@@ -127,6 +134,8 @@ const html = (done) => {
 // Process images
 // ----------------------------------------------------------------------------
 const images = () => {
+  if (!image) return Promise.resolve();
+  
   return gulp
     .src(`${dir.source}images/**/*`, { encoding: false })
     .pipe(
