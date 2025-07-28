@@ -19,6 +19,11 @@ jobs:
           node-version: 22
           cache: 'yarn'
 
+      - name: Remove gulp-image from package.json in CI
+        run: |
+          jq 'del(.devDependencies["gulp-image"])' package.json > package.tmp.json
+          mv package.tmp.json package.json
+
       - name: Install dependencies
         run: |
           yarn config set enableImmutableInstalls false
