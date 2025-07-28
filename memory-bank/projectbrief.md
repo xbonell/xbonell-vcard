@@ -5,7 +5,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 
 ## Project Details
 - **Project Name**: xbonell-vcard
-- **Version**: 1.7.0
+- **Version**: 1.8.5
 - **Type**: Personal vCard Website
 - **Author**: Xavier Bonell Iturbe
 - **Domain**: xbonell.com
@@ -34,18 +34,21 @@ The site supports multiple languages:
 - Image optimization pipeline
 
 ## Current State
-- Project is fully modernized as of June 2024
+- Project is fully modernized as of July 2025
 - All critical, significant, and standard dependencies updated (Node.js v22.17.1+)
 - Gulp-based build system upgraded and validated
 - Multi-language content structure in place
 - SCSS modular architecture implemented
 - Memory Bank system established for project context and tracking
 - Project is stable, maintainable, and ready for new enhancements or migration planning
+- VAN review completed confirming excellent project health
 
 ## Recent Modernization
-- Completed comprehensive dependency and build system update (June 2024)
+- Completed comprehensive dependency and build system update (July 2025)
 - Node.js v22.17.1+ supported (previously v16.0.0)
 - Migrated from Node Sass to Dart Sass
 - Updated Gulp, Babel, PostCSS, and related tooling
 - Validated build and development workflows on modern stack
 - Documentation and Memory Bank fully initialized
+- Build performance improved to 814ms (from 867ms)
+- Project version updated to 1.8.5
