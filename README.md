@@ -8,18 +8,29 @@ This project is the source code for the personal vCard website of xbonell.com. I
 
 ## Features
 
-- Minimal, responsive design
-- Easy to update contact and profile information
-- No external dependencies (self-contained)
-- Fast loading and optimized for all devices
-- Easily deployable to any static hosting provider
+- **Multi-language Support**: English, Spanish, and Catalan versions
+- **Modern Build System**: Gulp + Metalsmith with ES2015+ support
+- **Responsive Design**: Optimized for all devices and screen sizes
+- **Performance Optimized**: Minified assets, image optimization, and fast loading
+- **Self-contained**: No external dependencies required for deployment
+- **Easy Deployment**: Static files ready for any hosting provider
+
+## Technology Stack
+
+- **Build System**: Gulp with Babel
+- **Static Site Generator**: Metalsmith
+- **Templating**: Handlebars
+- **Styling**: SCSS/Sass with PostCSS
+- **JavaScript**: ES2015+ with Browserify
+- **Package Manager**: Yarn
+- **Node.js**: v22.17.1+ supported
 
 ## Getting Started
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (version 16+ recommended)
-- [Yarn](https://yarnpkg.com/) (for dependency management, if needed)
+- [Node.js](https://nodejs.org/) (version 22.17.1+ recommended)
+- [Yarn](https://yarnpkg.com/) (for dependency management)
 
 ### Installation
 
@@ -30,7 +41,7 @@ git clone https://github.com/xbonell/xbonell-vcard.git
 cd xbonell-vcard
 ```
 
-Install dependencies (if any):
+Install dependencies:
 
 ```bash
 yarn install
@@ -38,27 +49,73 @@ yarn install
 
 ### Development
 
-To start a local development server (if applicable):
+To start a local development server with live reload:
 
 ```bash
 yarn start
+# or
+yarn dev
 ```
 
-Or, to build the site for production:
+### Building
+
+To build the site for production:
 
 ```bash
 yarn build
 ```
 
+### Image Optimization
+
+To optimize images:
+
+```bash
+yarn images
+```
+
 ### Deployment
 
-You can deploy the generated static files to any static hosting provider (e.g., Vercel, Netlify, GitHub Pages).
+The build process generates static files in the `dist/` directory that can be deployed to any static hosting provider (e.g., Vercel, Netlify, GitHub Pages).
 
 ## Project Structure
 
-- `src/` — Main source code for the vCard site
-- `dist/` — Static assets to deploy
-- `memory-bank/` — Project memory and context files (for development workflow)
+```
+src/
+├── _static/          # Static assets (robots.txt, humans.txt, etc.)
+├── content/          # Multi-language content (en/, es/, ca/)
+├── images/           # Image assets
+├── layouts/          # Handlebars templates
+├── scripts/          # JavaScript source files
+├── scss/             # SCSS stylesheets
+└── svg/              # SVG icons
+```
+
+## Multi-language Support
+
+The site supports three languages:
+- **English** (`/en/`) - Default language
+- **Spanish** (`/es/`) - Spanish version
+- **Catalan** (`/ca/`) - Catalan version
+
+Content is organized in the `src/content/` directory with language-specific subdirectories.
+
+## Build Process
+
+The build system uses Gulp with the following features:
+- **Sass compilation** with PostCSS processing (autoprefixer, cssnano)
+- **JavaScript bundling** with Browserify and Babel
+- **HTML generation** with Metalsmith and Handlebars
+- **Image optimization** pipeline
+- **SVG sprite generation**
+- **Live reload** during development
+
+## Recent Updates
+
+- **July 2025**: Complete dependency modernization
+- Updated to Node.js v22.17.1+ support
+- Migrated from Node Sass to Dart Sass
+- Updated Gulp, Babel, PostCSS, and related tooling
+- Enhanced build system with modern optimizations
 
 ## Contributing
 
