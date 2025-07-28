@@ -23,9 +23,13 @@ import { hideBin } from 'yargs/helpers';
 
 let image;
 if (process.env.CI !== 'true') {
-  image = (await import('gulp-image')).default;
+  try {
+    image = require('gulp-image');
+  } catch (err) {
+    console.warn('gulp-image not installed, skipping image optimization.');
+  }
 } else {
-  console.warn('Skipping image processing in CI (gulp-image not installed)');
+  console.warn('Skipping image processing in CI (CI=true)');
 }
 
 
@@ -135,7 +139,7 @@ const html = (done) => {
 // ----------------------------------------------------------------------------
 const images = () => {
   if (!image) return Promise.resolve();
-  
+
   return gulp
     .src(`${dir.source}images/**/*`, { encoding: false })
     .pipe(
