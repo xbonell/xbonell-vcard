@@ -6,7 +6,7 @@
   "scripts": {
     "build": "gulp build --production",
     "dev": "gulp",
-    "images": "gulp images",
+    "images": "gulp images --gulpfile gulpfile.images.js",
     "start": "npm run dev"
   },
   "repository": {
@@ -39,7 +39,6 @@
     "gulp-cli": "^3.1.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-if": "^3.0.0",
-    "gulp-image": "^6.3.1",
     "gulp-jslint": "^1.0.10",
     "gulp-load-plugins": "^2.0.8",
     "gulp-postcss": "^10.0.0",
@@ -59,6 +58,9 @@
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
     "yargs": "^18.0.0"
+  },
+  "optionalDependencies": {
+    "gulp-image": "6.3.1"
   },
   "browserslist": [
     "last 2 versions",

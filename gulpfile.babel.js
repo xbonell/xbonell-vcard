@@ -21,18 +21,6 @@ import source from 'vinyl-source-stream';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
-let image;
-if (process.env.CI !== 'true') {
-  try {
-    image = require('gulp-image');
-  } catch (err) {
-    console.warn('gulp-image not installed, skipping image optimization.');
-  }
-} else {
-  console.warn('Skipping image processing in CI (CI=true)');
-}
-
-
 // Load plugins
 const $ = plugins();
 const sass = $.sass(dartSass);
@@ -135,29 +123,6 @@ const html = (done) => {
     });
 };
 
-// Process images
-// ----------------------------------------------------------------------------
-const images = () => {
-  if (!image) return Promise.resolve();
-
-  return gulp
-    .src(`${dir.source}images/**/*`, { encoding: false })
-    .pipe(
-      image({
-        pngquant: false,
-        optipng: true,
-        zopflipng: false,
-        jpegRecompress: true,
-        jpegoptim: true,
-        mozjpeg: true,
-        gifsicle: true,
-        svgo: true,
-        concurrent: 8,
-      })
-    )
-    .pipe(gulp.dest(`${dir.source}_static/assets/images`));
-};
-
 // Minify HTML
 // ----------------------------------------------------------------------------
 const minify = () => {
@@ -215,9 +180,6 @@ const watch = () => {
     .watch([`${dir.source}images/**/*.{gif,jpg,jpeg,png}`])
     .on('change', gulp.series(images, copy, browser.reload));
 };
-
-// Process images
-gulp.task('images', gulp.series(images));
 
 // Build the "dist" folder by running all of the above tasks
 gulp.task('build', gulp.series(clean, gulp.parallel(bundle, css, html, svg, copy), minify));
