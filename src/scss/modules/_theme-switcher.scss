@@ -10,6 +10,7 @@
   position: fixed;
   bottom: functions.rem(20);
   right: 0;
+  z-index: 1000;
   width: functions.em(48);
   height: functions.em(48);
   padding: functions.em(8);
@@ -29,12 +30,34 @@
       fill: currentColor;
     }
   }
+
+  &__label {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    bottom: calc(100% + functions.em(10));
+    right: 0;
+    padding: functions.em(6);
+    white-space: nowrap;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--color-white);
+    border-radius: functions.em(4);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transform: translate3d(100%, 0, 0);
+    font-size: functions.em(13);
+  }
+}
+
+.theme-switcher--clicked {
+  .theme-switcher__label {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @include mixins.bp(mobile, min) {
   .theme-switcher {
-    position: absolute;
-    bottom: auto;
-    top: functions.em(50);
+    bottom: functions.rem(50);
   }
 }

@@ -13,8 +13,14 @@ class ThemeSwitcher {
     const switcher = document.createElement('button');
     switcher.className = 'theme-switcher';
     switcher.setAttribute('aria-label', 'Toggle theme');
-    switcher.setAttribute('title', 'Toggle theme (Ctrl+Alt+T)');
+    switcher.setAttribute('title', 'Toggle theme (Ctrl+Alt/Cmd+T)');
     
+    // Create label element
+    const label = document.createElement('span');
+    label.className = 'theme-switcher__label';
+    label.textContent = this.themeManager.getCurrentTheme();
+    switcher.appendChild(label);
+
     // Create icon element
     const icon = document.createElement('span');
     icon.className = 'theme-switcher__icon';
@@ -46,9 +52,14 @@ class ThemeSwitcher {
     
     const currentTheme = this.themeManager.getCurrentTheme();
     const iconElement = this.switcherElement.querySelector('.theme-switcher__icon');
+    const labelElement = this.switcherElement.querySelector('.theme-switcher__label');
     
     if (iconElement) {
       iconElement.innerHTML = this.getIconForTheme(currentTheme);
+    }
+
+    if (labelElement) {
+      labelElement.textContent = `Enabled "${currentTheme.charAt(0).toUpperCase()}${currentTheme.slice(1)}" theme`;
     }
     
     // Update aria-label for accessibility
@@ -64,7 +75,7 @@ class ThemeSwitcher {
     this.switcherElement.classList.add('theme-switcher--clicked');
     setTimeout(() => {
       this.switcherElement.classList.remove('theme-switcher--clicked');
-    }, 200);
+    }, 1000);
   }
 
   // Initialize the theme switcher
@@ -110,6 +121,3 @@ class ThemeSwitcher {
 export function createThemeSwitcher(themeManager) {
   return new ThemeSwitcher(themeManager);
 }
-
-// Default export for backward compatibility
-export default ThemeSwitcher;
