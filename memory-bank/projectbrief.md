@@ -5,7 +5,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 
 ## Project Details
 - **Project Name**: xbonell-vcard
-- **Version**: 1.8.5
+- **Version**: 1.8.14
 - **Type**: Personal vCard Website
 - **Author**: Xavier Bonell Iturbe
 - **Domain**: xbonell.com
@@ -18,7 +18,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 - **Styling**: SCSS/Sass
 - **JavaScript**: ES2015+ with Browserify
 - **Icons**: SVG with svgxuse
-- **Package Manager**: yarn
+- **Package Manager**: Yarn v4.9.2
 
 ## Multi-language Support
 The site supports multiple languages:
@@ -27,8 +27,8 @@ The site supports multiple languages:
 - Catalan (ca)
 
 ## Build Process
-- Development: `npm run dev` (gulp default)
-- Production: `npm run build` (gulp build --production)
+- Development: `yarn start` (gulp default)
+- Production: `yarn build` (gulp build --production)
 - Uses autoprefixer, cssnano, and other optimizations
 - Browser-sync for development server
 - Image optimization pipeline
@@ -42,6 +42,8 @@ The site supports multiple languages:
 - Memory Bank system established for project context and tracking
 - Project is stable, maintainable, and ready for new enhancements or migration planning
 - VAN review completed confirming excellent project health
+- Repository status review completed (January 2025)
+- Build performance excellent (1.04s build time)
 
 ## Recent Modernization
 - Completed comprehensive dependency and build system update (July 2025)
@@ -50,5 +52,6 @@ The site supports multiple languages:
 - Updated Gulp, Babel, PostCSS, and related tooling
 - Validated build and development workflows on modern stack
 - Documentation and Memory Bank fully initialized
-- Build performance improved to 814ms (from 867ms)
-- Project version updated to 1.8.5
+- Build performance excellent (1.04s build time)
+- Project version updated to 1.8.14
+- Repository status review completed (January 2025)
