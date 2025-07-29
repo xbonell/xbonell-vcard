@@ -197,16 +197,13 @@ const revisionAssets = () => {
     .pipe(gulp.dest(dir.dest));
 };
 
-// Build the "dist" folder by running all of the above tasks
 gulp.task(
   'build',
-  gulp.series(
-    clean,
-    gulp.parallel(bundle, css, html, svg, copy),
-    revisionAssets,
-    minify
-  )
+  gulp.series(clean, gulp.parallel(bundle, css, html, svg, copy), revisionAssets, minify)
 );
 
 // Build site, run the server, and watch for file changes
-gulp.task('default', gulp.series('build', server, watch));
+gulp.task(
+  'default',
+  gulp.series(clean, gulp.parallel(bundle, css, html, svg, copy), server, watch)
+);

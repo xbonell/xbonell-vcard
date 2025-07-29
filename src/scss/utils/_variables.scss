@@ -34,8 +34,9 @@ $color-yellow: #f4c430;
       #{color.adjust($color-alt, $lightness: 30%)} 6px
     );
   
-  // Theme transition
-  --theme-transition: 0.3s ease-in-out;
+  // Optimized theme transition with GPU acceleration
+  --theme-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --theme-transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 // Light theme
