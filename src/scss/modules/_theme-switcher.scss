@@ -14,6 +14,7 @@
   height: functions.em(48);
   padding: functions.em(8);
   border: none;
+  border-radius: functions.em(8) 0 0 functions.em(8);
   appearance: none;
   background-color: var(--color-red);
   color: var(--color-white);
@@ -34,6 +35,6 @@
   .theme-switcher {
     position: absolute;
     bottom: auto;
-    top: functions.em(40);
+    top: functions.em(50);
   }
 }
