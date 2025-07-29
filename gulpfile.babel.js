@@ -189,7 +189,7 @@ const watch = () => {
 // ----------------------------------------------------------------------------
 const revisionAssets = () => {
   return gulp
-    .src([`${dir.dest}assets/**/*.{css,js,gif,png,jpg,svg,ico}`], { base: 'dist' })
+    .src([`${dir.dest}assets/**/*.{css,js,gif,png,jpg,svg,ico}`], { base: 'dist', encoding: false })
     .pipe(rev())
     .pipe(revDel())
     .pipe(gulp.src(`${dir.dest}**/*.html`))
