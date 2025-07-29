@@ -4,7 +4,7 @@
   "description": "Source for the xbonell.com vcard site.",
   "main": "gulpfile.babel.js",
   "scripts": {
-    "build": "gulp build",
+    "build": "gulp build --production",
     "images": "gulp images --gulpfile gulpfile.images.js",
     "start": "gulp"
   },
