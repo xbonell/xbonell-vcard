@@ -64,20 +64,56 @@ const templateConfig = {
   },
 };
 
-// PostCSS filters
-const processors = [autoprefixer(), combineMediaQuery(), cssnano()];
+// PostCSS filters - optimized for modern browsers
+const processors = [
+  autoprefixer({
+    overrideBrowserslist: [
+      'last 2 versions',
+      'not dead',
+      'not ie 11'
+    ]
+  }), 
+  combineMediaQuery(), 
+  cssnano({
+    preset: ['default', {
+      discardComments: { removeAll: true },
+      normalizeWhitespace: true,
+      colormin: true,
+      minifyFontValues: true,
+      minifySelectors: true
+    }]
+  })
+];
 
-// Create JS bundle
+// Create JS bundle - optimized for modern browsers
 // ----------------------------------------------------------------------------
 const bundle = () => {
   return browserify(`${dir.source}scripts/main.js`)
-    .transform(babelify, { presets: ['@babel/preset-env'] })
+    .transform(babelify, { 
+      presets: [['@babel/preset-env', {
+        targets: {
+          browsers: [
+            'last 2 versions',
+            'not dead',
+            'not ie 11'
+          ]
+        },
+        useBuiltIns: 'usage',
+        corejs: 3
+      }]]
+    })
     .transform(envify, { NODE_ENV: PRODUCTION ? 'production' : 'development' })
     .bundle()
     .pipe(source('app.js'))
     .pipe(buffer())
     .pipe($.jslint())
-    .pipe($.if(PRODUCTION, $.uglify()))
+    .pipe($.if(PRODUCTION, $.uglify({
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug']
+      }
+    })))
     .pipe($.if(!PRODUCTION, $.sourcemaps.write('./')))
     .pipe(gulp.dest(`${dir.dest}assets/js`));
 };
@@ -99,14 +135,17 @@ const copy = () => {
   return gulp.src(`${dir.source}_static/**/*`, { encoding: false }).pipe(gulp.dest(dir.dest));
 };
 
-// Compile Sass into CSS and apply filters
+// Compile Sass into CSS and apply filters - optimized for modern browsers
 // ----------------------------------------------------------------------------
 const css = () => {
   return gulp
     .src(`${dir.source}scss/style.scss`)
     .pipe($.if(!PRODUCTION, $.sourcemaps.init()))
     .pipe(
-      sass({ outputStyle: $.if(PRODUCTION, 'compressed', 'expanded') }).on('error', sass.logError)
+      sass({ 
+        outputStyle: $.if(PRODUCTION, 'compressed', 'expanded'),
+        includePaths: ['node_modules']
+      }).on('error', sass.logError)
     )
     .pipe($.postcss(processors))
     .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
