@@ -5,6 +5,7 @@
 .copyright {
   font-size: functions.em(11);
   color: var(--color-grey);
+  transition: color var(--theme-transition);
 
   > span {
     display: inline-block;
@@ -16,6 +17,7 @@
     display: inline-block;
     font-size: functions.em(11);
     color: var(--color-grey);
+    transition: color var(--theme-transition);
 
     + li:before {
       display: inline-block;
@@ -26,6 +28,7 @@
 
   a {
     color: var(--color-white);
+    transition: color var(--theme-transition), text-decoration var(--theme-transition);
 
     &:hover {
       color: var(--color-white);
@@ -37,5 +40,14 @@
 
   span {
     color: var(--color-red);
+    transition: color var(--theme-transition);
+  }
+}
+
+[data-theme="light"] {
+  .lang {
+    a {
+      color: var(--color-black);
+    }
   }
 }

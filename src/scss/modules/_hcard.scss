@@ -7,6 +7,7 @@
 .hcard {
   margin-top: functions.em(32);
   filter: drop-shadow(0 0.25em 0.5em var(--color-shadow));
+  transition: filter var(--theme-transition);
 
   &__inner {
     display: flex;
@@ -16,7 +17,7 @@
     padding: functions.em(16) functions.em(16) functions.em(32);
     background-color: var(--color-text);
     background-image: var(--hcard-gradient);
-    color: var(--color-bg);
+    color: var(--color-black);
     position: relative;
     clip-path: polygon(
       0% 0%,
@@ -33,6 +34,7 @@
       0% 100%
     );
     border-radius: functions.em(4);
+    transition: background-color var(--theme-transition), color var(--theme-transition);
   }
 
   .image {
@@ -42,6 +44,7 @@
     transform: rotate(-4deg);
     box-shadow: 0 0 functions.em(10) 0 var(--color-shadow);
     border-radius: functions.em(4);
+    transition: box-shadow var(--theme-transition);
   }
 
   .fields-group {
@@ -72,7 +75,8 @@
   .contact {
     margin-top: functions.em(2, 14);
     font-size: functions.em(14);
-    color: var(--color-bg);
+    color: var(--color-black);
+    transition: color var(--theme-transition);
 
     > * {
       display: inline-block;
@@ -84,11 +88,13 @@
       height: functions.em(14, 14);
       margin-right: functions.em(7, 14);
       fill: var(--color-red);
+      transition: fill var(--theme-transition);
     }
 
     span {
       text-decoration: underline;
       text-decoration-color: transparent;
+      transition: text-decoration-color var(--theme-transition);
     }
 
     &:hover span {

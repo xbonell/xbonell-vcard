@@ -1,0 +1,39 @@
+@use '../utils/variables' as variables;
+@use '../utils/functions' as functions;
+@use '../utils/mixins' as mixins;
+
+.theme-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: fixed;
+  bottom: functions.rem(20);
+  right: 0;
+  width: functions.em(48);
+  height: functions.em(48);
+  padding: functions.em(8);
+  border: none;
+  appearance: none;
+  background-color: var(--color-red);
+  color: var(--color-white);
+
+  &__icon {
+    display: block;
+    width: functions.em(40);
+    height: functions.em(40);
+    svg {
+      width: 100%;
+      height: 100%;
+      fill: currentColor;
+    }
+  }
+}
+
+@include mixins.bp(mobile, min) {
+  .theme-switcher {
+    position: absolute;
+    bottom: auto;
+    top: functions.em(40);
+  }
+}

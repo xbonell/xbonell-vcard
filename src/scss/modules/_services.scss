@@ -10,5 +10,6 @@
     padding-right: functions.em(4);
     position: relative;
     color: var(--color-red);
+    transition: color var(--theme-transition);
   }
 }

@@ -267,3 +267,128 @@ Comprehensive update of outdated dependencies in the xbonell-vcard project, addr
 ✅ Build system stable and future-proof
 ✅ Memory Bank system established and current
 ✅ Project ready for new development work
+
+---
+
+# Task: Theme Switcher Widget Enhancement
+
+## Description
+Add a theme switcher widget to the website that allows users to switch between "light mode", "dark mode" & "system" preferences. The widget should be accessible, user-friendly, and integrate seamlessly with the existing design.
+
+## Complexity
+**Level: 2 (Simple Enhancement)**
+**Type: UI/UX Enhancement with JavaScript Functionality**
+**Rationale**: 
+- Affects multiple components (HTML, CSS, JavaScript)
+- Requires design decisions for widget appearance and placement
+- Needs theme persistence and system preference detection
+- Integrates with existing Metalsmith/Handlebars architecture
+- Moderate complexity with contained scope
+
+## Current State Analysis
+- **Existing Theme**: Dark theme with CSS custom properties
+- **Build System**: Gulp 5 + Metalsmith + Handlebars
+- **Styling**: SCSS with modular architecture
+- **JavaScript**: ES2015+ with Browserify
+- **Multi-language**: Support for en/es/ca
+
+## Requirements
+
+### Functional Requirements
+- [ ] Theme switcher widget with three options: Light, Dark, System
+- [ ] Theme persistence using localStorage
+- [ ] System preference detection and automatic switching
+- [ ] Smooth transitions between themes
+- [ ] Accessible design with proper ARIA labels
+- [ ] Multi-language support for widget labels
+
+### Technical Requirements
+- [ ] CSS custom properties for theme colors
+- [ ] JavaScript module for theme management
+- [ ] Integration with existing Handlebars templates
+- [ ] Responsive design for mobile/desktop
+- [ ] No impact on existing functionality
+- [ ] Maintain build system compatibility
+
+### Design Requirements
+- [ ] Widget placement in header or footer
+- [ ] Consistent with existing design language
+- [ ] Clear visual indicators for current theme
+- [ ] Smooth animations/transitions
+- [ ] Accessible color contrast ratios
+
+## Subtasks
+
+### Phase 1: Design & Planning
+- [x] Design widget appearance and placement
+- [x] Define CSS custom properties for light/dark themes
+- [x] Plan JavaScript architecture for theme management
+- [x] Create accessibility requirements checklist
+
+### Phase 2: CSS Implementation
+- [x] Add light theme CSS custom properties
+- [x] Create theme transition animations
+- [x] Style the theme switcher widget
+- [x] Ensure responsive design
+
+### Phase 3: JavaScript Implementation
+- [ ] Create theme management module
+- [ ] Implement localStorage persistence
+- [ ] Add system preference detection
+- [ ] Handle theme switching logic
+
+### Phase 4: Template Integration
+- [ ] Add widget to Handlebars template
+- [ ] Implement multi-language support
+- [ ] Add proper ARIA labels
+- [ ] Test across all languages
+
+### Phase 5: Testing & Polish
+- [ ] Test theme switching functionality
+- [ ] Verify persistence across page reloads
+- [ ] Test system preference detection
+- [ ] Validate accessibility requirements
+- [ ] Test responsive behavior
+
+## Dependencies
+- **Existing CSS Architecture**: Modular SCSS structure
+- **JavaScript Build System**: Browserify + Babel
+- **Template System**: Handlebars with Metalsmith
+- **Multi-language**: Content structure for en/es/ca
+
+## Status
+- [x] Initialization complete
+- [x] Planning complete
+- [x] Design phase
+- [ ] Implementation
+- [ ] Testing
+- [ ] Documentation
+
+## Estimated Effort
+**Time**: 1-2 days
+**Complexity**: Medium
+**Risk Level**: Low (contained enhancement)
+
+## Success Criteria
+- [ ] Theme switcher widget functional and accessible
+- [ ] Light and dark themes implemented
+- [ ] System preference detection working
+- [ ] Theme persistence across sessions
+- [ ] Smooth transitions between themes
+- [ ] Multi-language support implemented
+- [ ] No regression in existing functionality
+- [ ] Responsive design maintained
+
+## Current Phase: Phase 2 - CSS Implementation (In Progress)
+
+### Phase 1: Design & Planning
+- [x] Design widget appearance and placement
+- [x] Define CSS custom properties for light/dark themes
+- [x] Plan JavaScript architecture for theme management
+- [x] Create accessibility requirements checklist
+
+### Phase 2: CSS Implementation
+- [x] Add light theme CSS custom properties
+- [x] Create theme transition animations
+- [x] Style the theme switcher widget
+- [x] Ensure responsive design

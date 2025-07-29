@@ -21,5 +21,15 @@
     margin: functions.em(3, 13);
     padding: 0 functions.em(5, 13);
     border-radius: functions.em(4);
+    transition: color var(--theme-transition), background-color var(--theme-transition);
+  }
+}
+
+[data-theme="light"] {
+  .toolkit {
+    li {
+      color: var(--color-black);
+      background: rgba(variables.$color-yellow, 0.3);
+    }
   }
 }

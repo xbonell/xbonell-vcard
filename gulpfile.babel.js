@@ -176,9 +176,6 @@ const watch = () => {
   gulp.watch([`${dir.source}scss/**/*.scss`]).on('change', gulp.series(css, browser.reload));
   gulp.watch([`${dir.source}scripts/**/*.js`]).on('change', gulp.series(bundle, browser.reload));
   gulp.watch([`${dir.source}svg/**/*.svg`]).on('change', gulp.series(svg, browser.reload));
-  gulp
-    .watch([`${dir.source}images/**/*.{gif,jpg,jpeg,png}`])
-    .on('change', gulp.series(images, copy, browser.reload));
 };
 
 // Build the "dist" folder by running all of the above tasks

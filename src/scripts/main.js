@@ -1,5 +1,7 @@
 // main.js
 import domTweak from './modules/domTweak';
+import themeManager from './modules/themeManager';
+import { createThemeSwitcher } from './modules/themeSwitcher';
 
 document.addEventListener(
   'DOMContentLoaded',
@@ -15,6 +17,11 @@ document.addEventListener(
     }
 
     domTweak();
+    themeManager.init();
+    
+    // Initialize theme switcher with themeManager instance
+    const themeSwitcher = createThemeSwitcher(themeManager);
+    themeSwitcher.init();
   },
   false
 );

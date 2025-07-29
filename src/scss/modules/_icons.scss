@@ -48,6 +48,7 @@
     text-align: center;
     backface-visibility: hidden;
     border-radius: functions.em(4);
+    transition: background-color var(--theme-transition), color var(--theme-transition);
   }
 
   .label {
@@ -59,17 +60,20 @@
     backface-visibility: hidden;
     border-radius: functions.em(4);
     transform: rotateY(180deg) translate3d(0, 0, 0);
+    transition: background-color var(--theme-transition), color var(--theme-transition);
   }
 
   .github {
     .icon {
       background-color: var(--color-github);
       fill: var(--color-white);
+      transition: background-color var(--theme-transition), fill var(--theme-transition);
     }
 
     .label {
       background-color: var(--color-github);
       color: var(--color-white);
+      transition: background-color var(--theme-transition), color var(--theme-transition);
     }
   }
 
@@ -77,11 +81,13 @@
     .icon {
       background-color: var(--color-twitter);
       fill: var(--color-white);
+      transition: background-color var(--theme-transition), fill var(--theme-transition);
     }
 
     .label {
       background: var(--color-twitter) linear-gradient(rgba(0,0,0,0.5));
       color: var(--color-white);
+      transition: background var(--theme-transition), color var(--theme-transition);
     }
   }
 
@@ -89,11 +95,13 @@
     .icon {
       background-color: var(--color-linkedin);
       fill: var(--color-white);
+      transition: background-color var(--theme-transition), fill var(--theme-transition);
     }
 
     .label {
       background: var(--color-linkedin) linear-gradient(rgba(0,0,0,0.5));
       color: var(--color-white);
+      transition: background var(--theme-transition), color var(--theme-transition);
     }
   }
 
@@ -101,11 +109,13 @@
     .icon {
       background-color: var(--color-mastodon);
       fill: var(--color-white);
+      transition: background-color var(--theme-transition), fill var(--theme-transition);
     }
 
     .label {
       background: var(--color-mastodon) linear-gradient(rgba(0,0,0,0.5));;
       color: var(--color-white);
+      transition: background var(--theme-transition), color var(--theme-transition);
     }
   }
 }
