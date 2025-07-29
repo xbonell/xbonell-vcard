@@ -224,9 +224,9 @@ const watch = () => {
   gulp.watch([`${dir.source}svg/**/*.svg`]).on('change', gulp.series(svg, browser.reload));
 };
 
-// Hashing static assets
+// Hash static assets
 // ----------------------------------------------------------------------------
-const revisionAssets = () => {
+const hashAssets = () => {
   return gulp
     .src([`${dir.dest}assets/**/*.{css,js,gif,png,jpg,svg,ico}`], { base: 'dist', encoding: false })
     .pipe(rev())
@@ -238,7 +238,7 @@ const revisionAssets = () => {
 
 gulp.task(
   'build',
-  gulp.series(clean, gulp.parallel(bundle, css, html, svg, copy), revisionAssets, minify)
+  gulp.series(clean, gulp.parallel(bundle, css, html, svg, copy), hashAssets, minify)
 );
 
 // Build site, run the server, and watch for file changes
