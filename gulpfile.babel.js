@@ -20,6 +20,9 @@ import { rimraf } from 'rimraf';
 import source from 'vinyl-source-stream';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
+import rev from 'gulp-rev';
+import revDel from 'gulp-rev-delete-original';
+import revRewrite from 'gulp-rev-rewrite';
 
 // Load plugins
 const $ = plugins();
@@ -81,9 +84,13 @@ const bundle = () => {
 
 // Delete the "dist" folder (this happens every time a build starts)
 // ----------------------------------------------------------------------------
-const clean = (done) => {
-  rimraf(`${dir.dest}**/*`);
-  done();
+const clean = async (done) => {
+  try {
+    await rimraf(dir.dest);
+    done();
+  } catch (error) {
+    done(error);
+  }
 };
 
 // Copy static files to root
@@ -178,8 +185,28 @@ const watch = () => {
   gulp.watch([`${dir.source}svg/**/*.svg`]).on('change', gulp.series(svg, browser.reload));
 };
 
+// Hashing static assets
+// ----------------------------------------------------------------------------
+const revisionAssets = () => {
+  return gulp
+    .src([`${dir.dest}assets/**/*.{css,js,gif,png,jpg,svg,ico}`], { base: 'dist' })
+    .pipe(rev())
+    .pipe(revDel())
+    .pipe(gulp.src(`${dir.dest}**/*.html`))
+    .pipe(revRewrite())
+    .pipe(gulp.dest(dir.dest));
+};
+
 // Build the "dist" folder by running all of the above tasks
-gulp.task('build', gulp.series(clean, gulp.parallel(bundle, css, html, svg, copy), minify));
+gulp.task(
+  'build',
+  gulp.series(
+    clean,
+    gulp.parallel(bundle, css, html, svg, copy),
+    revisionAssets,
+    minify
+  )
+);
 
 // Build site, run the server, and watch for file changes
 gulp.task('default', gulp.series('build', server, watch));
