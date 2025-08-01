@@ -84,9 +84,3 @@ a {
   text-decoration-thickness: 1px;
   transition: text-decoration-color var(--theme-transition);
 }
-
-[data-theme="light"] {
-  .description em {
-    text-decoration-thickness: 2px;
-  }
-}
