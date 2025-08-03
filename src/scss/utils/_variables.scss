@@ -3,7 +3,7 @@
 // CSS Custom Properties (CSS Variables)
 $color-alt: #a79c8e;
 $color-white: #fff;
-$color-red: #c4331c;
+$color-red: #e44424;
 $color-yellow: #f4c430;
 
 :root {
@@ -13,6 +13,7 @@ $color-yellow: #f4c430;
   --color-alt: #{$color-alt};
   --color-grey: #657b83;
   --color-red: #{$color-red};
+  --color-redBg: #{rgba($color-red, 0.1)};
   --color-yellow: #{$color-yellow};
   --color-github: #111;
   --color-twitter: #00aced;
@@ -45,6 +46,8 @@ $color-yellow: #f4c430;
   --color-text: #2c3e50;
   --color-grey: #6c757d;
   --color-shadow: rgba(0, 0, 0, 0.25);
+  --color-red: #9C2A18;
+  --color-redBg: #{rgba(#9C2A18, 0.1)};
 }
 
 // Typography
