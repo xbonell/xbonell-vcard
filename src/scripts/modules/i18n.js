@@ -18,7 +18,7 @@ const TRANSLATIONS = {
     'theme.dark': 'Dark',
     'theme.system': 'System',
     'theme.toggle': 'Toggle theme (Ctrl+Alt/Cmd+T)',
-    'theme.aria.title': 'Current theme: {currentTheme}. Click to cycle themes.',
+    'theme.aria.title': 'Current theme: "{currentTheme}". Click to cycle themes.',
   },
 
   [SUPPORTED_LANGUAGES.ES]: {
@@ -27,7 +27,7 @@ const TRANSLATIONS = {
     'theme.dark': 'Oscuro',
     'theme.system': 'Sistema',
     'theme.toggle': 'Alternar tema (Ctrl+Alt/Cmd+T)',
-    'theme.aria.title': 'Tema actual: {currentTheme}. Haz clic para cambiar de tema.',
+    'theme.aria.title': 'Tema actual: "{currentTheme}". Haz clic para cambiar de tema.',
   },
 
   [SUPPORTED_LANGUAGES.CA]: {
@@ -36,7 +36,7 @@ const TRANSLATIONS = {
     'theme.dark': 'Fosc',
     'theme.system': 'Sistema',
     'theme.toggle': 'Alternar tema (Ctrl+Alt/Cmd+T)',
-    'theme.aria.title': 'Tema actual: {currentTheme}. Clica per canviar de tema.',
+    'theme.aria.title': 'Tema actual: "{currentTheme}". Clica per canviar de tema.',
   },
 };
 
