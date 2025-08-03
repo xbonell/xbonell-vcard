@@ -4,7 +4,7 @@
 
 .copyright {
   font-size: functions.em(11);
-  color: var(--color-grey);
+  color: var(--color-text);
   transition: color var(--theme-transition);
 
   > span {
@@ -16,7 +16,7 @@
   li {
     display: inline-block;
     font-size: functions.em(11);
-    color: var(--color-text);
+    color: var(--color-grey);
     transition: color var(--theme-transition);
 
     + li:before {
