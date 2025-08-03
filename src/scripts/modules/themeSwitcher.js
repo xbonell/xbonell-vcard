@@ -2,6 +2,7 @@
 // Receives themeManager instance as argument and generates theme switcher functionality
 
 import { THEMES } from './themeManager';
+import { t } from './i18n';
 
 class ThemeSwitcher {
   constructor(themeManager) {
@@ -12,10 +13,17 @@ class ThemeSwitcher {
     this.labelText = null;
     this.clickTimeout = null;
     this.isDestroyed = false;
-    
+
     // Bind methods to avoid creating new functions on each call
     this.handleClick = this.handleClick.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
+
+    // Theme labels
+    this.themeLabels = {
+      [THEMES.DARK]: t('theme.dark'),
+      [THEMES.LIGHT]: t('theme.light'),
+      [THEMES.SYSTEM]: t('theme.system'),
+    };
   }
 
   // Create the theme switcher HTML element
@@ -23,7 +31,7 @@ class ThemeSwitcher {
     const switcher = document.createElement('button');
     switcher.className = 'theme-switcher';
     switcher.setAttribute('aria-label', 'Toggle theme');
-    switcher.setAttribute('title', 'Toggle theme (Ctrl+Alt/Cmd+T)');
+    switcher.setAttribute('title', t('theme.toggle'));
 
     // Create label element
     const label = document.createElement('span');
@@ -50,18 +58,21 @@ class ThemeSwitcher {
   // Get appropriate icon for current theme - cached for performance
   getIconForTheme(theme) {
     const iconMap = {
-      [THEMES.DARK]: '<svg aria-hidden="true"><use xlink:href="/assets/images/sprite.svg#moon"></use></svg>',
-      [THEMES.LIGHT]: '<svg aria-hidden="true"><use xlink:href="/assets/images/sprite.svg#sun"></use></svg>',
-      [THEMES.SYSTEM]: '<svg aria-hidden="true"><use xlink:href="/assets/images/sprite.svg#contrast"></use></svg>'
+      [THEMES.DARK]:
+        '<svg aria-hidden="true"><use xlink:href="/assets/images/sprite.svg#moon"></use></svg>',
+      [THEMES.LIGHT]:
+        '<svg aria-hidden="true"><use xlink:href="/assets/images/sprite.svg#sun"></use></svg>',
+      [THEMES.SYSTEM]:
+        '<svg aria-hidden="true"><use xlink:href="/assets/images/sprite.svg#contrast"></use></svg>',
     };
-    
+
     return iconMap[theme] || iconMap[THEMES.SYSTEM];
   }
 
   // Cache DOM elements for better performance
   cacheElements() {
     if (!this.switcherElement) return;
-    
+
     this.iconElement = this.switcherElement.querySelector('.theme-switcher__icon');
     this.labelIcon = this.switcherElement.querySelector('.theme-switcher__label-icon');
     this.labelText = this.switcherElement.querySelector('.theme-switcher__label-text');
@@ -83,15 +94,13 @@ class ThemeSwitcher {
         this.labelIcon.innerHTML = iconHtml;
       }
       if (this.labelText) {
-        this.labelText.textContent = `Enabled "${currentTheme
-          .charAt(0)
-          .toUpperCase()}${currentTheme.slice(1)}" theme`;
+        this.labelText.textContent = this.themeLabels[currentTheme];
       }
 
       // Update aria-label for accessibility
       this.switcherElement.setAttribute(
         'aria-label',
-        `Current theme: ${currentTheme}. Click to cycle themes.`
+        t('theme.aria.title', { currentTheme: this.themeLabels[currentTheme] })
       );
     } catch (error) {
       console.warn('Failed to update switcher appearance:', error);
@@ -101,7 +110,7 @@ class ThemeSwitcher {
   // Handle click event on theme switcher
   handleClick() {
     if (this.isDestroyed) return;
-    
+
     try {
       this.themeManager.toggleTheme();
       this.updateSwitcherAppearance();
@@ -126,7 +135,7 @@ class ThemeSwitcher {
 
   handleKeyDown(e) {
     if (this.isDestroyed) return;
-    
+
     if (e.ctrlKey && (e.altKey || e.metaKey) && e.key === 't') {
       e.preventDefault(); // Prevent default browser behavior
       this.handleClick();
@@ -136,7 +145,7 @@ class ThemeSwitcher {
   // Initialize the theme switcher
   init(containerSelector = 'body') {
     if (this.isDestroyed) return;
-    
+
     try {
       // Create switcher element
       this.switcherElement = this.createSwitcherElement();
@@ -160,7 +169,7 @@ class ThemeSwitcher {
 
       // Add keyboard event listener
       window.addEventListener('keydown', this.handleKeyDown);
-      
+
       // Listen for theme changes from themeManager
       this.themeManager.addEventListener('themeChanged', this.updateSwitcherAppearance.bind(this));
     } catch (error) {
@@ -171,7 +180,7 @@ class ThemeSwitcher {
   // Public method to destroy the switcher
   destroy() {
     this.isDestroyed = true;
-    
+
     // Clear any pending timeouts
     if (this.clickTimeout) {
       clearTimeout(this.clickTimeout);
@@ -193,7 +202,7 @@ class ThemeSwitcher {
     if (this.switcherElement && this.switcherElement.parentNode) {
       this.switcherElement.parentNode.removeChild(this.switcherElement);
     }
-    
+
     // Clear cached references
     this.switcherElement = null;
     this.iconElement = null;

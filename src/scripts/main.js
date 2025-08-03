@@ -2,6 +2,7 @@
 import domTweak from './modules/domTweak';
 import themeManager from './modules/themeManager';
 import { createThemeSwitcher } from './modules/themeSwitcher';
+import i18n from './modules/i18n';
 
 // Performance optimization: Use requestIdleCallback if available
 const scheduleTask = (task) => {
@@ -29,7 +30,8 @@ document.addEventListener(
       // Initialize core functionality immediately
       domTweak();
       themeManager.init();
-      
+      i18n.init();
+
       // Initialize theme switcher with themeManager instance
       // Use requestIdleCallback for non-critical UI initialization
       scheduleTask(() => {
