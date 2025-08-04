@@ -1,5 +1,4 @@
 // main.js
-import domTweak from './modules/domTweak';
 import themeManager from './modules/themeManager';
 import { createThemeSwitcher } from './modules/themeSwitcher';
 import i18n from './modules/i18n';
@@ -17,20 +16,9 @@ document.addEventListener(
   'DOMContentLoaded',
   () => {
     try {
-      const NODE_ENV = process.env.NODE_ENV;
-
-      if (NODE_ENV === 'production') {
-        if (!window.console) window.console = {};
-        const methods = ['log', 'debug', 'warn', 'info'];
-        methods.forEach((method) => {
-          console[method] = () => {};
-        });
-      }
-
       // Initialize core functionality immediately
-      domTweak();
-      themeManager.init();
       i18n.init();
+      themeManager.init();
 
       // Initialize theme switcher with themeManager instance
       // Use requestIdleCallback for non-critical UI initialization
