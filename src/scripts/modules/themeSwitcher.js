@@ -100,7 +100,7 @@ class ThemeSwitcher {
       // Update aria-label for accessibility
       this.switcherElement.setAttribute(
         'aria-label',
-        t('theme.aria.title', { currentTheme: this.themeLabels[currentTheme] })
+        t('theme.toggle.aria.title', { currentTheme: this.themeLabels[currentTheme] })
       );
     } catch (error) {
       console.warn('Failed to update switcher appearance:', error);
