@@ -30,7 +30,7 @@ class ThemeSwitcher {
   createSwitcherElement() {
     const switcher = document.createElement('button');
     switcher.className = 'theme-switcher';
-    switcher.setAttribute('aria-label', 'Toggle theme');
+    switcher.setAttribute('aria-label', t('theme.toggle'));
     switcher.setAttribute('title', t('theme.toggle'));
 
     // Create label element
