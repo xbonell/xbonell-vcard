@@ -1,6 +1,6 @@
 'use strict';
 
-import { dest, src,task } from 'gulp';
+import { dest, src, task } from 'gulp';
 import image from 'gulp-image';
 
 const paths = {
