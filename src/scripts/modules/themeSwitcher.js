@@ -18,11 +18,20 @@ class ThemeSwitcher {
     this.handleClick = this.handleClick.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
 
-    // Theme labels
-    this.themeLabels = {
-      [THEMES.DARK]: t('theme.dark'),
-      [THEMES.LIGHT]: t('theme.light'),
-      [THEMES.SYSTEM]: t('theme.system'),
+    // Theme props
+    this.themeProps = {
+      [THEMES.DARK]: {
+        label: t('theme.dark'),
+        icon: '<svg aria-hidden="true"><use xlink:href="/assets/images/sprite.svg#moon"></use></svg>',
+      },
+      [THEMES.LIGHT]: {
+        label: t('theme.light'),
+        icon: '<svg aria-hidden="true"><use xlink:href="/assets/images/sprite.svg#sun"></use></svg>',
+      },
+      [THEMES.SYSTEM]: {
+        label: t('theme.system'),
+        icon: '<svg aria-hidden="true"><use xlink:href="/assets/images/sprite.svg#contrast"></use></svg>',
+      },
     };
   }
 
@@ -39,7 +48,6 @@ class ThemeSwitcher {
     labelText.className = 'theme-switcher__label-text';
     const labelIcon = document.createElement('span');
     labelIcon.className = 'theme-switcher__label-icon';
-    labelIcon.innerHTML = this.getIconForTheme(this.themeManager.getCurrentTheme());
     label.className = 'theme-switcher__label';
     label.appendChild(labelIcon);
     label.appendChild(labelText);
@@ -48,25 +56,15 @@ class ThemeSwitcher {
     // Create icon element
     const icon = document.createElement('span');
     icon.className = 'theme-switcher__icon';
-    icon.innerHTML = this.getIconForTheme(this.themeManager.getCurrentTheme());
 
     switcher.appendChild(icon);
 
     return switcher;
   }
 
-  // Get appropriate icon for current theme - cached for performance
-  getIconForTheme(theme) {
-    const iconMap = {
-      [THEMES.DARK]:
-        '<svg aria-hidden="true"><use xlink:href="/assets/images/sprite.svg#moon"></use></svg>',
-      [THEMES.LIGHT]:
-        '<svg aria-hidden="true"><use xlink:href="/assets/images/sprite.svg#sun"></use></svg>',
-      [THEMES.SYSTEM]:
-        '<svg aria-hidden="true"><use xlink:href="/assets/images/sprite.svg#contrast"></use></svg>',
-    };
-
-    return iconMap[theme] || iconMap[THEMES.SYSTEM];
+  // Get props for the current theme
+  getThemeProps(theme) {
+    return this.themeProps[theme] || this.themeProps[THEMES.SYSTEM];
   }
 
   // Cache DOM elements for better performance
@@ -84,23 +82,23 @@ class ThemeSwitcher {
 
     try {
       const currentTheme = this.themeManager.getCurrentTheme();
-      const iconHtml = this.getIconForTheme(currentTheme);
+      const { icon, label } = this.getThemeProps(currentTheme);
 
       // Update cached elements
       if (this.iconElement) {
-        this.iconElement.innerHTML = iconHtml;
+        this.iconElement.innerHTML = icon;
       }
       if (this.labelIcon) {
-        this.labelIcon.innerHTML = iconHtml;
+        this.labelIcon.innerHTML = icon;
       }
       if (this.labelText) {
-        this.labelText.textContent = this.themeLabels[currentTheme];
+        this.labelText.textContent = label;
       }
 
       // Update aria-label for accessibility
       this.switcherElement.setAttribute(
         'aria-label',
-        t('theme.toggle.aria.title', { currentTheme: this.themeLabels[currentTheme] })
+        t('theme.toggle.aria.title', { currentTheme: label })
       );
     } catch (error) {
       console.warn('Failed to update switcher appearance:', error);
@@ -166,6 +164,7 @@ class ThemeSwitcher {
 
       // Update initial appearance
       this.updateSwitcherAppearance();
+      this.switcherElement.classList.add('init');
 
       // Add keyboard event listener
       window.addEventListener('keydown', this.handleKeyDown);

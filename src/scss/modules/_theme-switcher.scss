@@ -3,7 +3,7 @@
 @use '../utils/mixins' as mixins;
 
 .theme-switcher {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -19,6 +19,10 @@
   appearance: none;
   background-color: var(--color-red);
   color: var(--color-white);
+
+  &.init {
+    display: flex;
+  }
 
   &__icon {
     display: block;
