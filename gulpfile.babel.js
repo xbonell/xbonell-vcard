@@ -10,7 +10,7 @@ import cssnano from 'cssnano';
 import combineMediaQuery from 'postcss-combine-media-query';
 import dartSass from 'sass';
 import envify from 'envify';
-import gulp from 'gulp';
+import { dest, parallel, series, src, task, watch } from 'gulp';
 import plugins from 'gulp-load-plugins';
 import metalsmith from 'metalsmith';
 import layouts from '@metalsmith/layouts';
@@ -67,55 +67,60 @@ const templateConfig = {
 // PostCSS filters - optimized for modern browsers
 const processors = [
   autoprefixer({
-    overrideBrowserslist: [
-      'last 2 versions',
-      'not dead',
-      'not ie 11'
-    ]
-  }), 
-  combineMediaQuery(), 
+    overrideBrowserslist: ['last 2 versions', 'not dead', 'not ie 11'],
+  }),
+  combineMediaQuery(),
   cssnano({
-    preset: ['default', {
-      discardComments: { removeAll: true },
-      normalizeWhitespace: true,
-      colormin: true,
-      minifyFontValues: true,
-      minifySelectors: true
-    }]
-  })
+    preset: [
+      'default',
+      {
+        discardComments: { removeAll: true },
+        normalizeWhitespace: true,
+        colormin: true,
+        minifyFontValues: true,
+        minifySelectors: true,
+      },
+    ],
+  }),
 ];
 
 // Create JS bundle - optimized for modern browsers
 // ----------------------------------------------------------------------------
 const bundle = () => {
   return browserify(`${dir.source}scripts/main.js`)
-    .transform(babelify, { 
-      presets: [['@babel/preset-env', {
-        targets: {
-          browsers: [
-            'last 2 versions',
-            'not dead',
-            'not ie 11'
-          ]
-        },
-        useBuiltIns: 'usage',
-        corejs: 3
-      }]]
+    .transform(babelify, {
+      presets: [
+        [
+          '@babel/preset-env',
+          {
+            targets: {
+              browsers: ['last 2 versions', 'not dead', 'not ie 11'],
+            },
+            useBuiltIns: 'usage',
+            corejs: 3,
+          },
+        ],
+      ],
     })
     .transform(envify, { NODE_ENV: PRODUCTION ? 'production' : 'development' })
     .bundle()
     .pipe(source('app.js'))
     .pipe(buffer())
     .pipe($.jslint())
-    .pipe($.if(PRODUCTION, $.uglify({
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info', 'console.debug']
-      }
-    })))
+    .pipe(
+      $.if(
+        PRODUCTION,
+        $.uglify({
+          compress: {
+            drop_console: true,
+            drop_debugger: true,
+            pure_funcs: ['console.log', 'console.info', 'console.debug'],
+          },
+        })
+      )
+    )
     .pipe($.if(!PRODUCTION, $.sourcemaps.write('./')))
-    .pipe(gulp.dest(`${dir.dest}assets/js`));
+    .pipe(dest(`${dir.dest}assets/js`));
 };
 
 // Delete the "dist" folder (this happens every time a build starts)
@@ -132,24 +137,23 @@ const clean = async (done) => {
 // Copy static files to root
 // ----------------------------------------------------------------------------
 const copy = () => {
-  return gulp.src(`${dir.source}_static/**/*`, { encoding: false }).pipe(gulp.dest(dir.dest));
+  return src(`${dir.source}_static/**/*`, { encoding: false }).pipe(dest(dir.dest));
 };
 
 // Compile Sass into CSS and apply filters - optimized for modern browsers
 // ----------------------------------------------------------------------------
 const css = () => {
-  return gulp
-    .src(`${dir.source}scss/style.scss`)
+  return src(`${dir.source}scss/style.scss`)
     .pipe($.if(!PRODUCTION, $.sourcemaps.init()))
     .pipe(
-      sass({ 
+      sass({
         outputStyle: $.if(PRODUCTION, 'compressed', 'expanded'),
-        includePaths: ['node_modules']
+        includePaths: ['node_modules'],
       }).on('error', sass.logError)
     )
     .pipe($.postcss(processors))
     .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
-    .pipe(gulp.dest(`${dir.dest}assets/css`));
+    .pipe(dest(`${dir.dest}assets/css`));
 };
 
 // Build HTML
@@ -172,8 +176,7 @@ const html = (done) => {
 // Minify HTML
 // ----------------------------------------------------------------------------
 const minify = () => {
-  return gulp
-    .src(`${dir.dest}**/*.html`)
+  return src(`${dir.dest}**/*.html`)
     .pipe(
       $.if(
         PRODUCTION,
@@ -182,7 +185,7 @@ const minify = () => {
         })
       )
     )
-    .pipe(gulp.dest(dir.dest));
+    .pipe(dest(dir.dest));
 };
 
 // Start a server with LiveReload to preview the site in
@@ -199,8 +202,7 @@ const server = (done) => {
 // Process SVG files and generate sprite
 // ----------------------------------------------------------------------------
 const svg = () => {
-  return gulp
-    .src([`${dir.source}svg/*.svg`], { encoding: false })
+  return src([`${dir.source}svg/*.svg`], { encoding: false })
     .pipe(
       $.rename(function (path) {
         path.basename = path.basename.replace(/__icon_prefix__/, '');
@@ -210,39 +212,36 @@ const svg = () => {
     .pipe($.svgmin())
     .pipe($.svgstore())
     .pipe($.rename('sprite.svg'))
-    .pipe(gulp.dest(`${dir.dest}assets/images`));
+    .pipe(dest(`${dir.dest}assets/images`));
 };
 
 // Watch for file changes
 // ----------------------------------------------------------------------------
-const watch = () => {
-  gulp
-    .watch([`${dir.source}content/**/*.md`, `${dir.source}layouts/**/*.hbs`])
-    .on('change', gulp.series(html, minify, browser.reload));
-  gulp.watch([`${dir.source}scss/**/*.scss`]).on('change', gulp.series(css, browser.reload));
-  gulp.watch([`${dir.source}scripts/**/*.js`]).on('change', gulp.series(bundle, browser.reload));
-  gulp.watch([`${dir.source}svg/**/*.svg`]).on('change', gulp.series(svg, browser.reload));
+const watcher = () => {
+  watch([`${dir.source}content/**/*.md`, `${dir.source}layouts/**/*.hbs`]).on(
+    'change',
+    series(html, minify, browser.reload)
+  );
+  watch([`${dir.source}scss/**/*.scss`]).on('change', series(css, browser.reload));
+  watch([`${dir.source}scripts/**/*.js`]).on('change', series(bundle, browser.reload));
+  watch([`${dir.source}svg/**/*.svg`]).on('change', series(svg, browser.reload));
 };
 
 // Hash static assets
 // ----------------------------------------------------------------------------
 const hashAssets = () => {
-  return gulp
-    .src([`${dir.dest}assets/**/*.{css,js,gif,png,jpg,svg,ico}`], { base: 'dist', encoding: false })
+  return src([`${dir.dest}assets/**/*.{css,js,gif,png,jpg,svg,ico}`], {
+    base: 'dist',
+    encoding: false,
+  })
     .pipe(rev())
     .pipe(revDel())
-    .pipe(gulp.src(`${dir.dest}**/*.html`))
+    .pipe(src(`${dir.dest}**/*.html`))
     .pipe(revRewrite())
-    .pipe(gulp.dest(dir.dest));
+    .pipe(dest(dir.dest));
 };
 
-gulp.task(
-  'build',
-  gulp.series(clean, gulp.parallel(bundle, css, html, svg, copy), hashAssets, minify)
-);
+task('build', series(clean, parallel(bundle, css, html, svg, copy), hashAssets, minify));
 
 // Build site, run the server, and watch for file changes
-gulp.task(
-  'default',
-  gulp.series(clean, gulp.parallel(bundle, css, html, svg, copy), server, watch)
-);
+task('default', series(clean, parallel(bundle, css, html, svg, copy), server, watcher));

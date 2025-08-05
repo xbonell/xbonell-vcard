@@ -1,6 +1,6 @@
 'use strict';
 
-import gulp from 'gulp';
+import { dest, src,task } from 'gulp';
 import image from 'gulp-image';
 
 const paths = {
@@ -10,8 +10,7 @@ const paths = {
 
 // Define the task
 const optimizeImages = () => {
-  return gulp
-    .src(paths.src, { encoding: false })
+  return src(paths.src, { encoding: false })
     .pipe(
       image({
         pngquant: false,
@@ -25,7 +24,7 @@ const optimizeImages = () => {
         concurrent: 8,
       })
     )
-    .pipe(gulp.dest(paths.dest));
+    .pipe(dest(paths.dest));
 };
 
-gulp.task('images', optimizeImages);
+task('images', optimizeImages);
