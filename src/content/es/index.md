@@ -15,28 +15,28 @@ vcard:
   email: mail@xbonell.com
   url: https://xbonell.com
 services:
-  - Diseño y desarrollo web
   - Desarrollo front-end
   - Aplicaciones web responsive
-  - Desarrollo WordPress
-  - Desarrollo de plantillas de email
   - Optimización de rendimiento
   - Implementación de accesibilidad
+  - Desarrollo WordPress
+  - Diseño y desarrollo web
+  - Desarrollo de plantillas de email
 toolkit:
   - HTML5 / CSS / Sass
   - JavaScript
   - React / Next.js
   - Vue.js / Nuxt.js
-  - Vite / Webpack
   - Node.js / Npm / Yarn
+  - Vite / Webpack
   - Git / GitHub
-  - Figma
-  - VS Code / Cursor
   - ESLint / Prettier
   - Jest / Vitest
-  - Docker
-  - Netlify / Vercel
+  - Figma
+  - VS Code / Cursor
   - WordPress
+  - Netlify / Vercel
+  - Docker
 networks:
   - name: linkedin
     label: LinkedIn
