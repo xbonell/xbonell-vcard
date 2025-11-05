@@ -4,7 +4,4 @@ npm-debug.log
 .sass-cache
 secret.json
 dist
-.cursor
-custom_modes
-memory-bank/** */
 .yarn/install-state.gz
