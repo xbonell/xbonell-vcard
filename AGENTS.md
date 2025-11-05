@@ -11,7 +11,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 
 ### Project Details
 - **Project Name**: xbonell-vcard
-- **Version**: 1.8.14
+- **Version**: 1.8.16
 - **Type**: Personal vCard Website
 - **Author**: Xavier Bonell Iturbe
 - **Domain**: xbonell.com
@@ -45,6 +45,8 @@ The site supports multiple languages:
 - Gulp-based build system upgraded and validated
 - Multi-language content structure in place
 - SCSS modular architecture implemented
+- Content reflects current professional focus: Front-end development specializing in React, Vue.js, and WordPress
+- Services and toolkit sections showcase modern development stack (React/Next.js, Vue.js/Nuxt.js, Vite/Webpack, Jest/Vitest, Docker, Netlify/Vercel)
 - Project is stable, maintainable, and ready for new enhancements or migration planning
 - VAN review completed confirming excellent project health
 - Repository status review completed (January 2025)
@@ -57,7 +59,9 @@ The site supports multiple languages:
 - Updated Gulp, Babel, PostCSS, and related tooling
 - Validated build and development workflows on modern stack
 - Build performance excellent (1.04s build time)
-- Project version updated to 1.8.14
+- Project version updated to 1.8.16
+- Content updated to reflect current professional focus on React, Vue.js, and modern development tools
+- Services and toolkit sections modernized with current technology stack
 - Repository status review completed (January 2025)
 
 ---
@@ -80,9 +84,12 @@ A professional, modern vCard website that serves as Xavier Bonell's digital busi
 
 ### Key Features
 - **Professional Profile**: Name, title, contact information
-- **Multi-language Support**: Content available in 3 languages
+- **Multi-language Support**: Content available in 3 languages (English, Spanish, Catalan)
+- **Theme System**: Dark/light/system theme switching with localStorage persistence and system preference detection
+- **Services Showcase**: Front-end development, responsive web applications, performance optimization, accessibility implementation, WordPress development, web design & development, email template development
+- **Toolkit Display**: Modern development stack including React/Next.js, Vue.js/Nuxt.js, Vite/Webpack, Node.js, testing frameworks (Jest/Vitest), and deployment tools (Netlify/Vercel, Docker)
 - **Responsive Design**: Works across all device types
-- **Performance Optimized**: Fast loading times
+- **Performance Optimized**: Fast loading times with requestIdleCallback for non-critical operations
 - **SEO Friendly**: Proper meta tags and structure
 - **Accessibility**: WCAG compliant design patterns
 
@@ -131,8 +138,11 @@ A professional, modern vCard website that serves as Xavier Bonell's digital busi
   - cssnano for minification
   - postcss-combine-media-query for optimization
 - **JavaScript**: ES2015+ with Babel transpilation
-- **Animation Library**: GSAP (GreenSock Animation Platform)
-- **SVG Management**: svgxuse for SVG sprite support
+- **JavaScript Modules**: 
+  - Theme management (themeManager) with dark/light/system mode support
+  - Theme switcher UI component
+  - Internationalization (i18n) support
+- **SVG Management**: SVG sprite system via gulp-svgstore
 
 ### Static Site Generation
 - **Generator**: Metalsmith
@@ -151,10 +161,9 @@ A professional, modern vCard website that serves as Xavier Bonell's digital busi
 - **File Management**: rimraf for cleanup, yargs for CLI args
 
 ### Runtime Dependencies
-- **Core Libraries**:
-  - GSAP v3.6.1 for animations
-  - svgxuse v1.2.6 for SVG polyfill
-  - global v4.4.0 for global scope management
+- **Core Libraries**: None (vanilla JavaScript ES6+ modules)
+- **Theme System**: Built-in theme management with localStorage persistence
+- **Internationalization**: Built-in i18n module for multi-language support
 
 ### Browser Support
 - Last 2 versions of major browsers
@@ -163,10 +172,12 @@ A professional, modern vCard website that serves as Xavier Bonell's digital busi
 ### File Structure Patterns
 - Source files in `src/` directory
 - Build output to `dist/` directory
-- Templates in `src/_templates/`
+- Templates in `src/layouts/` (Handlebars templates)
 - Styles in `src/scss/` with modular architecture
-- Content in `src/content/` with language subdirectories
+- Content in `src/content/` with language subdirectories (ca/, en/, es/)
 - Static assets in `src/_static/`
+- JavaScript modules in `src/scripts/` with ES6+ module pattern
+- SVG icons in `src/svg/` for sprite generation
 
 ---
 
@@ -217,7 +228,9 @@ A professional, modern vCard website that serves as Xavier Bonell's digital busi
 
 #### JavaScript Module Pattern
 - **Pattern**: ES6+ modules with Browserify bundling
-- **Benefits**: Code organization, dependency management
+- **Architecture**: Modular structure with separate modules for theme management, theme switcher UI, and internationalization
+- **Performance**: Uses requestIdleCallback for non-critical UI initialization
+- **Benefits**: Code organization, dependency management, performance optimization
 - **Transpilation**: Babel for ES2015+ support
 
 #### Template Inheritance Pattern
