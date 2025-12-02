@@ -11,7 +11,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 
 ### Project Details
 - **Project Name**: xbonell-vcard
-- **Version**: 1.8.16
+- **Version**: 1.9.0
 - **Type**: Personal vCard Website
 - **Author**: Xavier Bonell Iturbe
 - **Domain**: xbonell.com
@@ -59,7 +59,7 @@ The site supports multiple languages:
 - Updated Gulp, Babel, PostCSS, and related tooling
 - Validated build and development workflows on modern stack
 - Build performance excellent (1.04s build time)
-- Project version updated to 1.8.16
+- Project version updated to 1.9.0
 - Content updated to reflect current professional focus on React, Vue.js, and modern development tools
 - Services and toolkit sections modernized with current technology stack
 - Repository status review completed (January 2025)

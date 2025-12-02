@@ -6,6 +6,8 @@ A permanently temporal business vcard site for [xbonell.com](http://xbonell.com)
 
 This project is the source code for the personal vCard website of xbonell.com. It serves as a digital business card, providing a concise and elegant way to share professional information, contact details, and links.
 
+**Current Version**: 1.9.0
+
 ## Features
 
 - **Multi-language Support**: English, Spanish, and Catalan versions
@@ -112,6 +114,7 @@ The build system uses Gulp with the following features:
 
 ## Recent Updates
 
+- **Version 1.9.0**: Added interactive HTML viewer with circular viewport
 - **July 2025**: Complete dependency modernization
 - Updated to Node.js v22.17.1+ support
 - Migrated from Node Sass to Dart Sass
