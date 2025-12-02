@@ -2,6 +2,7 @@
 import themeManager from './modules/themeManager';
 import { createThemeSwitcher } from './modules/themeSwitcher';
 import i18n from './modules/i18n';
+import hole from './modules/hole';
 
 // Performance optimization: Use requestIdleCallback if available
 const scheduleTask = (task) => {
@@ -19,6 +20,7 @@ document.addEventListener(
       // Initialize core functionality immediately
       i18n.init();
       themeManager.init();
+      hole.init();
 
       // Initialize theme switcher with themeManager instance
       // Use requestIdleCallback for non-critical UI initialization

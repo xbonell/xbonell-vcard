@@ -88,6 +88,7 @@ A professional, modern vCard website that serves as Xavier Bonell's digital busi
 - **Theme System**: Dark/light/system theme switching with localStorage persistence and system preference detection
 - **Services Showcase**: Front-end development, responsive web applications, performance optimization, accessibility implementation, WordPress development, web design & development, email template development
 - **Toolkit Display**: Modern development stack including React/Next.js, Vue.js/Nuxt.js, Vite/Webpack, Node.js, testing frameworks (Jest/Vitest), and deployment tools (Netlify/Vercel, Docker)
+- **Interactive HTML Viewer**: Circular viewport ("hole") displaying the page's HTML source code with syntax highlighting, interactive positioning, and scroll-based parallax effects
 - **Responsive Design**: Works across all device types
 - **Performance Optimized**: Fast loading times with requestIdleCallback for non-critical operations
 - **SEO Friendly**: Proper meta tags and structure
@@ -142,6 +143,7 @@ A professional, modern vCard website that serves as Xavier Bonell's digital busi
   - Theme management (themeManager) with dark/light/system mode support
   - Theme switcher UI component
   - Internationalization (i18n) support
+  - Interactive HTML viewer (hole) with syntax highlighting and parallax effects
 - **SVG Management**: SVG sprite system via gulp-svgstore
 
 ### Static Site Generation

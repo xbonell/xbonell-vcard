@@ -1,0 +1,42 @@
+#hole {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-color: var(--color-backstage);
+  // Circular mask - position set dynamically via JavaScript
+  // clip-path is set in hole.js for interactivity
+
+  // Inner shadow projected by the mask - fixed at bottom right, not affected by scroll
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    // Radial gradient creates circular shadow effect fixed at bottom right (100% 100%)
+    background: radial-gradient(
+      circle at 100% 100%,
+      transparent 0%,
+      transparent calc(40vmin - 80px),
+      rgba(0, 0, 0, 0.1) calc(40vmin - 60px),
+      rgba(0, 0, 0, 0.2) calc(40vmin - 40px),
+      rgba(0, 0, 0, 0.4) calc(40vmin - 20px),
+      rgba(0, 0, 0, 0.6) calc(40vmin - 10px),
+      rgba(0, 0, 0, 0.8) 40vmin,
+      rgba(0, 0, 0, 0.9) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  & > canvas {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 0;
+  }
+}

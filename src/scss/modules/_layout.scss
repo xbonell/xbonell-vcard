@@ -8,11 +8,14 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  position: relative;
 }
 
 body > article {
+  position: relative;
   margin: 0 auto;
   max-width: functions.em(400);
+  z-index: 1;
 }
 
 [role='banner'] {

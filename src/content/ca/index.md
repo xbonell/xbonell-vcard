@@ -23,17 +23,17 @@ services:
   - Disseny i desenvolupament web
   - Desenvolupament de plantilles d'email
 toolkit:
-  - HTML5 / CSS / Sass
+  - HTML5 / CSS / Sass / Tailwind
   - JavaScript
   - React / Next.js
   - Vue.js / Nuxt.js
   - Node.js / Npm / Yarn
-  - Vite / Webpack
+  - Vite / Webpack / Gulp
   - Git / GitHub
   - ESLint / Prettier
   - Jest / Vitest
   - Figma
-  - VS Code / Cursor
+  - Visual Studio Code / Cursor
   - WordPress
   - Netlify / Vercel
   - Docker

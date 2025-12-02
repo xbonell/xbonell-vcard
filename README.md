@@ -10,6 +10,7 @@ This project is the source code for the personal vCard website of xbonell.com. I
 
 - **Multi-language Support**: English, Spanish, and Catalan versions
 - **Modern Build System**: Gulp + Metalsmith with ES2015+ support
+- **Interactive HTML Viewer**: Circular viewport displaying the page's HTML source code with syntax highlighting, interactive positioning, and scroll-based parallax effects
 - **Responsive Design**: Optimized for all devices and screen sizes
 - **Performance Optimized**: Minified assets, image optimization, and fast loading
 - **Self-contained**: No external dependencies required for deployment
