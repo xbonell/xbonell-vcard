@@ -11,7 +11,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 
 ### Project Details
 - **Project Name**: xbonell-vcard
-- **Version**: 1.9.0
+- **Version**: 1.9.1
 - **Type**: Personal vCard Website
 - **Author**: Xavier Bonell Iturbe
 - **Domain**: xbonell.com
@@ -64,6 +64,15 @@ The site supports multiple languages:
 - Services and toolkit sections modernized with current technology stack
 - Repository status review completed (January 2025)
 
+### Version 1.9.1 Updates
+- Refactored hole module: replaced SVG clipPath with CSS clip-path path() for better control
+- Updated logo mask from fixed bottom-right corner to full viewport coverage
+- Added theme-aware mask inversion (inverted in light mode, normal in dark mode)
+- Implemented shadow element with theme-aware rendering and MutationObserver for dynamic theme updates
+- Improved parallax scrolling by re-rendering canvas content instead of transforming canvas element
+- Updated styling: replaced underline with background highlight for em tags
+- Added CSS variables for shadow colors and improved z-index layering
+
 ---
 
 ## Product Context
@@ -88,7 +97,7 @@ A professional, modern vCard website that serves as Xavier Bonell's digital busi
 - **Theme System**: Dark/light/system theme switching with localStorage persistence and system preference detection
 - **Services Showcase**: Front-end development, responsive web applications, performance optimization, accessibility implementation, WordPress development, web design & development, email template development
 - **Toolkit Display**: Modern development stack including React/Next.js, Vue.js/Nuxt.js, Vite/Webpack, Node.js, testing frameworks (Jest/Vitest), and deployment tools (Netlify/Vercel, Docker)
-- **Interactive HTML Viewer**: Circular viewport ("hole") displaying the page's HTML source code with syntax highlighting, interactive positioning, and scroll-based parallax effects
+- **Interactive HTML Viewer**: Full viewport logo mask ("hole") displaying the page's HTML source code with syntax highlighting, theme-aware mask inversion, and scroll-based parallax effects
 - **Responsive Design**: Works across all device types
 - **Performance Optimized**: Fast loading times with requestIdleCallback for non-critical operations
 - **SEO Friendly**: Proper meta tags and structure
@@ -143,7 +152,7 @@ A professional, modern vCard website that serves as Xavier Bonell's digital busi
   - Theme management (themeManager) with dark/light/system mode support
   - Theme switcher UI component
   - Internationalization (i18n) support
-  - Interactive HTML viewer (hole) with syntax highlighting and parallax effects
+  - Interactive HTML viewer (hole) with syntax highlighting, theme-aware mask inversion, and parallax effects
 - **SVG Management**: SVG sprite system via gulp-svgstore
 
 ### Static Site Generation

@@ -6,13 +6,13 @@ A permanently temporal business vcard site for [xbonell.com](http://xbonell.com)
 
 This project is the source code for the personal vCard website of xbonell.com. It serves as a digital business card, providing a concise and elegant way to share professional information, contact details, and links.
 
-**Current Version**: 1.9.0
+**Current Version**: 1.9.1
 
 ## Features
 
 - **Multi-language Support**: English, Spanish, and Catalan versions
 - **Modern Build System**: Gulp + Metalsmith with ES2015+ support
-- **Interactive HTML Viewer**: Circular viewport displaying the page's HTML source code with syntax highlighting, interactive positioning, and scroll-based parallax effects
+- **Interactive HTML Viewer**: Full viewport logo mask displaying the page's HTML source code with syntax highlighting, theme-aware mask inversion, and scroll-based parallax effects
 - **Responsive Design**: Optimized for all devices and screen sizes
 - **Performance Optimized**: Minified assets, image optimization, and fast loading
 - **Self-contained**: No external dependencies required for deployment
@@ -114,6 +114,7 @@ The build system uses Gulp with the following features:
 
 ## Recent Updates
 
+- **Version 1.9.1**: Refactored hole module with full viewport logo mask, theme-aware inversion, and improved parallax scrolling
 - **Version 1.9.0**: Added interactive HTML viewer with circular viewport
 - **July 2025**: Complete dependency modernization
 - Updated to Node.js v22.17.1+ support
