@@ -248,9 +248,9 @@ class Hole {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Calculate font size from vmin (2vmin = 2% of smaller viewport dimension)
-      // Ensure minimum font size of 14px
+      // Ensure minimum font size of 14px and maximum of 18px
       const vmin = Math.min(window.innerWidth, window.innerHeight) / 100;
-      const fontSize = Math.max(14, 2 * vmin);
+      const fontSize = Math.min(18, Math.max(14, 2 * vmin));
 
       // Set text rendering properties
       ctx.font = `${fontSize}px monospace`;
