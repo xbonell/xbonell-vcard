@@ -4,22 +4,28 @@
 class Hole {
   constructor() {
     this.holeElement = null;
+    this.shadowElement = null;
     this.canvasElement = null;
-    this.svgElement = null;
     this.resizeObserver = null;
+    this.themeObserver = null;
     this.resizeTimeout = null;
     this.isInitialized = false;
 
-    // Logo mask size (fixed at bottom right corner)
-    this.maskSize = 40; // Size in vmin units
+    // Shadow offset and blur settings
+    this.shadowOffsetX = 0;
+    this.shadowOffsetY = 20;
+    this.shadowScale = 1.08; // Larger for wider shadow spread
 
-    // Logo path data (X mark from logo.svg)
-    // Original viewBox: -385 -72.5 1040 195, but we only use the X mark portion
-    // X mark bounding box: x=-385 to -191.326, y=-72.5 to 121.174 (roughly 194x194)
-    this.logoPath1 = 'M-191.326,-10.523 L-191.326,-72.5 L-385,-72.5 L-385,-26.019 L-356.549,-26.019 L-243.444,86.312 L-296.878,86.312 L-333.839,49.363 L-385,100.158 L-385,121.174 L-191.326,121.174 L-191.326,86.312 L-234.093,86.312 L-271.797,47.578 L-191.326,47.578 L-191.326,28.211 L-290.65,28.211 L-328.351,-8.588 L-290.699,-45.386 L-237.312,-45.386 L-275.017,-10.523 Z';
-    this.logoPath2 = 'M-385,-1.688 L-385,47.256 L-360.307,22.762 Z';
-    // Bounding box of the logo mark
-    this.logoViewBox = { x: -385, y: -72.5, width: 193.674, height: 193.674 };
+    // Logo path data from logo.svg
+    // viewBox: 0 0 194 146
+    // Group transform: matrix(1,0,0,1,0,-27.0766) - translates Y by -27.0766
+    this.logoPath1 = 'M0,46.57L28.537,46.578L140.98,158.791L88.682,158.791L51.162,121.752L0,172.306L0,119.756L24.693,95.284L0,70.812L0,46.57Z';
+    this.logoPath2 = 'M94.472,27.077L147.281,27.077L109.996,61.802L193.674,62.15L193.674,100.624L94.348,100.404L56.858,63.919L94.472,27.077Z';
+    this.logoPath3 = 'M193.674,119.756L113.295,119.756L151.179,158.791L193.674,158.755L193.674,119.756Z';
+    // ViewBox of the logo
+    this.logoViewBox = { x: 0, y: 0, width: 194, height: 146 };
+    // Group transform Y translation
+    this.logoGroupTransformY = -27.0766;
 
     // Syntax highlighting colors
     this.colors = {
@@ -36,57 +42,50 @@ class Hole {
   }
 
   /**
-   * Creates the SVG element with clipPath for the logo mask
+   * Generates the combined SVG path for the logo, applying transforms
+   * @param {number} translateX - X translation
+   * @param {number} translateY - Y translation  
+   * @param {number} scaleX - X scale factor
+   * @param {number} scaleY - Y scale factor
+   * @returns {string} The transformed path data
    */
-  createClipPathSVG() {
-    // Check if SVG already exists
-    if (document.getElementById('hole-clip-svg')) {
-      this.svgElement = document.getElementById('hole-clip-svg');
-      return;
+  generateTransformedPath(translateX, translateY, scaleX, scaleY) {
+    // Parse and transform all paths
+    const paths = [this.logoPath1, this.logoPath2, this.logoPath3];
+    const transformedPaths = [];
+
+    // Y offset from original SVG group transform
+    const groupOffsetY = this.logoGroupTransformY;
+
+    for (const pathData of paths) {
+      // Parse the path commands and transform coordinates
+      const transformed = pathData.replace(
+        /([MLZ])([^MLZ]*)/g,
+        (match, cmd, coords) => {
+          if (cmd === 'Z') return cmd;
+          
+          // Parse coordinate pairs
+          const parts = coords.split(/[,\s]+/).filter(p => p !== '');
+          const transformedParts = [];
+          
+          for (let i = 0; i < parts.length; i += 2) {
+            const x = parseFloat(parts[i]);
+            const y = parseFloat(parts[i + 1]);
+            
+            // Apply group transform (Y offset), then scale, then translate
+            const newX = (x * scaleX) + translateX;
+            const newY = ((y + groupOffsetY) * scaleY) + translateY;
+            
+            transformedParts.push(`${newX.toFixed(2)},${newY.toFixed(2)}`);
+          }
+          
+          return cmd + transformedParts.join(' ');
+        }
+      );
+      transformedPaths.push(transformed);
     }
 
-    try {
-      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      svg.setAttribute('id', 'hole-clip-svg');
-      svg.setAttribute('width', '0');
-      svg.setAttribute('height', '0');
-      svg.style.position = 'absolute';
-      svg.style.pointerEvents = 'none';
-
-      // Create the clipPath element
-      const clipPath = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath');
-      clipPath.setAttribute('id', 'logo-clip');
-      clipPath.setAttribute('clipPathUnits', 'objectBoundingBox');
-
-      // Create the path group with transform to normalize to 0-1 coordinates
-      const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-      
-      // Transform to normalize the logo coordinates to 0-1 range
-      // Original: x from -385 to -191.326, y from -72.5 to 121.174
-      // Scale: 1/193.674 for both x and y
-      // Translate: +385 for x, +72.5 for y (to move origin to 0,0)
-      const scale = 1 / this.logoViewBox.width;
-      const translateX = -this.logoViewBox.x;
-      const translateY = -this.logoViewBox.y;
-      group.setAttribute('transform', `scale(${scale}) translate(${translateX}, ${translateY})`);
-
-      // Create first path (main X shape)
-      const path1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      path1.setAttribute('d', this.logoPath1);
-      group.appendChild(path1);
-
-      // Create second path (small triangle)
-      const path2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      path2.setAttribute('d', this.logoPath2);
-      group.appendChild(path2);
-
-      clipPath.appendChild(group);
-      svg.appendChild(clipPath);
-      document.body.appendChild(svg);
-      this.svgElement = svg;
-    } catch (error) {
-      console.warn('Failed to create clip path SVG:', error);
-    }
+    return transformedPaths.join(' ');
   }
 
   /**
@@ -288,7 +287,7 @@ class Hole {
   }
 
   /**
-   * Renders HTML text on the canvas
+   * Renders HTML text on the canvas with parallax scroll offset
    */
   renderHTMLOnCanvas() {
     if (!this.canvasElement) return;
@@ -321,66 +320,58 @@ class Hole {
       // Calculate line height as 150% of font size
       const lineHeight = fontSize * 1.25;
 
+      // Get scroll offset for parallax (content scrolls up as page scrolls down)
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const parallaxOffset = scrollTop * 0.3;
+
       // Tokenize HTML for syntax highlighting
       const tokens = this.tokenizeHTML(htmlText);
 
-      // Render text with word wrapping and syntax highlighting - fill full canvas width
+      // First pass: build all lines
       const maxWidth = canvas.width;
-      let x = 0;
-      let y = 0;
+      const lines = [];
       let currentLineTokens = [];
       let currentLineWidth = 0;
 
       tokens.forEach((token) => {
-        // Stop rendering if we've reached the bottom of the canvas
-        if (y + lineHeight > canvas.height) {
-          return; // Stop processing remaining tokens
-        }
-
-        // Set color based on token type
-        ctx.fillStyle = this.colors[token.type] || this.colors.text;
-
-        // Measure token width
         const tokenWidth = ctx.measureText(token.text).width;
         const testWidth = currentLineWidth + tokenWidth;
 
         if (testWidth > maxWidth && currentLineTokens.length > 0) {
-          // Check if we have space for this line before rendering
-          if (y + lineHeight <= canvas.height) {
-            // Render current line
-            let lineX = 0;
-            currentLineTokens.forEach((lineToken) => {
-              ctx.fillStyle = this.colors[lineToken.type] || this.colors.text;
-              ctx.fillText(lineToken.text, lineX, y);
-              lineX += ctx.measureText(lineToken.text).width;
-            });
-
-            // Move to next line
-            y += lineHeight;
-          } else {
-            // No space for this line, stop rendering
-            return;
-          }
-
-          // Start new line with current token
+          lines.push([...currentLineTokens]);
           currentLineTokens = [token];
           currentLineWidth = tokenWidth;
         } else {
-          // Add token to current line
           currentLineTokens.push(token);
           currentLineWidth = testWidth;
         }
       });
 
-      // Draw remaining line only if there's space
-      if (currentLineTokens.length > 0 && y + lineHeight <= canvas.height) {
-        let lineX = 0;
-        currentLineTokens.forEach((lineToken) => {
-          ctx.fillStyle = this.colors[lineToken.type] || this.colors.text;
-          ctx.fillText(lineToken.text, lineX, y);
-          lineX += ctx.measureText(lineToken.text).width;
-        });
+      if (currentLineTokens.length > 0) {
+        lines.push(currentLineTokens);
       }
+
+      // Second pass: render lines with scroll offset applied
+      // Start Y position accounts for parallax scroll (negative = content moves up)
+      let y = -parallaxOffset;
+
+      lines.forEach((lineTokens) => {
+        // Only render lines that are visible on canvas
+        if (y + lineHeight > 0 && y < canvas.height) {
+          let lineX = 0;
+          lineTokens.forEach((lineToken) => {
+            ctx.fillStyle = this.colors[lineToken.type] || this.colors.text;
+            ctx.fillText(lineToken.text, lineX, y);
+            lineX += ctx.measureText(lineToken.text).width;
+          });
+        }
+        y += lineHeight;
+
+        // Stop if we're past the canvas bottom
+        if (y > canvas.height) {
+          return;
+        }
+      });
     } catch (error) {
       console.warn('Failed to render HTML on canvas:', error);
     }
@@ -420,39 +411,106 @@ class Hole {
   }
 
   /**
+   * Checks if light theme is active
+   * @returns {boolean} True if light theme is active
+   */
+  isLightTheme() {
+    return document.documentElement.getAttribute('data-theme') === 'light';
+  }
+
+  /**
    * Updates the logo clip-path position
-   * The clip-path uses the SVG logo shape, fixed at bottom right corner
+   * The clip-path uses the SVG logo shape, covering the whole viewport
+   * In light mode, the mask is inverted (shows everything except logo shape)
    */
   updateClipPath() {
     if (!this.holeElement) return;
 
-    // Use the SVG clipPath reference
-    this.holeElement.style.clipPath = 'url(#logo-clip)';
-    this.holeElement.style.webkitClipPath = 'url(#logo-clip)';
-
-    // Calculate the actual size in pixels
-    const vmin = Math.min(window.innerWidth, window.innerHeight) / 100;
-    const sizeInPx = this.maskSize * vmin;
-
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
+    const isLightMode = this.isLightTheme();
 
-    // The logo should be maskSize vmin in both width and height
-    // Scale factor to make the clipped area the right size
-    const scaleX = sizeInPx / viewportWidth;
-    const scaleY = sizeInPx / viewportHeight;
+    // Scale logo to cover the entire viewport
+    // Logo viewBox is 194x146
+    const logoAspectRatio = this.logoViewBox.width / this.logoViewBox.height;
+    const viewportAspectRatio = viewportWidth / viewportHeight;
+
+    let clipWidth, clipHeight, clipX, clipY;
+
+    if (viewportAspectRatio > logoAspectRatio) {
+      // Viewport is wider than logo - fit to width
+      clipWidth = viewportWidth;
+      clipHeight = viewportWidth / logoAspectRatio;
+      clipX = 0;
+      clipY = (viewportHeight - clipHeight) / 2; // Center vertically
+    } else {
+      // Viewport is taller than logo - fit to height
+      clipHeight = viewportHeight;
+      clipWidth = viewportHeight * logoAspectRatio;
+      clipX = (viewportWidth - clipWidth) / 2; // Center horizontally
+      clipY = 0;
+    }
+
+    // Calculate scale factors
+    const scaleX = clipWidth / this.logoViewBox.width;
+    const scaleY = clipHeight / this.logoViewBox.height;
+
+    // Generate transformed path
+    const pathData = this.generateTransformedPath(clipX, clipY, scaleX, scaleY);
     
-    // Position at bottom right corner (logo center at 100%, 100%)
-    // After scaling, translate so the logo's center aligns with the corner
-    const translateX = viewportWidth - sizeInPx / 2;
-    const translateY = viewportHeight - sizeInPx / 2;
+    // In light mode, invert the mask (show everything except logo shape)
+    // In dark mode, show only the logo shape
+    let holeClipPath;
+    if (isLightMode) {
+      // Inverted: rectangle with logo cut out
+      holeClipPath = `M0,0 L${viewportWidth},0 L${viewportWidth},${viewportHeight} L0,${viewportHeight} Z ${pathData}`;
+      this.holeElement.style.clipPath = `path(evenodd, '${holeClipPath}')`;
+      this.holeElement.style.webkitClipPath = `path(evenodd, '${holeClipPath}')`;
+    } else {
+      // Normal: just the logo shape
+      holeClipPath = pathData;
+      this.holeElement.style.clipPath = `path('${holeClipPath}')`;
+      this.holeElement.style.webkitClipPath = `path('${holeClipPath}')`;
+    }
 
-    // Apply transform to position the clipped area at bottom right
-    this.holeElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scaleX}, ${scaleY})`;
-    this.holeElement.style.transformOrigin = 'top left';
-
-    // Set CSS variable for the mask size (for shadow styling if needed)
-    this.holeElement.style.setProperty('--mask-size', `${this.maskSize}vmin`);
+    // Update inner shadow SVG (creates depth effect from mask edges onto canvas)
+    if (this.shadowElement) {
+      // Apply the same clip-path to shadow so it's contained within the mask
+      if (isLightMode) {
+        this.shadowElement.style.clipPath = `path(evenodd, '${holeClipPath}')`;
+        this.shadowElement.style.webkitClipPath = `path(evenodd, '${holeClipPath}')`;
+      } else {
+        this.shadowElement.style.clipPath = `path('${pathData}')`;
+        this.shadowElement.style.webkitClipPath = `path('${pathData}')`;
+      }
+      
+      // Create shadow mask - always inverted relative to the hole clip-path
+      const shadowScaleX = scaleX * this.shadowScale;
+      const shadowScaleY = scaleY * this.shadowScale;
+      // Adjust position to account for scale and add offset
+      const shadowClipX = clipX - (clipWidth * (this.shadowScale - 1) / 2) + this.shadowOffsetX;
+      const shadowClipY = clipY - (clipHeight * (this.shadowScale - 1) / 2) + this.shadowOffsetY;
+      const logoPathData = this.generateTransformedPath(shadowClipX, shadowClipY, shadowScaleX, shadowScaleY);
+      
+      let shadowSvgPath;
+      if (isLightMode) {
+        // In light mode, shadow follows the logo shape (filled)
+        shadowSvgPath = logoPathData;
+        this.shadowElement.innerHTML = `
+          <svg width="100%" height="100%" style="position:absolute;top:0;left:0;">
+            <path d="${shadowSvgPath}" fill="currentColor"/>
+          </svg>
+        `;
+      } else {
+        // In dark mode, shadow is inverted (rectangle minus logo)
+        shadowSvgPath = `M0,0 L${viewportWidth},0 L${viewportWidth},${viewportHeight} L0,${viewportHeight} Z ${logoPathData}`;
+        this.shadowElement.innerHTML = `
+          <svg width="100%" height="100%" style="position:absolute;top:0;left:0;">
+            <path d="${shadowSvgPath}" fill="currentColor" fill-rule="evenodd"/>
+          </svg>
+        `;
+      }
+    }
   }
 
   /**
@@ -462,14 +520,9 @@ class Hole {
     if (!this.canvasElement) return;
 
     try {
-      // Get scroll position
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      
-      // Apply subtle parallax effect (0.3x scroll speed for subtle effect)
-      const parallaxOffset = scrollTop * 0.3;
-      
-      // Apply transform to canvas for parallax effect
-      this.canvasElement.style.transform = `translateY(${parallaxOffset}px)`;
+      // Re-render canvas with scroll offset applied to content position
+      // This keeps canvas in place but scrolls content within it
+      this.renderHTMLOnCanvas();
     } catch (error) {
       console.warn('Failed to handle scroll:', error);
     }
@@ -484,6 +537,51 @@ class Hole {
       window.addEventListener('resize', this.handleWindowResize, { passive: true });
     } catch (error) {
       console.warn('Failed to setup scroll listener:', error);
+    }
+  }
+
+  /**
+   * Sets up observer for theme changes to update clip-path inversion
+   */
+  setupThemeObserver() {
+    try {
+      // Watch for changes to the data-theme attribute on <html>
+      this.themeObserver = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+            this.updateClipPath();
+          }
+        }
+      });
+
+      this.themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme']
+      });
+    } catch (error) {
+      console.warn('Failed to setup theme observer:', error);
+    }
+  }
+
+  /**
+   * Appends the shadow element to the document body
+   * The shadow sits behind the hole and uses the same clip-path shape
+   */
+  appendShadow() {
+    // Check if the shadow element already exists
+    if (document.getElementById('hole-shadow')) {
+      this.shadowElement = document.getElementById('hole-shadow');
+      return;
+    }
+
+    try {
+      // Create and append the shadow element
+      const shadow = document.createElement('div');
+      shadow.id = 'hole-shadow';
+      document.body.appendChild(shadow);
+      this.shadowElement = shadow;
+    } catch (error) {
+      console.warn('Failed to append shadow element:', error);
     }
   }
 
@@ -522,12 +620,13 @@ class Hole {
     if (this.isInitialized) return;
 
     try {
-      this.createClipPathSVG(); // Create the SVG clipPath first
+      this.appendShadow(); // Create shadow first (sits behind hole)
       this.appendHole();
       this.createCanvas();
-      this.updateClipPath(); // Set initial clip-path
+      this.updateClipPath(); // Set initial clip-path for both hole and shadow
       this.handleScroll(); // Set initial parallax position
       this.setupScrollListener(); // Setup scroll and resize listeners
+      this.setupThemeObserver(); // Watch for theme changes to update mask inversion
       this.isInitialized = true;
     } catch (error) {
       console.warn('Hole initialization failed:', error);
@@ -565,6 +664,16 @@ class Hole {
       this.resizeObserver = null;
     }
 
+    // Clean up theme observer
+    if (this.themeObserver) {
+      try {
+        this.themeObserver.disconnect();
+      } catch (error) {
+        console.warn('Failed to disconnect theme observer:', error);
+      }
+      this.themeObserver = null;
+    }
+
     // Clear resize timeout
     if (this.resizeTimeout) {
       clearTimeout(this.resizeTimeout);
@@ -579,15 +688,16 @@ class Hole {
       console.warn('Failed to remove event listeners:', error);
     }
 
-    // Remove SVG element
-    if (this.svgElement && this.svgElement.parentNode) {
+    // Remove shadow element
+    if (this.shadowElement && this.shadowElement.parentNode) {
       try {
-        this.svgElement.parentNode.removeChild(this.svgElement);
+        this.shadowElement.parentNode.removeChild(this.shadowElement);
       } catch (error) {
-        console.warn('Failed to remove SVG element:', error);
+        console.warn('Failed to remove shadow element:', error);
       }
     }
 
+    // Remove hole element
     if (this.holeElement && this.holeElement.parentNode) {
       try {
         this.holeElement.parentNode.removeChild(this.holeElement);
@@ -595,9 +705,9 @@ class Hole {
         console.warn('Failed to remove hole element:', error);
       }
     }
+    this.shadowElement = null;
     this.holeElement = null;
     this.canvasElement = null;
-    this.svgElement = null;
     this.isInitialized = false;
   }
 }

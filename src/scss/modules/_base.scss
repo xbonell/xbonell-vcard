@@ -78,9 +78,15 @@ a {
 
 .description em {
   font-style: normal;
-  text-decoration: underline;
-  text-decoration-color: var(--color-yellow);
-  text-underline-offset: functions.em(4);
-  text-decoration-thickness: 1px;
-  transition: text-decoration-color var(--theme-transition);
+  color: var(--color-yellow);
+  background-color: var(--color-yellowBg);
+  padding: functions.em(2);
+  border-radius: functions.em(4);
+  transition: color var(--theme-transition), background-color var(--theme-transition);
+}
+
+[data-theme="light"] {
+  .description em{
+    color: var(--color-black);
+  }
 }

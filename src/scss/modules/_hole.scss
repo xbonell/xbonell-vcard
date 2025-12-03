@@ -1,44 +1,39 @@
+// Hole element - contains the canvas, masked by logo clip-path
 #hole {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
+  z-index: -1; // Behind the main article
   background-color: var(--color-backstage);
   // Logo mask - clip-path is set dynamically via JavaScript
-  // Uses SVG clipPath with the logo shape, positioned at bottom right
-
-  // CSS custom property for mask size (set by JavaScript in hole.js)
-  --mask-size: 40vmin;
-
-  // Inner shadow effect - fixed at bottom right to match logo position
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    // Radial gradient creates shadow effect at bottom right corner
-    background: radial-gradient(
-      circle at 100% 100%,
-      transparent 0%,
-      transparent calc(var(--mask-size, 40vmin) * 0.3),
-      rgba(0, 0, 0, 0.1) calc(var(--mask-size, 40vmin) * 0.5),
-      rgba(0, 0, 0, 0.3) calc(var(--mask-size, 40vmin) * 0.7),
-      rgba(0, 0, 0, 0.5) calc(var(--mask-size, 40vmin) * 0.85),
-      rgba(0, 0, 0, 0.7) var(--mask-size, 40vmin),
-      rgba(0, 0, 0, 0.85) 100%
-    );
-    pointer-events: none;
-    z-index: 1;
-  }
+  // Uses CSS clip-path: path() with the logo shape, covering the viewport
 
   & > canvas {
     width: 100%;
     height: 100%;
-    position: relative;
+    opacity: 0.2;
+    position: absolute;
+    top: 0;
+    left: 0;
     z-index: 0;
   }
+}
+
+// Shadow element - sits on top of hole canvas, creates inner shadow from mask edges
+// Also clipped by the same clip-path so shadow only appears inside the mask
+#hole-shadow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; // Above #hole but below article (article has z-index: 1)
+  color: var(--color-hole-shadow); // Dark shadow in both modes
+  filter: blur(60px);
+  pointer-events: none;
+  transition: color var(--theme-transition);
+  // SVG with inverted path (rectangle minus logo) is injected via JavaScript
+  // clip-path is applied via JavaScript to match #hole
 }

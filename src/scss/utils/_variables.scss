@@ -16,6 +16,7 @@ $color-yellow: #f4c430;
   --color-red: #{$color-red};
   --color-redBg: #{rgba($color-red, 0.1)};
   --color-yellow: #{$color-yellow};
+  --color-yellowBg: #{rgba($color-yellow, 0.1)};
   --color-github: #111;
   --color-twitter: #00aced;
   --color-linkedin: #007bb6;
@@ -23,6 +24,7 @@ $color-yellow: #f4c430;
   --color-black: #000;
   --color-white: #{$color-white};
   --color-shadow: rgba(0, 0, 0, 0.5);
+  --color-hole-shadow: rgba(0, 0, 0, 0.5); // Dark shadow for dark theme (original)
   --hcard-gradient: repeating-radial-gradient(
       circle farthest-corner at right bottom,
       #{rgba($color-alt, 0.25)} 0%,
@@ -43,12 +45,15 @@ $color-yellow: #f4c430;
 
 // Light theme
 [data-theme="light"] {
+  --color-backstage: #e9e7e3;
   --color-bg: #e9e7e3;
   --color-text: #2c3e50;
   --color-grey: #6c757d;
   --color-shadow: rgba(0, 0, 0, 0.25);
+  --color-hole-shadow: rgba(0, 0, 0, 0.2); // Softer shadow for light theme
   --color-red: #9C2A18;
   --color-redBg: #{rgba(#9C2A18, 0.1)};
+  --color-yellowBg: #{rgba($color-yellow, 0.25)};
 }
 
 // Typography
