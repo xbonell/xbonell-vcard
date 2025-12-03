@@ -6,16 +6,13 @@
   height: 100%;
   z-index: 0;
   background-color: var(--color-backstage);
-  // Circular mask - position set dynamically via JavaScript
-  // clip-path is set in hole.js for interactivity
+  // Logo mask - clip-path is set dynamically via JavaScript
+  // Uses SVG clipPath with the logo shape, positioned at bottom right
 
-  // CSS custom properties for mask position (set by JavaScript in hole.js)
-  // Default values match initial mask position (bottom-right corner)
-  --mask-x: 100%;
-  --mask-y: 100%;
-  --mask-radius-num: 40;
+  // CSS custom property for mask size (set by JavaScript in hole.js)
+  --mask-size: 40vmin;
 
-  // Inner shadow projected by the mask - follows mask position via CSS custom properties
+  // Inner shadow effect - fixed at bottom right to match logo position
   &::before {
     content: '';
     position: absolute;
@@ -23,19 +20,16 @@
     left: 0;
     width: 100%;
     height: 100%;
-    // Radial gradient creates circular shadow effect that follows the mask
-    // Position uses --mask-x and --mask-y set by JavaScript
-    // Radius uses --mask-radius-num (in vmin) set by JavaScript
+    // Radial gradient creates shadow effect at bottom right corner
     background: radial-gradient(
-      circle at var(--mask-x, 100%) var(--mask-y, 100%),
+      circle at 100% 100%,
       transparent 0%,
-      transparent calc(var(--mask-radius-num, 40) * 1vmin - 80px),
-      rgba(0, 0, 0, 0.1) calc(var(--mask-radius-num, 40) * 1vmin - 60px),
-      rgba(0, 0, 0, 0.2) calc(var(--mask-radius-num, 40) * 1vmin - 40px),
-      rgba(0, 0, 0, 0.4) calc(var(--mask-radius-num, 40) * 1vmin - 20px),
-      rgba(0, 0, 0, 0.6) calc(var(--mask-radius-num, 40) * 1vmin - 10px),
-      rgba(0, 0, 0, 0.8) calc(var(--mask-radius-num, 40) * 1vmin),
-      rgba(0, 0, 0, 0.9) 100%
+      transparent calc(var(--mask-size, 40vmin) * 0.3),
+      rgba(0, 0, 0, 0.1) calc(var(--mask-size, 40vmin) * 0.5),
+      rgba(0, 0, 0, 0.3) calc(var(--mask-size, 40vmin) * 0.7),
+      rgba(0, 0, 0, 0.5) calc(var(--mask-size, 40vmin) * 0.85),
+      rgba(0, 0, 0, 0.7) var(--mask-size, 40vmin),
+      rgba(0, 0, 0, 0.85) 100%
     );
     pointer-events: none;
     z-index: 1;
