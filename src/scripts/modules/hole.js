@@ -1,5 +1,5 @@
 // Hole Module
-// Appends a div with id="hole" to the document
+// Appends a div with id="hole" to the document with logo-shaped mask
 
 class Hole {
   constructor() {
@@ -10,11 +10,8 @@ class Hole {
     this.resizeTimeout = null;
     this.isInitialized = false;
 
-    // Logo mask position and size
-    this.maskX = 100; // Percentage from left (center at bottom right corner)
-    this.maskY = 100; // Percentage from top (center at bottom right corner)
+    // Logo mask size (fixed at bottom right corner)
     this.maskSize = 40; // Size in vmin units
-    this.isDragging = false;
 
     // Logo path data (X mark from logo.svg)
     // Original viewBox: -385 -72.5 1040 195, but we only use the X mark portion
@@ -34,13 +31,8 @@ class Hole {
     };
 
     // Bind event handlers
-    this.handleMouseDown = this.handleMouseDown.bind(this);
-    this.handleMouseMove = this.handleMouseMove.bind(this);
-    this.handleMouseUp = this.handleMouseUp.bind(this);
-    this.handleTouchStart = this.handleTouchStart.bind(this);
-    this.handleTouchMove = this.handleTouchMove.bind(this);
-    this.handleTouchEnd = this.handleTouchEnd.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
+    this.handleWindowResize = this.handleWindowResize.bind(this);
   }
 
   /**
@@ -261,6 +253,13 @@ class Hole {
   };
 
   /**
+   * Handles window resize to update clip-path position
+   */
+  handleWindowResize() {
+    this.updateClipPath();
+  }
+
+  /**
    * Sets up resize observer for the canvas
    */
   setupResizeObserver() {
@@ -421,8 +420,8 @@ class Hole {
   }
 
   /**
-   * Updates the logo clip-path position using CSS transforms
-   * The clip-path uses the SVG logo shape, positioned via CSS custom properties
+   * Updates the logo clip-path position
+   * The clip-path uses the SVG logo shape, fixed at bottom right corner
    */
   updateClipPath() {
     if (!this.holeElement) return;
@@ -431,123 +430,33 @@ class Hole {
     this.holeElement.style.clipPath = 'url(#logo-clip)';
     this.holeElement.style.webkitClipPath = 'url(#logo-clip)';
 
-    // Calculate the actual size in pixels for positioning
+    // Calculate the actual size in pixels
     const vmin = Math.min(window.innerWidth, window.innerHeight) / 100;
     const sizeInPx = this.maskSize * vmin;
 
-    // Position the hole element to show the logo at the desired location
-    // We use transform to position the element so the logo appears at maskX%, maskY%
-    // The logo mask covers the entire element, so we position/scale the element itself
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
 
-    // Calculate offset to position the center of the mask at maskX%, maskY%
-    // Since the clipPath covers 0-100% of the element, we need to:
-    // 1. Scale the element so the logo is the desired size
-    // 2. Translate so the logo center aligns with maskX%, maskY%
-    
     // The logo should be maskSize vmin in both width and height
-    // Scale factor: sizeInPx / viewportWidth for x, sizeInPx / viewportHeight for y
+    // Scale factor to make the clipped area the right size
     const scaleX = sizeInPx / viewportWidth;
     const scaleY = sizeInPx / viewportHeight;
     
-    // Calculate the center point of where we want the logo
-    const targetCenterX = (this.maskX / 100) * viewportWidth;
-    const targetCenterY = (this.maskY / 100) * viewportHeight;
-    
-    // After scaling, the element is smaller, so we need to translate
-    // The scaled element's center would be at (viewportWidth * scaleX / 2, viewportHeight * scaleY / 2)
-    // We want it at (targetCenterX, targetCenterY)
-    const translateX = targetCenterX - (viewportWidth * scaleX / 2);
-    const translateY = targetCenterY - (viewportHeight * scaleY / 2);
+    // Position at bottom right corner (logo center at 100%, 100%)
+    // After scaling, translate so the logo's center aligns with the corner
+    const translateX = viewportWidth - sizeInPx / 2;
+    const translateY = viewportHeight - sizeInPx / 2;
 
-    // Apply transform to position the clipped area
+    // Apply transform to position the clipped area at bottom right
     this.holeElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scaleX}, ${scaleY})`;
     this.holeElement.style.transformOrigin = 'top left';
 
-    // Set CSS variables for the shadow to follow the mask
-    this.holeElement.style.setProperty('--mask-x', `${this.maskX}%`);
-    this.holeElement.style.setProperty('--mask-y', `${this.maskY}%`);
+    // Set CSS variable for the mask size (for shadow styling if needed)
     this.holeElement.style.setProperty('--mask-size', `${this.maskSize}vmin`);
   }
 
   /**
-   * Converts client coordinates to percentage
-   */
-  getPositionFromEvent(event) {
-    const rect = this.holeElement.getBoundingClientRect();
-    const x = ((event.clientX || event.touches[0].clientX) - rect.left) / rect.width * 100;
-    const y = ((event.clientY || event.touches[0].clientY) - rect.top) / rect.height * 100;
-    return { x, y };
-  }
-
-  /**
-   * Handles mouse down event
-   */
-  handleMouseDown(event) {
-    this.isDragging = true;
-    const pos = this.getPositionFromEvent(event);
-    this.maskX = pos.x;
-    this.maskY = pos.y;
-    this.updateClipPath();
-    event.preventDefault();
-  }
-
-  /**
-   * Handles mouse move event
-   */
-  handleMouseMove(event) {
-    if (!this.isDragging) return;
-    const pos = this.getPositionFromEvent(event);
-    this.maskX = pos.x;
-    this.maskY = pos.y;
-    this.updateClipPath();
-    event.preventDefault();
-  }
-
-  /**
-   * Handles mouse up event
-   */
-  handleMouseUp(event) {
-    this.isDragging = false;
-    event.preventDefault();
-  }
-
-  /**
-   * Handles touch start event
-   */
-  handleTouchStart(event) {
-    this.isDragging = true;
-    const pos = this.getPositionFromEvent(event);
-    this.maskX = pos.x;
-    this.maskY = pos.y;
-    this.updateClipPath();
-    event.preventDefault();
-  }
-
-  /**
-   * Handles touch move event
-   */
-  handleTouchMove(event) {
-    if (!this.isDragging) return;
-    const pos = this.getPositionFromEvent(event);
-    this.maskX = pos.x;
-    this.maskY = pos.y;
-    this.updateClipPath();
-    event.preventDefault();
-  }
-
-  /**
-   * Handles touch end event
-   */
-  handleTouchEnd(event) {
-    this.isDragging = false;
-    event.preventDefault();
-  }
-
-  /**
    * Handles scroll event to apply parallax effect to canvas content
-   * Mask stays fixed at bottom right, canvas content scrolls with parallax
    */
   handleScroll() {
     if (!this.canvasElement) return;
@@ -557,10 +466,9 @@ class Hole {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       
       // Apply subtle parallax effect (0.3x scroll speed for subtle effect)
-      // Positive value makes content scroll in opposite direction
       const parallaxOffset = scrollTop * 0.3;
       
-      // Apply transform to canvas for parallax effect (opposite direction)
+      // Apply transform to canvas for parallax effect
       this.canvasElement.style.transform = `translateY(${parallaxOffset}px)`;
     } catch (error) {
       console.warn('Failed to handle scroll:', error);
@@ -568,29 +476,14 @@ class Hole {
   }
 
   /**
-   * Sets up interactive event listeners for repositioning the mask
+   * Sets up scroll listener for parallax effect
    */
-  setupInteractivity() {
-    if (!this.holeElement) return;
-
+  setupScrollListener() {
     try {
-      // Mouse events
-      this.holeElement.addEventListener('mousedown', this.handleMouseDown);
-      document.addEventListener('mousemove', this.handleMouseMove);
-      document.addEventListener('mouseup', this.handleMouseUp);
-
-      // Touch events
-      this.holeElement.addEventListener('touchstart', this.handleTouchStart, { passive: false });
-      document.addEventListener('touchmove', this.handleTouchMove, { passive: false });
-      document.addEventListener('touchend', this.handleTouchEnd);
-
-      // Scroll event to reposition mask based on scroll position
       window.addEventListener('scroll', this.handleScroll, { passive: true });
-
-      // Set cursor style to indicate interactivity
-      this.holeElement.style.cursor = 'move';
+      window.addEventListener('resize', this.handleWindowResize, { passive: true });
     } catch (error) {
-      console.warn('Failed to setup interactivity:', error);
+      console.warn('Failed to setup scroll listener:', error);
     }
   }
 
@@ -629,15 +522,12 @@ class Hole {
     if (this.isInitialized) return;
 
     try {
+      this.createClipPathSVG(); // Create the SVG clipPath first
       this.appendHole();
       this.createCanvas();
-      // Keep mask fixed at bottom right
-      this.maskX = 100;
-      this.maskY = 100;
       this.updateClipPath(); // Set initial clip-path
-      // Set initial parallax position based on current scroll
-      this.handleScroll();
-      this.setupInteractivity(); // Setup mouse/touch interactions
+      this.handleScroll(); // Set initial parallax position
+      this.setupScrollListener(); // Setup scroll and resize listeners
       this.isInitialized = true;
     } catch (error) {
       console.warn('Hole initialization failed:', error);
@@ -682,17 +572,19 @@ class Hole {
     }
 
     // Remove event listeners
-    if (this.holeElement) {
+    try {
+      window.removeEventListener('scroll', this.handleScroll);
+      window.removeEventListener('resize', this.handleWindowResize);
+    } catch (error) {
+      console.warn('Failed to remove event listeners:', error);
+    }
+
+    // Remove SVG element
+    if (this.svgElement && this.svgElement.parentNode) {
       try {
-        this.holeElement.removeEventListener('mousedown', this.handleMouseDown);
-        this.holeElement.removeEventListener('touchstart', this.handleTouchStart);
-        document.removeEventListener('mousemove', this.handleMouseMove);
-        document.removeEventListener('mouseup', this.handleMouseUp);
-        document.removeEventListener('touchmove', this.handleTouchMove);
-        document.removeEventListener('touchend', this.handleTouchEnd);
-        window.removeEventListener('scroll', this.handleScroll);
+        this.svgElement.parentNode.removeChild(this.svgElement);
       } catch (error) {
-        console.warn('Failed to remove event listeners:', error);
+        console.warn('Failed to remove SVG element:', error);
       }
     }
 
@@ -705,6 +597,7 @@ class Hole {
     }
     this.holeElement = null;
     this.canvasElement = null;
+    this.svgElement = null;
     this.isInitialized = false;
   }
 }
