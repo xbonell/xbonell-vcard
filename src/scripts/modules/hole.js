@@ -5,15 +5,24 @@ class Hole {
   constructor() {
     this.holeElement = null;
     this.canvasElement = null;
+    this.svgElement = null;
     this.resizeObserver = null;
     this.resizeTimeout = null;
     this.isInitialized = false;
 
-    // Circular mask position and size
+    // Logo mask position and size
     this.maskX = 100; // Percentage from left (center at bottom right corner)
     this.maskY = 100; // Percentage from top (center at bottom right corner)
-    this.maskRadius = '40vmin'; // Radius in viewport units
+    this.maskSize = 40; // Size in vmin units
     this.isDragging = false;
+
+    // Logo path data (X mark from logo.svg)
+    // Original viewBox: -385 -72.5 1040 195, but we only use the X mark portion
+    // X mark bounding box: x=-385 to -191.326, y=-72.5 to 121.174 (roughly 194x194)
+    this.logoPath1 = 'M-191.326,-10.523 L-191.326,-72.5 L-385,-72.5 L-385,-26.019 L-356.549,-26.019 L-243.444,86.312 L-296.878,86.312 L-333.839,49.363 L-385,100.158 L-385,121.174 L-191.326,121.174 L-191.326,86.312 L-234.093,86.312 L-271.797,47.578 L-191.326,47.578 L-191.326,28.211 L-290.65,28.211 L-328.351,-8.588 L-290.699,-45.386 L-237.312,-45.386 L-275.017,-10.523 Z';
+    this.logoPath2 = 'M-385,-1.688 L-385,47.256 L-360.307,22.762 Z';
+    // Bounding box of the logo mark
+    this.logoViewBox = { x: -385, y: -72.5, width: 193.674, height: 193.674 };
 
     // Syntax highlighting colors
     this.colors = {
@@ -32,6 +41,60 @@ class Hole {
     this.handleTouchMove = this.handleTouchMove.bind(this);
     this.handleTouchEnd = this.handleTouchEnd.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
+  }
+
+  /**
+   * Creates the SVG element with clipPath for the logo mask
+   */
+  createClipPathSVG() {
+    // Check if SVG already exists
+    if (document.getElementById('hole-clip-svg')) {
+      this.svgElement = document.getElementById('hole-clip-svg');
+      return;
+    }
+
+    try {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('id', 'hole-clip-svg');
+      svg.setAttribute('width', '0');
+      svg.setAttribute('height', '0');
+      svg.style.position = 'absolute';
+      svg.style.pointerEvents = 'none';
+
+      // Create the clipPath element
+      const clipPath = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath');
+      clipPath.setAttribute('id', 'logo-clip');
+      clipPath.setAttribute('clipPathUnits', 'objectBoundingBox');
+
+      // Create the path group with transform to normalize to 0-1 coordinates
+      const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      
+      // Transform to normalize the logo coordinates to 0-1 range
+      // Original: x from -385 to -191.326, y from -72.5 to 121.174
+      // Scale: 1/193.674 for both x and y
+      // Translate: +385 for x, +72.5 for y (to move origin to 0,0)
+      const scale = 1 / this.logoViewBox.width;
+      const translateX = -this.logoViewBox.x;
+      const translateY = -this.logoViewBox.y;
+      group.setAttribute('transform', `scale(${scale}) translate(${translateX}, ${translateY})`);
+
+      // Create first path (main X shape)
+      const path1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path1.setAttribute('d', this.logoPath1);
+      group.appendChild(path1);
+
+      // Create second path (small triangle)
+      const path2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path2.setAttribute('d', this.logoPath2);
+      group.appendChild(path2);
+
+      clipPath.appendChild(group);
+      svg.appendChild(clipPath);
+      document.body.appendChild(svg);
+      this.svgElement = svg;
+    } catch (error) {
+      console.warn('Failed to create clip path SVG:', error);
+    }
   }
 
   /**
@@ -358,21 +421,54 @@ class Hole {
   }
 
   /**
-   * Updates the circular clip-path position
+   * Updates the logo clip-path position using CSS transforms
+   * The clip-path uses the SVG logo shape, positioned via CSS custom properties
    */
   updateClipPath() {
     if (!this.holeElement) return;
 
-    const clipPath = `circle(${this.maskRadius} at ${this.maskX}% ${this.maskY}%)`;
-    this.holeElement.style.clipPath = clipPath;
-    this.holeElement.style.webkitClipPath = clipPath;
+    // Use the SVG clipPath reference
+    this.holeElement.style.clipPath = 'url(#logo-clip)';
+    this.holeElement.style.webkitClipPath = 'url(#logo-clip)';
 
-    // Set CSS variables for the shadow gradient to follow the mask
+    // Calculate the actual size in pixels for positioning
+    const vmin = Math.min(window.innerWidth, window.innerHeight) / 100;
+    const sizeInPx = this.maskSize * vmin;
+
+    // Position the hole element to show the logo at the desired location
+    // We use transform to position the element so the logo appears at maskX%, maskY%
+    // The logo mask covers the entire element, so we position/scale the element itself
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    // Calculate offset to position the center of the mask at maskX%, maskY%
+    // Since the clipPath covers 0-100% of the element, we need to:
+    // 1. Scale the element so the logo is the desired size
+    // 2. Translate so the logo center aligns with maskX%, maskY%
+    
+    // The logo should be maskSize vmin in both width and height
+    // Scale factor: sizeInPx / viewportWidth for x, sizeInPx / viewportHeight for y
+    const scaleX = sizeInPx / viewportWidth;
+    const scaleY = sizeInPx / viewportHeight;
+    
+    // Calculate the center point of where we want the logo
+    const targetCenterX = (this.maskX / 100) * viewportWidth;
+    const targetCenterY = (this.maskY / 100) * viewportHeight;
+    
+    // After scaling, the element is smaller, so we need to translate
+    // The scaled element's center would be at (viewportWidth * scaleX / 2, viewportHeight * scaleY / 2)
+    // We want it at (targetCenterX, targetCenterY)
+    const translateX = targetCenterX - (viewportWidth * scaleX / 2);
+    const translateY = targetCenterY - (viewportHeight * scaleY / 2);
+
+    // Apply transform to position the clipped area
+    this.holeElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scaleX}, ${scaleY})`;
+    this.holeElement.style.transformOrigin = 'top left';
+
+    // Set CSS variables for the shadow to follow the mask
     this.holeElement.style.setProperty('--mask-x', `${this.maskX}%`);
     this.holeElement.style.setProperty('--mask-y', `${this.maskY}%`);
-    // Extract numeric value from maskRadius (e.g., '40vmin' -> '40')
-    const radiusNum = parseFloat(this.maskRadius);
-    this.holeElement.style.setProperty('--mask-radius-num', radiusNum.toString());
+    this.holeElement.style.setProperty('--mask-size', `${this.maskSize}vmin`);
   }
 
   /**
