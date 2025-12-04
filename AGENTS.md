@@ -11,7 +11,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 
 ### Project Details
 - **Project Name**: xbonell-vcard
-- **Version**: 1.9.3
+- **Version**: 1.9.4
 - **Type**: Personal vCard Website
 - **Author**: Xavier Bonell Iturbe
 - **Domain**: xbonell.com
@@ -82,6 +82,12 @@ The site supports multiple languages:
 - Refactored hashAssets gulp task with proper async/await two-pass approach
 - Updated Yarn from v4.9.2 to v4.12.0
 - Added @babel/plugin-bugfix-firefox-class-in-computed-class-key dependency
+
+### Version 1.9.4 Updates
+- Fixed asset URL rewriting in hashAssets gulp task
+- Replaced gulp-rev-rewrite with custom fs-based approach due to Gulp 5 incompatibility
+- Asset references in both HTML and JS files are now correctly rewritten with hashed paths
+- Removed gulp-rev-rewrite dependency from package.json
 
 ---
 

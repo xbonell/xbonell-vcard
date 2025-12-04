@@ -4165,13 +4165,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"escape-string-regexp@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "escape-string-regexp@npm:5.0.0"
-  checksum: 10c0/6366f474c6f37a802800a435232395e04e9885919873e382b157ab7e8f0feb8fed71497f84a6f6a81a49aab41815522f5839112bd38026d203aea0c91622df95
-  languageName: node
-  linkType: hard
-
 "esniff@npm:^2.0.1":
   version: 2.0.1
   resolution: "esniff@npm:2.0.1"
@@ -5236,16 +5229,6 @@ __metadata:
     rimraf: "npm:^2.3.4"
     through2: "npm:^0.6.5"
   checksum: 10c0/3d35c19602f24b338f43384b1fd12cd3d30ae5fceb198eb46e52de14a2cf01da5c77363f949db119dba6939ec44aabd3542731a58e29f0c4b99bd1f448aa53ba
-  languageName: node
-  linkType: hard
-
-"gulp-rev-rewrite@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "gulp-rev-rewrite@npm:6.0.0"
-  dependencies:
-    escape-string-regexp: "npm:^5.0.0"
-    plugin-error: "npm:^2.0.0"
-  checksum: 10c0/092452602b9be3c274a406d3c8fc7dc853af4e2823bd079aa748ce582a9d38ff62e77804c68596e9822c0acba28570879b07ef7c3bae7b875ff93319f291cb1d
   languageName: node
   linkType: hard
 
@@ -7901,7 +7884,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"plugin-error@npm:^2.0.0, plugin-error@npm:^2.0.1":
+"plugin-error@npm:^2.0.1":
   version: 2.0.1
   resolution: "plugin-error@npm:2.0.1"
   dependencies:
@@ -10681,7 +10664,6 @@ __metadata:
     gulp-rename: "npm:^2.1.0"
     gulp-rev: "npm:^11.0.0"
     gulp-rev-delete-original: "npm:^0.2.3"
-    gulp-rev-rewrite: "npm:^6.0.0"
     gulp-sass: "npm:6.0.1"
     gulp-sourcemaps: "npm:^3.0.0"
     gulp-svgmin: "npm:^4.1.0"

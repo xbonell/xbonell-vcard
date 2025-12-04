@@ -22,7 +22,7 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import rev from 'gulp-rev';
 import revDel from 'gulp-rev-delete-original';
-import revRewrite from 'gulp-rev-rewrite';
+import fs from 'fs';
 
 // Load plugins
 const $ = plugins();
@@ -225,29 +225,49 @@ const watcher = () => {
   watch([`${dir.source}svg/**/*.svg`]).on('change', series(svg, browser.reload));
 };
 
-// Hash static assets
+// Hash static assets and rewrite HTML references
 // ----------------------------------------------------------------------------
-const hashAssets = async () => {
+const hashAssets = (done) => {
   // First pass: hash assets and generate manifest
-  await new Promise((resolve, reject) => {
-    src([`${dir.dest}assets/**/*.{css,js,gif,png,jpg,svg,ico}`], {
-      base: 'dist',
-      encoding: false,
-    })
-      .pipe(rev())
-      .pipe(revDel())
-      .pipe(dest(dir.dest))
-      .pipe(rev.manifest())
-      .pipe(dest(dir.dest))
-      .on('end', resolve)
-      .on('error', reject);
-  });
+  src([`${dir.dest}assets/**/*.{css,js,gif,png,jpg,svg,ico}`], {
+    base: 'dist',
+    encoding: false,
+  })
+    .pipe(rev())
+    .pipe(revDel())
+    .pipe(dest(dir.dest))
+    .pipe(rev.manifest())
+    .pipe(dest(dir.dest))
+    .on('end', () => {
+      // Second pass: rewrite asset references in HTML and JS files
+      // Paths have leading slashes (e.g., /assets/css/style.css)
+      // but manifest keys don't (e.g., assets/css/style.css)
+      // Uses fs-based approach due to gulp-rev-rewrite Gulp 5 incompatibility
+      const manifestPath = `${dir.dest}rev-manifest.json`;
+      const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 
-  // Second pass: rewrite HTML references using manifest
-  const manifest = src(`${dir.dest}rev-manifest.json`);
-  return src(`${dir.dest}**/*.html`)
-    .pipe(revRewrite({ manifest }))
-    .pipe(dest(dir.dest));
+      // Find all HTML and JS files that may contain asset references
+      const filesToProcess = fs
+        .readdirSync(dir.dest, { recursive: true })
+        .filter((file) => file.endsWith('.html') || file.endsWith('.js'))
+        .map((file) => `${dir.dest}${file}`);
+
+      // Replace references in each file
+      for (const filePath of filesToProcess) {
+        let content = fs.readFileSync(filePath, 'utf8');
+
+        // Replace each manifest entry (add leading slash to match paths)
+        for (const [original, hashed] of Object.entries(manifest)) {
+          const searchPath = '/' + original;
+          const replacePath = '/' + hashed;
+          content = content.split(searchPath).join(replacePath);
+        }
+
+        fs.writeFileSync(filePath, content, 'utf8');
+      }
+
+      done();
+    });
 };
 
 task('build', series(clean, parallel(bundle, css, html, svg, copy), hashAssets, minify));
