@@ -12,8 +12,8 @@ class Hole {
     this.isInitialized = false;
 
     // Shadow offset and blur settings
-    this.shadowOffsetX = 0;
-    this.shadowOffsetY = 20;
+    this.shadowOffsetX = 50;
+    this.shadowOffsetY = 50;
     this.shadowScale = 1.08; // Larger for wider shadow spread
 
     // Logo path data from logo.svg
@@ -311,7 +311,7 @@ class Hole {
       // Calculate font size from vmin (2vmin = 2% of smaller viewport dimension)
       // Ensure minimum font size of 14px and maximum of 18px
       const vmin = Math.min(window.innerWidth, window.innerHeight) / 100;
-      const fontSize = Math.min(18, Math.max(14, 2 * vmin));
+      const fontSize = Math.min(30, Math.max(14, 2 * vmin));
 
       // Set text rendering properties
       ctx.font = `${fontSize}px monospace`;

@@ -13,7 +13,7 @@
   & > canvas {
     width: 100%;
     height: 100%;
-    opacity: 0.2;
+    opacity: 0.15;
     position: absolute;
     top: 0;
     left: 0;
@@ -31,9 +31,15 @@
   height: 100%;
   z-index: 0; // Above #hole but below article (article has z-index: 1)
   color: var(--color-hole-shadow); // Dark shadow in both modes
-  filter: blur(60px);
+  filter: blur(20px);
   pointer-events: none;
   transition: color var(--theme-transition);
   // SVG with inverted path (rectangle minus logo) is injected via JavaScript
   // clip-path is applied via JavaScript to match #hole
+}
+
+[data-theme="light"] {
+  #hole > canvas {
+    opacity: 0.2;
+  }
 }
