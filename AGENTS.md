@@ -11,7 +11,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 
 ### Project Details
 - **Project Name**: xbonell-vcard
-- **Version**: 1.9.4
+- **Version**: 1.9.5
 - **Type**: Personal vCard Website
 - **Author**: Xavier Bonell Iturbe
 - **Domain**: xbonell.com
@@ -88,6 +88,12 @@ The site supports multiple languages:
 - Replaced gulp-rev-rewrite with custom fs-based approach due to Gulp 5 incompatibility
 - Asset references in both HTML and JS files are now correctly rewritten with hashed paths
 - Removed gulp-rev-rewrite dependency from package.json
+
+### Version 1.9.5 Updates
+- Adjusted light mode theme background colors for improved visual hierarchy
+- `--color-backstage` now uses the previous `--color-bg` value (`#e9e7e3`)
+- `--color-bg` is now 10% lighter (`#ebe9e6`) using Sass `color.scale()` function
+- Provides better contrast between the main background and backstage (hole) background in light mode
 
 ---
 
