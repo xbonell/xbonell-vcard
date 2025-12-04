@@ -11,7 +11,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 
 ### Project Details
 - **Project Name**: xbonell-vcard
-- **Version**: 1.9.1
+- **Version**: 1.9.3
 - **Type**: Personal vCard Website
 - **Author**: Xavier Bonell Iturbe
 - **Domain**: xbonell.com
@@ -24,7 +24,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 - **Styling**: SCSS/Sass
 - **JavaScript**: ES2015+ with Browserify
 - **Icons**: SVG with svgxuse
-- **Package Manager**: Yarn v4.9.2
+- **Package Manager**: Yarn v4.12.0
 
 ### Multi-language Support
 The site supports multiple languages:
@@ -72,6 +72,16 @@ The site supports multiple languages:
 - Improved parallax scrolling by re-rendering canvas content instead of transforming canvas element
 - Updated styling: replaced underline with background highlight for em tags
 - Added CSS variables for shadow colors and improved z-index layering
+
+### Version 1.9.3 Updates
+- iOS Safari compatibility fixes for hole module and layout
+- Added dynamic viewport height (dvh) for better mobile browser support
+- Added GPU layer acceleration to prevent element repositioning during scroll
+- Debounced window resize handling to filter iOS browser chrome changes
+- Centralized browserslist configuration (removed duplicate targets from Babel/Gulp)
+- Refactored hashAssets gulp task with proper async/await two-pass approach
+- Updated Yarn from v4.9.2 to v4.12.0
+- Added @babel/plugin-bugfix-firefox-class-in-computed-class-key dependency
 
 ---
 

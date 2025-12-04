@@ -9,7 +9,12 @@ class Hole {
     this.resizeObserver = null;
     this.themeObserver = null;
     this.resizeTimeout = null;
+    this.windowResizeTimeout = null;
     this.isInitialized = false;
+
+    // Cache viewport dimensions to detect real resizes vs iOS browser chrome changes
+    this.lastViewportWidth = 0;
+    this.lastViewportHeight = 0;
 
     // Shadow offset and blur settings
     this.shadowOffsetX = 50;
@@ -253,9 +258,32 @@ class Hole {
 
   /**
    * Handles window resize to update clip-path position
+   * Debounced and filters out iOS browser chrome changes
    */
   handleWindowResize() {
-    this.updateClipPath();
+    // Clear existing timeout
+    if (this.windowResizeTimeout) {
+      clearTimeout(this.windowResizeTimeout);
+    }
+
+    // Debounce resize to avoid too many updates (especially on iOS)
+    this.windowResizeTimeout = setTimeout(() => {
+      const currentWidth = window.innerWidth;
+      const currentHeight = window.innerHeight;
+
+      // On iOS, the browser chrome showing/hiding only changes height, not width
+      // Only update clip-path if:
+      // 1. Width has changed (real resize or orientation change)
+      // 2. Height changed significantly (more than 100px, likely orientation change)
+      const widthChanged = Math.abs(currentWidth - this.lastViewportWidth) > 1;
+      const heightChangedSignificantly = Math.abs(currentHeight - this.lastViewportHeight) > 100;
+
+      if (widthChanged || heightChangedSignificantly) {
+        this.lastViewportWidth = currentWidth;
+        this.lastViewportHeight = currentHeight;
+        this.updateClipPath();
+      }
+    }, 150);
   }
 
   /**
@@ -620,6 +648,10 @@ class Hole {
     if (this.isInitialized) return;
 
     try {
+      // Cache initial viewport dimensions for resize comparison
+      this.lastViewportWidth = window.innerWidth;
+      this.lastViewportHeight = window.innerHeight;
+
       this.appendShadow(); // Create shadow first (sits behind hole)
       this.appendHole();
       this.createCanvas();
@@ -674,10 +706,14 @@ class Hole {
       this.themeObserver = null;
     }
 
-    // Clear resize timeout
+    // Clear resize timeouts
     if (this.resizeTimeout) {
       clearTimeout(this.resizeTimeout);
       this.resizeTimeout = null;
+    }
+    if (this.windowResizeTimeout) {
+      clearTimeout(this.windowResizeTimeout);
+      this.windowResizeTimeout = null;
     }
 
     // Remove event listeners

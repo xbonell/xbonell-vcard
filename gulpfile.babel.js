@@ -85,6 +85,7 @@ const processors = [
 ];
 
 // Create JS bundle - optimized for modern browsers
+// Uses browserslist config from package.json for target browsers
 // ----------------------------------------------------------------------------
 const bundle = () => {
   return browserify(`${dir.source}scripts/main.js`)
@@ -93,9 +94,6 @@ const bundle = () => {
         [
           '@babel/preset-env',
           {
-            targets: {
-              browsers: ['last 2 versions', 'not dead', 'not ie 11'],
-            },
             useBuiltIns: 'usage',
             corejs: 3,
           },
@@ -147,7 +145,7 @@ const css = () => {
     .pipe($.if(!PRODUCTION, $.sourcemaps.init()))
     .pipe(
       sass({
-        outputStyle: $.if(PRODUCTION, 'compressed', 'expanded'),
+        outputStyle: PRODUCTION ? 'compressed' : 'expanded',
         includePaths: ['node_modules'],
       }).on('error', sass.logError)
     )
@@ -229,15 +227,26 @@ const watcher = () => {
 
 // Hash static assets
 // ----------------------------------------------------------------------------
-const hashAssets = () => {
-  return src([`${dir.dest}assets/**/*.{css,js,gif,png,jpg,svg,ico}`], {
-    base: 'dist',
-    encoding: false,
-  })
-    .pipe(rev())
-    .pipe(revDel())
-    .pipe(src(`${dir.dest}**/*.html`))
-    .pipe(revRewrite())
+const hashAssets = async () => {
+  // First pass: hash assets and generate manifest
+  await new Promise((resolve, reject) => {
+    src([`${dir.dest}assets/**/*.{css,js,gif,png,jpg,svg,ico}`], {
+      base: 'dist',
+      encoding: false,
+    })
+      .pipe(rev())
+      .pipe(revDel())
+      .pipe(dest(dir.dest))
+      .pipe(rev.manifest())
+      .pipe(dest(dir.dest))
+      .on('end', resolve)
+      .on('error', reject);
+  });
+
+  // Second pass: rewrite HTML references using manifest
+  const manifest = src(`${dir.dest}rev-manifest.json`);
+  return src(`${dir.dest}**/*.html`)
+    .pipe(revRewrite({ manifest }))
     .pipe(dest(dir.dest));
 };
 

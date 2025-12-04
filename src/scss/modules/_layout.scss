@@ -8,7 +8,12 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  // Use dvh for iOS Safari compatibility with dynamic browser chrome
+  min-height: 100dvh;
   position: relative;
+  // Prevent iOS bounce scroll which can trigger fixed element repositioning
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: auto;
 }
 
 body > article {
