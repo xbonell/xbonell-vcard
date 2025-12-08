@@ -11,7 +11,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 
 ### Project Details
 - **Project Name**: xbonell-vcard
-- **Version**: 1.9.5
+- **Version**: 1.9.6
 - **Type**: Personal vCard Website
 - **Author**: Xavier Bonell Iturbe
 - **Domain**: xbonell.com
@@ -94,6 +94,12 @@ The site supports multiple languages:
 - `--color-backstage` now uses the previous `--color-bg` value (`#e9e7e3`)
 - `--color-bg` is now 10% lighter (`#ebe9e6`) using Sass `color.scale()` function
 - Provides better contrast between the main background and backstage (hole) background in light mode
+
+### Version 1.9.6 Updates (December 2025)
+- Updated SEO metadata across all language versions (English, Spanish, Catalan)
+- Description now highlights React, Vue.js, and WordPress specialization
+- Keywords modernized to reflect current technology stack and professional focus
+- Removed outdated terms (freelance, web designer) in favor of current role description
 
 ---
 

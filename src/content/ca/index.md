@@ -4,8 +4,8 @@ slug: home
 lang: ca
 changefreq: weekly
 priority: 1
-description: Freelance, dissenyador web i desenvolupador front-end ubicat a Sant Cugat del Vallès (Barcelona, ES).
-keywords: xavier bonell, xavi bonell, freelance, desenvolupament web, desenvolupador web, front-end, front-end web developer, html, html5, css, css3, jquery, javascript, accessibilitat, usabilitat, wordpress
+description: Desenvolupador front-end especialitzat en React, Vue.js i WordPress. Creació d'aplicacions web modernes, accessibles i d'alt rendiment a Barcelona.
+keywords: xavier bonell, desenvolupador front-end, react, vue.js, next.js, nuxt.js, wordpress, javascript, aplicacions web, accessibilitat, rendiment web, barcelona, desenvolupament web
 vcard:
   givenName: Xavier
   familyName: Bonell

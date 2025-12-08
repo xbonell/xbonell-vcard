@@ -6,7 +6,7 @@ A permanently temporal business vcard site for [xbonell.com](http://xbonell.com)
 
 This project is the source code for the personal vCard website of xbonell.com. It serves as a digital business card, providing a concise and elegant way to share professional information, contact details, and links.
 
-**Current Version**: 1.9.5
+**Current Version**: 1.9.6
 
 ## Features
 
@@ -114,6 +114,7 @@ The build system uses Gulp with the following features:
 
 ## Recent Updates
 
+- **Version 1.9.6**: Updated SEO metadata (description and keywords) across all language versions to reflect current professional focus on React, Vue.js, and WordPress
 - **Version 1.9.5**: Adjusted light mode theme background colors for improved visual hierarchy (`--color-bg` is now 10% lighter, previous value moved to `--color-backstage`)
 - **Version 1.9.4**: Fixed asset URL rewriting in hashAssets gulp task for both HTML and JS files, replaced gulp-rev-rewrite with custom fs-based approach for Gulp 5 compatibility
 - **Version 1.9.3**: iOS Safari compatibility fixes (dvh viewport, GPU acceleration, debounced resize), centralized browserslist, Yarn 4.12.0
