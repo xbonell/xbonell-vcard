@@ -47,7 +47,7 @@ const siteMeta = {
   desc: 'Front-End Web Developer',
   author: 'Xavier Bonell',
   contact: 'https://x.com/xbonell',
-  domain: PRODUCTION ? 'https://xbonell.com' : 'http://localhost',
+  domain: PRODUCTION ? 'https://xbonell.com' : 'https://localhost',
   rootpath: '/',
 };
 
@@ -193,6 +193,7 @@ const server = (done) => {
     server: dir.dest,
     startPath: 'ca/',
     open: false,
+    https: true,
   });
   done();
 };
