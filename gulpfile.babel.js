@@ -2,14 +2,11 @@
 
 import pkg from './package.json';
 import autoprefixer from 'autoprefixer';
-import babelify from 'babelify';
 import browser from 'browser-sync';
-import browserify from 'browserify';
-import buffer from 'vinyl-buffer';
 import cssnano from 'cssnano';
 import combineMediaQuery from 'postcss-combine-media-query';
 import dartSass from 'sass';
-import envify from 'envify';
+import * as esbuild from 'esbuild';
 import { dest, parallel, series, src, task, watch } from 'gulp';
 import plugins from 'gulp-load-plugins';
 import metalsmith from 'metalsmith';
@@ -17,7 +14,6 @@ import layouts from '@metalsmith/layouts';
 import markdown from '@metalsmith/markdown';
 import permalinks from '@metalsmith/permalinks';
 import { rimraf } from 'rimraf';
-import source from 'vinyl-source-stream';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import rev from 'gulp-rev';
@@ -84,41 +80,22 @@ const processors = [
   }),
 ];
 
-// Create JS bundle - optimized for modern browsers
-// Uses browserslist config from package.json for target browsers
+// Create JS bundle with esbuild - optimized for modern browsers
 // ----------------------------------------------------------------------------
-const bundle = () => {
-  return browserify(`${dir.source}scripts/main.js`)
-    .transform(babelify, {
-      presets: [
-        [
-          '@babel/preset-env',
-          {
-            useBuiltIns: 'usage',
-            corejs: 3,
-          },
-        ],
-      ],
-    })
-    .transform(envify, { NODE_ENV: PRODUCTION ? 'production' : 'development' })
-    .bundle()
-    .pipe(source('app.js'))
-    .pipe(buffer())
-    .pipe($.jslint())
-    .pipe(
-      $.if(
-        PRODUCTION,
-        $.uglify({
-          compress: {
-            drop_console: true,
-            drop_debugger: true,
-            pure_funcs: ['console.log', 'console.info', 'console.debug'],
-          },
-        })
-      )
-    )
-    .pipe($.if(!PRODUCTION, $.sourcemaps.write('./')))
-    .pipe(dest(`${dir.dest}assets/js`));
+const bundle = async () => {
+  await esbuild.build({
+    entryPoints: [`${dir.source}scripts/main.js`],
+    bundle: true,
+    outfile: `${dir.dest}assets/js/app.js`,
+    minify: PRODUCTION,
+    sourcemap: !PRODUCTION,
+    target: ['es2020'],
+    format: 'iife',
+    drop: PRODUCTION ? ['console', 'debugger'] : [],
+    define: {
+      'process.env.NODE_ENV': PRODUCTION ? '"production"' : '"development"',
+    },
+  });
 };
 
 // Delete the "dist" folder (this happens every time a build starts)
@@ -142,7 +119,6 @@ const copy = () => {
 // ----------------------------------------------------------------------------
 const css = () => {
   return src(`${dir.source}scss/style.scss`)
-    .pipe($.if(!PRODUCTION, $.sourcemaps.init()))
     .pipe(
       sass({
         outputStyle: PRODUCTION ? 'compressed' : 'expanded',
@@ -150,7 +126,6 @@ const css = () => {
       }).on('error', sass.logError)
     )
     .pipe($.postcss(processors))
-    .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
     .pipe(dest(`${dir.dest}assets/css`));
 };
 
@@ -171,17 +146,14 @@ const html = (done) => {
     });
 };
 
-// Minify HTML
+// Minify HTML (only runs in production build)
 // ----------------------------------------------------------------------------
 const minify = () => {
   return src(`${dir.dest}**/*.html`)
     .pipe(
-      $.if(
-        PRODUCTION,
-        $.htmlmin({
-          collapseWhitespace: true,
-        })
-      )
+      $.htmlmin({
+        collapseWhitespace: true,
+      })
     )
     .pipe(dest(dir.dest));
 };

@@ -11,7 +11,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 
 ### Project Details
 - **Project Name**: xbonell-vcard
-- **Version**: 1.9.6
+- **Version**: 1.9.7
 - **Type**: Personal vCard Website
 - **Author**: Xavier Bonell Iturbe
 - **Domain**: xbonell.com
@@ -22,7 +22,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 - **Static Site Generator**: Metalsmith
 - **Templating**: Handlebars
 - **Styling**: SCSS/Sass
-- **JavaScript**: ES2015+ with Browserify
+- **JavaScript**: ES2015+ with esbuild (native ES2020 output)
 - **Icons**: SVG with svgxuse
 - **Package Manager**: Yarn v4.12.0
 
@@ -50,7 +50,7 @@ The site supports multiple languages:
 - Project is stable, maintainable, and ready for new enhancements or migration planning
 - VAN review completed confirming excellent project health
 - Repository status review completed (January 2025)
-- Build performance excellent (1.04s build time)
+- Build performance excellent (541ms build time with esbuild)
 
 ### Recent Modernization
 - Completed comprehensive dependency and build system update (July 2025)
@@ -58,7 +58,7 @@ The site supports multiple languages:
 - Migrated from Node Sass to Dart Sass
 - Updated Gulp, Babel, PostCSS, and related tooling
 - Validated build and development workflows on modern stack
-- Build performance excellent (1.04s build time)
+- Build performance excellent (541ms build time with esbuild)
 - Project version updated to 1.9.0
 - Content updated to reflect current professional focus on React, Vue.js, and modern development tools
 - Services and toolkit sections modernized with current technology stack
@@ -100,6 +100,14 @@ The site supports multiple languages:
 - Description now highlights React, Vue.js, and WordPress specialization
 - Keywords modernized to reflect current technology stack and professional focus
 - Removed outdated terms (freelance, web designer) in favor of current role description
+
+### Version 1.9.7 Updates (December 2025)
+- Modernized JavaScript build pipeline by replacing Browserify/Babel/Uglify with esbuild
+- Build time improved ~50% (541ms vs 1.08s), JS bundling ~78% faster (210ms vs 979ms)
+- Removed 11 dependencies: browserify, babelify, envify, vinyl-source-stream, vinyl-buffer, gulp-uglify, gulp-terser, gulp-jslint, gulp-sourcemaps, gulp-if, core-js
+- Added esbuild for modern, fast JavaScript bundling with native ES2020 output
+- Simplified gulpfile with cleaner esbuild API integration
+- No more heavy Babel transpilation needed for modern browsers
 
 ---
 
@@ -163,9 +171,9 @@ A professional, modern vCard website that serves as Xavier Bonell's digital busi
 ## Technical Context
 
 ### Build System Architecture
-- **Primary Build Tool**: Gulp 4.0.2 with Babel transpilation
+- **Primary Build Tool**: Gulp 5.0 with Babel transpilation
 - **Task Runner**: Gulp with ES6+ syntax support via babel-register
-- **Module Bundler**: Browserify for JavaScript bundling
+- **Module Bundler**: esbuild for fast JavaScript bundling (native ES2020)
 - **Development Server**: Browser-sync with live reloading
 
 ### Frontend Technology Stack
@@ -175,7 +183,7 @@ A professional, modern vCard website that serves as Xavier Bonell's digital busi
   - Autoprefixer for vendor prefixes
   - cssnano for minification
   - postcss-combine-media-query for optimization
-- **JavaScript**: ES2015+ with Babel transpilation
+- **JavaScript**: ES2015+ bundled with esbuild (native ES2020 output, no heavy transpilation)
 - **JavaScript Modules**: 
   - Theme management (themeManager) with dark/light/system mode support
   - Theme switcher UI component
@@ -192,11 +200,9 @@ A professional, modern vCard website that serves as Xavier Bonell's digital busi
 - **Multi-language Support**: Directory-based (ca/, en/, es/)
 
 ### Development Dependencies
-- **Linting**: gulp-jslint for JavaScript linting
 - **Code Quality**: ESLint + Prettier configuration
 - **Image Optimization**: gulp-image for asset optimization
 - **SVG Processing**: gulp-svgmin + gulp-svgstore
-- **Source Maps**: gulp-sourcemaps for debugging
 - **File Management**: rimraf for cleanup, yargs for CLI args
 
 ### Runtime Dependencies
@@ -249,7 +255,7 @@ A professional, modern vCard website that serves as Xavier Bonell's digital busi
   1. Content processing (Metalsmith)
   2. Template rendering (Handlebars)
   3. Style compilation (SCSS)
-  4. JavaScript bundling (Browserify)
+  4. JavaScript bundling (esbuild)
   5. Asset optimization
   6. Development server (Browser-sync)
 
@@ -266,11 +272,11 @@ A professional, modern vCard website that serves as Xavier Bonell's digital busi
   ```
 
 #### JavaScript Module Pattern
-- **Pattern**: ES6+ modules with Browserify bundling
+- **Pattern**: ES6+ modules with esbuild bundling
 - **Architecture**: Modular structure with separate modules for theme management, theme switcher UI, and internationalization
 - **Performance**: Uses requestIdleCallback for non-critical UI initialization
 - **Benefits**: Code organization, dependency management, performance optimization
-- **Transpilation**: Babel for ES2015+ support
+- **Output**: Native ES2020 (no heavy transpilation needed for modern browsers)
 
 #### Template Inheritance Pattern
 - **Pattern**: Handlebars template layouts
@@ -289,7 +295,7 @@ A professional, modern vCard website that serves as Xavier Bonell's digital busi
 - **CSS**: Autoprefixer + cssnano + media query combining
 - **Images**: gulp-image optimization
 - **SVG**: Minification and sprite generation
-- **JavaScript**: Uglification for production
+- **JavaScript**: esbuild minification for production (with console/debugger stripping)
 
 #### Environment-based Configuration
 - **Pattern**: Development vs Production builds
