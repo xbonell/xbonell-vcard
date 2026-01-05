@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://xbonell.com/ca/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://xbonell.com/ca/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://xbonell.com/en/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://xbonell.com/es/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://xbonell.com/en/" />
+  </url>
+  <url>
+    <loc>https://xbonell.com/en/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://xbonell.com/ca/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://xbonell.com/en/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://xbonell.com/es/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://xbonell.com/en/" />
+  </url>
+  <url>
+    <loc>https://xbonell.com/es/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://xbonell.com/ca/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://xbonell.com/en/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://xbonell.com/es/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://xbonell.com/en/" />
+  </url>
+</urlset>

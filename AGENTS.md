@@ -11,7 +11,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 
 ### Project Details
 - **Project Name**: xbonell-vcard
-- **Version**: 1.9.7
+- **Version**: 1.9.8
 - **Type**: Personal vCard Website
 - **Author**: Xavier Bonell Iturbe
 - **Domain**: xbonell.com
@@ -108,6 +108,12 @@ The site supports multiple languages:
 - Added esbuild for modern, fast JavaScript bundling with native ES2020 output
 - Simplified gulpfile with cleaner esbuild API integration
 - No more heavy Babel transpilation needed for modern browsers
+
+### Version 1.9.8 Updates (January 2025)
+- Enabled HTTPS for local development server (browser-sync now uses HTTPS)
+- Updated domain configuration to use HTTPS for localhost development
+- Added sitemap.xml with multi-language hreflang support for improved SEO
+- Sitemap includes all language versions (ca/, en/, es/) with proper alternate language links
 
 ---
 
