@@ -11,7 +11,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 
 ### Project Details
 - **Project Name**: xbonell-vcard
-- **Version**: 1.9.8
+- **Version**: 1.9.9
 - **Type**: Personal vCard Website
 - **Author**: Xavier Bonell Iturbe
 - **Domain**: xbonell.com
@@ -114,6 +114,10 @@ The site supports multiple languages:
 - Updated domain configuration to use HTTPS for localhost development
 - Added sitemap.xml with multi-language hreflang support for improved SEO
 - Sitemap includes all language versions (ca/, en/, es/) with proper alternate language links
+
+### Version 1.9.9 Updates (January 2025)
+- Added Sitemap directive to robots.txt pointing to https://xbonell.com/sitemap.xml
+- Improves SEO discoverability by informing search engines about the sitemap location
 
 ---
 
