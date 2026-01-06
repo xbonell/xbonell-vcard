@@ -11,14 +11,14 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 
 ### Project Details
 - **Project Name**: xbonell-vcard
-- **Version**: 1.10.0
+- **Version**: 1.10.1
 - **Type**: Personal vCard Website
 - **Author**: Xavier Bonell Iturbe
 - **Domain**: xbonell.com
 - **Repository**: https://github.com/xbonell/xbonell-vcard.git
 
 ### Technology Stack
-- **Build System**: Gulp with Babel
+- **Build System**: Gulp with native ES modules
 - **Static Site Generator**: Metalsmith
 - **Templating**: Handlebars
 - **Styling**: SCSS/Sass
@@ -127,6 +127,17 @@ The site supports multiple languages:
 - Fixed SCSS `rgba()` function calls in `_error.scss` for Dart Sass compatibility (use SCSS variables instead of CSS custom properties)
 - Added `$color-black` SCSS variable to `_variables.scss`
 - Updated documentation (`README.md`, `AGENTS.md`) with pnpm commands
+
+### Version 1.10.1 Updates (January 2026)
+- Migrated gulpfile from Babel to native ES modules
+- Renamed `gulpfile.babel.js` to `gulpfile.js` and added `"type": "module"` to package.json
+- Removed Babel dependencies: @babel/core, @babel/preset-env, @babel/register, @babel/plugin-bugfix-firefox-class-in-computed-class-key
+- Removed gulp-load-plugins in favor of direct ES module imports
+- Added gulp-terser for production JS minification (2-step: esbuild bundle → terser minify)
+- Refactored gulpfile to use `fileURLToPath`/`dirname` for `__dirname` equivalent in ES modules
+- Refactored gulpfile to use `createRequire` for JSON imports (package.json)
+- Added `"dev": "gulp"` script alias to package.json
+- Simplified build configuration with no Babel transpilation overhead
 
 ---
 

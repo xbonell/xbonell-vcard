@@ -1,10 +1,12 @@
 {
   "name": "xbonell-vcard",
-  "version": "1.10.0",
+  "version": "1.10.1",
   "description": "Source for the xbonell.com vcard site.",
-  "main": "gulpfile.babel.js",
+  "type": "module",
+  "main": "gulpfile.js",
   "scripts": {
     "build": "gulp build --production",
+    "dev": "gulp",
     "images": "gulp images --gulpfile gulpfile.images.js",
     "start": "gulp"
   },
@@ -22,10 +24,6 @@
   "license": "MIT",
   "homepage": "https://github.com/xbonell/xbonell-vcard",
   "devDependencies": {
-    "@babel/core": "^7.28.0",
-    "@babel/plugin-bugfix-firefox-class-in-computed-class-key": "^7.28.5",
-    "@babel/preset-env": "^7.28.0",
-    "@babel/register": "^7.27.1",
     "@metalsmith/layouts": "^3.0.0",
     "@metalsmith/markdown": "^1.10.0",
     "@metalsmith/permalinks": "^3.2.0",
@@ -36,7 +34,6 @@
     "gulp": "^5.0.0",
     "gulp-cli": "^3.1.0",
     "gulp-htmlmin": "^5.0.1",
-    "gulp-load-plugins": "^2.0.8",
     "gulp-postcss": "^10.0.0",
     "gulp-rename": "^2.1.0",
     "gulp-rev": "^11.0.0",
@@ -44,6 +41,7 @@
     "gulp-sass": "6.0.1",
     "gulp-svgmin": "^4.1.0",
     "gulp-svgstore": "^9.0.0",
+    "gulp-terser": "^2.1.0",
     "jstransformer-handlebars": "^1.2.0",
     "metalsmith": "^2.6.3",
     "normalize-scss": "^8.0.0",

@@ -1,6 +1,6 @@
-'use strict';
-
-import pkg from './package.json';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import { createRequire } from 'module';
 import autoprefixer from 'autoprefixer';
 import browser from 'browser-sync';
 import cssnano from 'cssnano';
@@ -8,7 +8,12 @@ import combineMediaQuery from 'postcss-combine-media-query';
 import dartSass from 'sass';
 import * as esbuild from 'esbuild';
 import { dest, parallel, series, src, task, watch } from 'gulp';
-import plugins from 'gulp-load-plugins';
+import gulpSass from 'gulp-sass';
+import postcss from 'gulp-postcss';
+import htmlmin from 'gulp-htmlmin';
+import rename from 'gulp-rename';
+import svgmin from 'gulp-svgmin';
+import svgstore from 'gulp-svgstore';
 import metalsmith from 'metalsmith';
 import layouts from '@metalsmith/layouts';
 import markdown from '@metalsmith/markdown';
@@ -19,10 +24,18 @@ import { hideBin } from 'yargs/helpers';
 import rev from 'gulp-rev';
 import revDel from 'gulp-rev-delete-original';
 import fs from 'fs';
+import terser from 'gulp-terser';
 
-// Load plugins
-const $ = plugins();
-const sass = $.sass(dartSass);
+// Get __dirname equivalent for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Read package.json using require for compatibility with ES modules
+const require = createRequire(import.meta.url);
+const pkg = require('./package.json');
+
+// Initialize plugins
+const sass = gulpSass(dartSass);
 const argv = yargs(hideBin(process.argv)).parse();
 
 // Look for args passed via cmd line parameters
@@ -83,11 +96,12 @@ const processors = [
 // Create JS bundle with esbuild - optimized for modern browsers
 // ----------------------------------------------------------------------------
 const bundle = async () => {
+  // Build with esbuild (no minification - terser will handle that)
   await esbuild.build({
     entryPoints: [`${dir.source}scripts/main.js`],
     bundle: true,
     outfile: `${dir.dest}assets/js/app.js`,
-    minify: PRODUCTION,
+    minify: false,
     sourcemap: !PRODUCTION,
     target: ['es2020'],
     format: 'iife',
@@ -96,6 +110,13 @@ const bundle = async () => {
       'process.env.NODE_ENV': PRODUCTION ? '"production"' : '"development"',
     },
   });
+
+  // Minify with terser in production
+  if (PRODUCTION) {
+    return src(`${dir.dest}assets/js/app.js`)
+      .pipe(terser())
+      .pipe(dest(`${dir.dest}assets/js`));
+  }
 };
 
 // Delete the "dist" folder (this happens every time a build starts)
@@ -125,7 +146,7 @@ const css = () => {
         includePaths: ['node_modules'],
       }).on('error', sass.logError)
     )
-    .pipe($.postcss(processors))
+    .pipe(postcss(processors))
     .pipe(dest(`${dir.dest}assets/css`));
 };
 
@@ -151,7 +172,7 @@ const html = (done) => {
 const minify = () => {
   return src(`${dir.dest}**/*.html`)
     .pipe(
-      $.htmlmin({
+      htmlmin({
         collapseWhitespace: true,
       })
     )
@@ -175,14 +196,14 @@ const server = (done) => {
 const svg = () => {
   return src([`${dir.source}svg/*.svg`], { encoding: false })
     .pipe(
-      $.rename(function (path) {
+      rename(function (path) {
         path.basename = path.basename.replace(/__icon_prefix__/, '');
         return path;
       })
     )
-    .pipe($.svgmin())
-    .pipe($.svgstore())
-    .pipe($.rename('sprite.svg'))
+    .pipe(svgmin())
+    .pipe(svgstore())
+    .pipe(rename('sprite.svg'))
     .pipe(dest(`${dir.dest}assets/images`));
 };
 
