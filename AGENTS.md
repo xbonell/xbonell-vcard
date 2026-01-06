@@ -11,7 +11,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 
 ### Project Details
 - **Project Name**: xbonell-vcard
-- **Version**: 1.9.9
+- **Version**: 1.10.0
 - **Type**: Personal vCard Website
 - **Author**: Xavier Bonell Iturbe
 - **Domain**: xbonell.com
@@ -24,7 +24,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 - **Styling**: SCSS/Sass
 - **JavaScript**: ES2015+ with esbuild (native ES2020 output)
 - **Icons**: SVG with svgxuse
-- **Package Manager**: Yarn v4.12.0
+- **Package Manager**: pnpm
 
 ### Multi-language Support
 The site supports multiple languages:
@@ -33,8 +33,8 @@ The site supports multiple languages:
 - Catalan (ca)
 
 ### Build Process
-- Development: `yarn start` (gulp default)
-- Production: `yarn build` (gulp build --production)
+- Development: `pnpm start` (gulp default)
+- Production: `pnpm build` (gulp build --production)
 - Uses autoprefixer, cssnano, and other optimizations
 - Browser-sync for development server
 - Image optimization pipeline
@@ -118,6 +118,15 @@ The site supports multiple languages:
 ### Version 1.9.9 Updates (January 2025)
 - Added Sitemap directive to robots.txt pointing to https://xbonell.com/sitemap.xml
 - Improves SEO discoverability by informing search engines about the sitemap location
+
+### Version 1.10.0 Updates (January 2026)
+- Migrated package manager from Yarn 4.12.0 to pnpm 10.27.0
+- Updated CI/CD pipeline (`.github/workflows/deploy.yml`) to use pnpm with Corepack
+- Removed Yarn configuration files (`.yarnrc.yml`, `.yarn/` directory, `yarn.lock`)
+- Added `pnpm-lock.yaml` lockfile
+- Fixed SCSS `rgba()` function calls in `_error.scss` for Dart Sass compatibility (use SCSS variables instead of CSS custom properties)
+- Added `$color-black` SCSS variable to `_variables.scss`
+- Updated documentation (`README.md`, `AGENTS.md`) with pnpm commands
 
 ---
 

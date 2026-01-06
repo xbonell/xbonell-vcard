@@ -4,4 +4,3 @@ npm-debug.log
 .sass-cache
 secret.json
 dist
-.yarn/install-state.gz

@@ -20,14 +20,14 @@
   &:before {
     content: "";
     display: block;
-    background: rgba(var(--color-black),.5) url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAEElEQVQYV2NkQAOMJAv8BwAB7QEE2o88/QAAAABJRU5ErkJggg==) repeat;
+    background: #{rgba(variables.$color-black, 0.5)} url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAEElEQVQYV2NkQAOMJAv8BwAB7QEE2o88/QAAAABJRU5ErkJggg==) repeat;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: 1;
-    box-shadow: inset 0 0 functions.rem(100) rgba(var(--color-black),.5);
+    box-shadow: inset 0 0 functions.rem(100) #{rgba(variables.$color-black, 0.5)};
   }
 
   &__bg,
@@ -65,7 +65,7 @@
     font-weight: 300;
     font-size: calc(10vw + #{functions.rem(150)});
     line-height: 1;
-    color: rgba(var(--color-white),.5);
+    color: #{rgba(variables.$color-white, 0.5)};
   }
 
   &__home {
@@ -80,7 +80,7 @@
       left: 0;
       height: 1px;
       width: 0;
-      background: rgba(var(--color-red), .5);
+      background: #{rgba(variables.$color-red, 0.5)};
       transition: all .3s cubic-bezier(.694, .0482, .335, 1);
     }
 

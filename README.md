@@ -25,7 +25,7 @@ This project is the source code for the personal vCard website of xbonell.com. I
 - **Templating**: Handlebars
 - **Styling**: SCSS/Sass with PostCSS
 - **JavaScript**: ES2015+ with esbuild
-- **Package Manager**: Yarn
+- **Package Manager**: pnpm
 - **Node.js**: v22.17.1+ supported
 
 ## Getting Started
@@ -33,7 +33,7 @@ This project is the source code for the personal vCard website of xbonell.com. I
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) (version 22.17.1+ recommended)
-- [Yarn](https://yarnpkg.com/) (for dependency management)
+- [pnpm](https://pnpm.io/) (for dependency management)
 
 ### Installation
 
@@ -47,7 +47,7 @@ cd xbonell-vcard
 Install dependencies:
 
 ```bash
-yarn install
+pnpm install
 ```
 
 ### Development
@@ -55,9 +55,9 @@ yarn install
 To start a local development server with live reload:
 
 ```bash
-yarn start
+pnpm start
 # or
-yarn dev
+pnpm dev
 ```
 
 ### Building
@@ -65,7 +65,7 @@ yarn dev
 To build the site for production:
 
 ```bash
-yarn build
+pnpm build
 ```
 
 ### Image Optimization
@@ -73,7 +73,7 @@ yarn build
 To optimize images:
 
 ```bash
-yarn images
+pnpm images
 ```
 
 ### Deployment
