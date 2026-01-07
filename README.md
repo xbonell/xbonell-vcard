@@ -6,7 +6,7 @@ A permanently temporal business vcard site for [xbonell.com](http://xbonell.com)
 
 This project is the source code for the personal vCard website of xbonell.com. It serves as a digital business card, providing a concise and elegant way to share professional information, contact details, and links.
 
-**Current Version**: 1.10.2
+**Current Version**: 1.10.3
 
 ## Features
 
@@ -114,6 +114,7 @@ The build system uses Gulp with the following features:
 
 ## Recent Updates
 
+- **Version 1.10.3**: Added fade-in intro animation for error page H1 - title is hidden until initialized and performs smooth fade-in when error code is detected
 - **Version 1.10.2**: Added dynamic error code detection for error pages - H1 now displays actual HTTP error codes (404, 500, etc.) instead of generic "Error" text
 - **Version 1.10.1**: Migrated gulpfile from Babel to native ES modules, removed Babel dependencies, simplified build configuration
 - **Version 1.10.0**: Migrated package manager from Yarn to pnpm 10.27.0, updated CI/CD pipeline, fixed SCSS compatibility issues

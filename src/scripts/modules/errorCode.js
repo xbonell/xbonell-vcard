@@ -55,8 +55,15 @@ const updateErrorTitle = () => {
     const errorCode = detectErrorCode();
     const titleElement = document.querySelector('.e__title');
 
-    if (titleElement && errorCode) {
-      titleElement.textContent = errorCode;
+    if (titleElement) {
+      if (errorCode) {
+        titleElement.textContent = errorCode;
+      }
+      // Trigger fade-in animation after updating (or if no code detected, show "Error")
+      // Use requestAnimationFrame to ensure DOM update happens before animation
+      requestAnimationFrame(() => {
+        titleElement.classList.add('is-visible');
+      });
     }
   } catch (error) {
     console.warn('Failed to update error title:', error);
@@ -87,6 +94,10 @@ const init = () => {
         const titleElement = document.querySelector('.e__title');
         if (titleElement) {
           titleElement.textContent = String(navEntry.responseStatus);
+          // Trigger fade-in animation
+          requestAnimationFrame(() => {
+            titleElement.classList.add('is-visible');
+          });
         }
       }
     }

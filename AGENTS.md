@@ -11,7 +11,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 
 ### Project Details
 - **Project Name**: xbonell-vcard
-- **Version**: 1.10.2
+- **Version**: 1.10.3
 - **Type**: Personal vCard Website
 - **Author**: Xavier Bonell Iturbe
 - **Domain**: xbonell.com
@@ -145,6 +145,13 @@ The site supports multiple languages:
 - Error page H1 now displays the actual error code (e.g., "404", "500") instead of generic "Error" text
 - Added JavaScript bundle to error page layout for error code detection functionality
 - Compatible with static hosting platforms (Netlify, Vercel, GitHub Pages) that serve error pages with specific filenames
+
+### Version 1.10.3 Updates (January 2026)
+- Added fade-in intro animation for error page H1 title
+- Error page H1 is now hidden until initialized and performs smooth fade-in animation when error code is detected
+- Updated `_error.scss` with initial opacity state and fade-in keyframe animation
+- Enhanced `errorCode.js` to trigger animation using `requestAnimationFrame` for smooth DOM updates
+- Improved user experience with elegant intro animation for error code display
 
 ---
 

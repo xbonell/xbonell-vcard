@@ -66,6 +66,13 @@
     font-size: calc(10vw + #{functions.rem(150)});
     line-height: 1;
     color: #{rgba(variables.$color-white, 0.5)};
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+
+    &.is-visible {
+      opacity: 1;
+      animation: fadeIn 0.8s ease-in-out;
+    }
   }
 
   &__home {
@@ -87,5 +94,14 @@
     &:hover:after {
       width: 100%;
     }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

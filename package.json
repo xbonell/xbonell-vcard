@@ -1,6 +1,6 @@
 {
   "name": "xbonell-vcard",
-  "version": "1.10.2",
+  "version": "1.10.3",
   "description": "Source for the xbonell.com vcard site.",
   "type": "module",
   "main": "gulpfile.js",
