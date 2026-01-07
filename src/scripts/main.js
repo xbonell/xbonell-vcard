@@ -3,6 +3,7 @@ import themeManager from './modules/themeManager';
 import { createThemeSwitcher } from './modules/themeSwitcher';
 import i18n from './modules/i18n';
 import hole from './modules/hole';
+import errorCode from './modules/errorCode';
 
 // Performance optimization: Use requestIdleCallback if available
 const scheduleTask = (task) => {
@@ -17,6 +18,9 @@ document.addEventListener(
   'DOMContentLoaded',
   () => {
     try {
+      // Initialize error code detection first (if on error page)
+      errorCode.init();
+
       // Initialize core functionality immediately
       i18n.init();
       themeManager.init();

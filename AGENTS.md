@@ -11,7 +11,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 
 ### Project Details
 - **Project Name**: xbonell-vcard
-- **Version**: 1.10.1
+- **Version**: 1.10.2
 - **Type**: Personal vCard Website
 - **Author**: Xavier Bonell Iturbe
 - **Domain**: xbonell.com
@@ -138,6 +138,13 @@ The site supports multiple languages:
 - Refactored gulpfile to use `createRequire` for JSON imports (package.json)
 - Added `"dev": "gulp"` script alias to package.json
 - Simplified build configuration with no Babel transpilation overhead
+
+### Version 1.10.2 Updates (January 2026)
+- Added dynamic error code detection for error pages
+- Created `errorCode.js` module to detect HTTP error codes from URL patterns, query parameters, and Performance API
+- Error page H1 now displays the actual error code (e.g., "404", "500") instead of generic "Error" text
+- Added JavaScript bundle to error page layout for error code detection functionality
+- Compatible with static hosting platforms (Netlify, Vercel, GitHub Pages) that serve error pages with specific filenames
 
 ---
 
