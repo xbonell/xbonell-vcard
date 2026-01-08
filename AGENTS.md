@@ -11,7 +11,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 
 ### Project Details
 - **Project Name**: xbonell-vcard
-- **Version**: 1.10.3
+- **Version**: 1.10.4
 - **Type**: Personal vCard Website
 - **Author**: Xavier Bonell Iturbe
 - **Domain**: xbonell.com
@@ -152,6 +152,9 @@ The site supports multiple languages:
 - Updated `_error.scss` with initial opacity state and fade-in keyframe animation
 - Enhanced `errorCode.js` to trigger animation using `requestAnimationFrame` for smooth DOM updates
 - Improved user experience with elegant intro animation for error code display
+
+### Version 1.10.4 Updates (January 2026)
+- Deployment workflow excludes `nginx.conf` when syncing to VPS to prevent overwriting server-managed configuration
 
 ---
 

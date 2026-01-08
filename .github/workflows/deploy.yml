@@ -37,4 +37,4 @@ jobs:
 
       - name: Deploy to VPS via rsync
         run: |
-          rsync -avzr --delete dist/ ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/opt/docker-stack/sites/xbonell.com/
+          rsync -avzr --delete --exclude='nginx.conf' dist/ ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/opt/docker-stack/sites/xbonell.com/
