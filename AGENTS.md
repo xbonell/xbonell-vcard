@@ -11,7 +11,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 
 ### Project Details
 - **Project Name**: xbonell-vcard
-- **Version**: 1.10.4
+- **Version**: 1.10.5
 - **Type**: Personal vCard Website
 - **Author**: Xavier Bonell Iturbe
 - **Domain**: xbonell.com
@@ -155,6 +155,13 @@ The site supports multiple languages:
 
 ### Version 1.10.4 Updates (January 2026)
 - Deployment workflow excludes `nginx.conf` when syncing to VPS to prevent overwriting server-managed configuration
+
+### Version 1.10.5 Updates (January 2026)
+- Simplified browserslist configuration for more focused browser targeting
+- Increased market share threshold from `> 0.5%` to `> 2%` for better focus on modern browsers
+- Removed redundant browserslist rules: `not dead`, `not ie 11`, `not op_mini all`
+- Maintained `last 2 versions` rule for continued excellent browser support
+- Reduced build complexity while ensuring compatibility with browsers used by vast majority of users
 
 ---
 

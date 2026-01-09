@@ -1,6 +1,6 @@
 {
   "name": "xbonell-vcard",
-  "version": "1.10.4",
+  "version": "1.10.5",
   "description": "Source for the xbonell.com vcard site.",
   "type": "module",
   "main": "gulpfile.js",
@@ -56,10 +56,7 @@
   },
   "browserslist": [
     "last 2 versions",
-    "not dead",
-    "not ie 11",
-    "> 0.5%",
-    "not op_mini all"
+    "> 2%"
   ],
   "packageManager": "pnpm@10.27.0"
 }
