@@ -41,7 +41,7 @@ The site supports multiple languages:
 
 ### Current State
 - Project is fully modernized as of July 2025
-- All critical, significant, and standard dependencies updated (Node.js v22.17.1+)
+- All critical, significant, and standard dependencies updated (Node.js v24+)
 - Gulp-based build system upgraded and validated
 - Multi-language content structure in place
 - SCSS modular architecture implemented
@@ -54,7 +54,7 @@ The site supports multiple languages:
 
 ### Recent Modernization
 - Completed comprehensive dependency and build system update (July 2025)
-- Node.js v22.17.1+ supported (previously v16.0.0)
+- Node.js v24+ supported (previously v16.0.0)
 - Migrated from Node Sass to Dart Sass
 - Updated Gulp, Babel, PostCSS, and related tooling
 - Validated build and development workflows on modern stack
@@ -157,6 +157,10 @@ The site supports multiple languages:
 - Deployment workflow excludes `nginx.conf` when syncing to VPS to prevent overwriting server-managed configuration
 
 ### Version 1.10.5 Updates (January 2026)
+- Upgraded Node.js LTS from v22 (lts/jod) to v24 (lts/krypton) in `.nvmrc`
+- Updated CI/CD Node.js version from 22 to 24 in GitHub Actions workflow
+- Updated pnpm package manager from v10.27.0 to v10.28.2
+- Fixed Sass import in gulpfile.js to use namespace import (`import * as dartSass`) for ES modules compatibility
 - Simplified browserslist configuration for more focused browser targeting
 - Increased market share threshold from `> 0.5%` to `> 2%` for better focus on modern browsers
 - Removed redundant browserslist rules: `not dead`, `not ie 11`, `not op_mini all`

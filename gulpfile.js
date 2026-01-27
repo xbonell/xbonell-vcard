@@ -5,7 +5,7 @@ import autoprefixer from 'autoprefixer';
 import browser from 'browser-sync';
 import cssnano from 'cssnano';
 import combineMediaQuery from 'postcss-combine-media-query';
-import dartSass from 'sass';
+import * as dartSass from 'sass';
 import * as esbuild from 'esbuild';
 import { dest, parallel, series, src, task, watch } from 'gulp';
 import gulpSass from 'gulp-sass';
