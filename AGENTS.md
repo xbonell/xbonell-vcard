@@ -11,7 +11,7 @@ A permanently temporal business vcard site for xbonell.com - a personal portfoli
 
 ### Project Details
 - **Project Name**: xbonell-vcard
-- **Version**: 1.10.5
+- **Version**: 1.10.6
 - **Type**: Personal vCard Website
 - **Author**: Xavier Bonell Iturbe
 - **Domain**: xbonell.com
@@ -156,16 +156,8 @@ The site supports multiple languages:
 ### Version 1.10.4 Updates (January 2026)
 - Deployment workflow excludes `nginx.conf` when syncing to VPS to prevent overwriting server-managed configuration
 
-### Version 1.10.5 Updates (January 2026)
-- Upgraded Node.js LTS from v22 (lts/jod) to v24 (lts/krypton) in `.nvmrc`
-- Updated CI/CD Node.js version from 22 to 24 in GitHub Actions workflow
-- Updated pnpm package manager from v10.27.0 to v10.28.2
-- Fixed Sass import in gulpfile.js to use namespace import (`import * as dartSass`) for ES modules compatibility
-- Simplified browserslist configuration for more focused browser targeting
-- Increased market share threshold from `> 0.5%` to `> 2%` for better focus on modern browsers
-- Removed redundant browserslist rules: `not dead`, `not ie 11`, `not op_mini all`
-- Maintained `last 2 versions` rule for continued excellent browser support
-- Reduced build complexity while ensuring compatibility with browsers used by vast majority of users
+### Version 1.10.6 Updates (February 2026)
+- Updated pnpm package manager from v10.28.2 to v10.29.2
 
 ---
 
@@ -401,4 +393,3 @@ A professional, modern vCard website that serves as Xavier Bonell's digital busi
 - **Configuration**: Environment-specific settings
 
 ---
-
