@@ -34,6 +34,7 @@ toolkit:
   - Jest / Vitest
   - Figma
   - Visual Studio Code / Cursor
+  - AI-assisted development (Codex / Claude / OpenCode)
   - WordPress
   - Netlify / Vercel
   - Docker

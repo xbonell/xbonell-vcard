@@ -8,6 +8,11 @@ Notes:
 
 ## [Unreleased]
 
+## [1.10.9] - 2026-02-27
+
+### Changed
+- Added an AI-assisted development toolkit item in all language variants (`en`, `es`, `ca`) of the home vCard content.
+
 ## [1.10.8] - 2026-02-26
 
 ### Documentation
@@ -145,7 +150,8 @@ Notes:
 ### Added
 - Interactive HTML viewer with circular viewport.
 
-[Unreleased]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.8...HEAD
+[Unreleased]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.9...HEAD
+[1.10.9]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.8...v1.10.9
 [1.10.8]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.7...v1.10.8
 [1.10.7]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.6...v1.10.7
 [1.10.6]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.5...v1.10.6
