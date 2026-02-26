@@ -6,7 +6,7 @@ A permanently temporal business vcard site for [xbonell.com](http://xbonell.com)
 
 This project is the source code for the personal vCard website of xbonell.com. It serves as a digital business card, providing a concise and elegant way to share professional information, contact details, and links.
 
-**Current Version**: 1.10.6
+**Current Version**: 1.10.7
 
 ## Features
 
@@ -114,6 +114,7 @@ The build system uses Gulp with the following features:
 
 ## Recent Updates
 
+- **Version 1.10.7**: Reorganized agent documentation by keeping `AGENTS.md` operational and moving release/product/architecture context into `CHANGELOG.md`, `docs/product-context.md`, and `docs/architecture.md`
 - **Version 1.10.6**: Updated pnpm package manager to v10.29.2
 - **Version 1.10.4**: Deployment workflow now excludes `nginx.conf` from rsync to avoid overwriting server-managed Nginx configuration on the VPS
 - **Version 1.10.3**: Added fade-in intro animation for error page H1 - title is hidden until initialized and performs smooth fade-in when error code is detected
