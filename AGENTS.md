@@ -5,7 +5,7 @@ Use this as the first-stop reference for commands and code conventions.
 
 Related context docs:
 
-- `CHANGELOG.md` -> historical versioned changes
+- `CHANGELOG.md` -> single source of truth for release history and notable changes
 - `docs/product-context.md` -> product goals and audience
 - `docs/architecture.md` -> system/build architecture details
 

@@ -6,7 +6,9 @@ A permanently temporal business vcard site for [xbonell.com](http://xbonell.com)
 
 This project is the source code for the personal vCard website of xbonell.com. It serves as a digital business card, providing a concise and elegant way to share professional information, contact details, and links.
 
-**Current Version**: 1.10.7
+For version history and notable changes, see [CHANGELOG.md](CHANGELOG.md).
+
+**Current Version**: 1.10.8
 
 ## Features
 
@@ -112,29 +114,9 @@ The build system uses Gulp with the following features:
 - **SVG sprite generation**
 - **Live reload** during development
 
-## Recent Updates
+## Changelog
 
-- **Version 1.10.7**: Reorganized agent documentation by keeping `AGENTS.md` operational and moving release/product/architecture context into `CHANGELOG.md`, `docs/product-context.md`, and `docs/architecture.md`
-- **Version 1.10.6**: Updated pnpm package manager to v10.29.2
-- **Version 1.10.4**: Deployment workflow now excludes `nginx.conf` from rsync to avoid overwriting server-managed Nginx configuration on the VPS
-- **Version 1.10.3**: Added fade-in intro animation for error page H1 - title is hidden until initialized and performs smooth fade-in when error code is detected
-- **Version 1.10.2**: Added dynamic error code detection for error pages - H1 now displays actual HTTP error codes (404, 500, etc.) instead of generic "Error" text
-- **Version 1.10.1**: Migrated gulpfile from Babel to native ES modules, removed Babel dependencies, simplified build configuration
-- **Version 1.10.0**: Migrated package manager from Yarn to pnpm 10.27.0, updated CI/CD pipeline, fixed SCSS compatibility issues
-- **Version 1.9.9**: Added Sitemap directive to robots.txt for improved SEO discoverability
-- **Version 1.9.8**: Enabled HTTPS for local development server, added sitemap.xml with multi-language hreflang support for improved SEO
-- **Version 1.9.7**: Modernized JS build pipeline - replaced Browserify/Babel/Uglify with esbuild (~50% faster builds, 541ms vs 1.08s), removed 11 dependencies
-- **Version 1.9.6**: Updated SEO metadata (description and keywords) across all language versions to reflect current professional focus on React, Vue.js, and WordPress
-- **Version 1.9.5**: Adjusted light mode theme background colors for improved visual hierarchy (`--color-bg` is now 10% lighter, previous value moved to `--color-backstage`)
-- **Version 1.9.4**: Fixed asset URL rewriting in hashAssets gulp task for both HTML and JS files, replaced gulp-rev-rewrite with custom fs-based approach for Gulp 5 compatibility
-- **Version 1.9.3**: iOS Safari compatibility fixes (dvh viewport, GPU acceleration, debounced resize), centralized browserslist, Yarn 4.12.0
-- **Version 1.9.1**: Refactored hole module with full viewport logo mask, theme-aware inversion, and improved parallax scrolling
-- **Version 1.9.0**: Added interactive HTML viewer with circular viewport
-- **July 2025**: Complete dependency modernization
-- Updated to Node.js v22.17.1+ support
-- Migrated from Node Sass to Dart Sass
-- Updated Gulp, Babel, PostCSS, and related tooling
-- Enhanced build system with modern optimizations
+All release notes and notable changes are maintained in [CHANGELOG.md](CHANGELOG.md).
 
 ## Contributing
 

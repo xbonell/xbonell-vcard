@@ -8,6 +8,11 @@ Notes:
 
 ## [Unreleased]
 
+## [1.10.8] - 2026-02-26
+
+### Documentation
+- Centralized release notes in `CHANGELOG.md` and updated `README.md` and `AGENTS.md` to reference it.
+
 ## [1.10.7] - 2026-02-26
 
 ### Changed
@@ -140,7 +145,8 @@ Notes:
 ### Added
 - Interactive HTML viewer with circular viewport.
 
-[Unreleased]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.7...HEAD
+[Unreleased]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.8...HEAD
+[1.10.8]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.7...v1.10.8
 [1.10.7]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.6...v1.10.7
 [1.10.6]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.5...v1.10.6
 [1.10.5]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.4...v1.10.5
