@@ -8,6 +8,9 @@ Notes:
 
 ## [Unreleased]
 
+### Changed
+- Updated pnpm package manager from `10.29.2` to `10.33.2`.
+
 ## [1.10.9] - 2026-02-27
 
 ### Changed
