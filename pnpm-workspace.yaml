@@ -1,10 +1,10 @@
-onlyBuiltDependencies:
-  - '@parcel/watcher'
-  - esbuild
-  - gifsicle
-  - jpeg-recompress-bin
-  - metalsmith
-  - mozjpeg
-  - optipng-bin
-  - pngquant-bin
-  - zopflipng-bin
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+  gifsicle: true
+  jpeg-recompress-bin: true
+  metalsmith: true
+  mozjpeg: true
+  optipng-bin: true
+  pngquant-bin: true
+  zopflipng-bin: true
