@@ -8,8 +8,16 @@ Notes:
 
 ## [Unreleased]
 
+## [1.10.10] - 2026-05-19
+
 ### Changed
-- Updated pnpm package manager from `10.29.2` to `10.33.2`.
+- Upgraded pnpm from `10.33.2` to `11.1.3` (pinned in `package.json` via Corepack).
+
+### Fixed
+- Migrated `pnpm-workspace.yaml` from `onlyBuiltDependencies` to `allowBuilds` for pnpm 11 compatibility (fixes clean-install / CI `ERR_PNPM_IGNORED_BUILDS` for esbuild, image binaries, metalsmith, and `@parcel/watcher`).
+
+### Documentation
+- Aligned `README.md`, `AGENTS.md`, `docs/architecture.md`, and `docs/product-context.md` with Node 24 LTS, pnpm 11 / Corepack, native ESM build, deployment workflow, and current product features.
 
 ## [1.10.9] - 2026-02-27
 
@@ -153,7 +161,8 @@ Notes:
 ### Added
 - Interactive HTML viewer with circular viewport.
 
-[Unreleased]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.9...HEAD
+[Unreleased]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.10...HEAD
+[1.10.10]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.9...v1.10.10
 [1.10.9]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.8...v1.10.9
 [1.10.8]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.7...v1.10.8
 [1.10.7]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.6...v1.10.7

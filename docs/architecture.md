@@ -12,11 +12,20 @@ Use it for context; use `AGENTS.md` for day-to-day operational instructions.
 
 ## Main technology choices
 
+- Node.js 24 LTS (`lts/krypton` in `.nvmrc`).
+- pnpm 11 with Corepack (`packageManager` in `package.json`).
+- Native ESM build (`"type": "module"`, `gulpfile.js`).
 - Static site generation with Metalsmith.
 - Handlebars layouts for HTML templates.
 - SCSS modules compiled via Dart Sass + PostCSS.
 - JavaScript bundled with esbuild targeting ES2020.
 - Asset hashing/rewrite for cache-friendly production output.
+
+## Dependency install policy
+
+- `pnpm-workspace.yaml` lists packages allowed to run install scripts under `allowBuilds` (pnpm 11).
+- Required for esbuild, metalsmith, `@parcel/watcher`, and optional image optimization binaries.
+- CI and local clean installs depend on this map; `onlyBuiltDependencies` is not used on pnpm 11.
 
 ## Content and template model
 
@@ -66,9 +75,16 @@ Development task (`pnpm start` / `pnpm dev`):
 - CSS/JS/images are revisioned in production via `gulp-rev`.
 - Reference rewriting is handled by a custom fs pass in `hashAssets`.
 
+## Deployment
+
+- Workflow: `.github/workflows/deploy.yml` on push to `main`.
+- CI: checkout, `pnpm/action-setup`, Node 24 with pnpm cache, `pnpm install`, `pnpm build`.
+- Deploy: rsync `dist/` to VPS; `nginx.conf` is excluded so server-managed nginx config is not overwritten.
+
 ## Operational constraints
 
 - Edit source files only; never hand-edit `dist/` artifacts.
 - Preserve multilingual parity when changing shared sections.
 - Keep output compatible with static hosting.
 - Maintain current performance posture (minimal runtime JS, modern browser targets).
+- When bumping pnpm, update `packageManager` in `package.json` and verify `allowBuilds` still covers packages with install scripts.

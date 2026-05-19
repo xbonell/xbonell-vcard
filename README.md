@@ -8,12 +8,12 @@ This project is the source code for the personal vCard website of xbonell.com. I
 
 For version history and notable changes, see [CHANGELOG.md](CHANGELOG.md).
 
-**Current Version**: 1.10.8
+**Current Version**: 1.10.10
 
 ## Features
 
 - **Multi-language Support**: English, Spanish, and Catalan versions
-- **Modern Build System**: Gulp + Metalsmith with ES2015+ support
+- **Modern Build System**: Gulp 5 + Metalsmith with native ES modules (ES2020)
 - **Interactive HTML Viewer**: Full viewport logo mask displaying the page's HTML source code with syntax highlighting, theme-aware mask inversion, and scroll-based parallax effects
 - **Responsive Design**: Optimized for all devices and screen sizes
 - **Performance Optimized**: Minified assets, image optimization, and fast loading
@@ -22,20 +22,20 @@ For version history and notable changes, see [CHANGELOG.md](CHANGELOG.md).
 
 ## Technology Stack
 
-- **Build System**: Gulp with Babel
+- **Build System**: Gulp 5 (native ESM `gulpfile.js`)
 - **Static Site Generator**: Metalsmith
 - **Templating**: Handlebars
 - **Styling**: SCSS/Sass with PostCSS
-- **JavaScript**: ES2015+ with esbuild
-- **Package Manager**: pnpm
-- **Node.js**: v22.17.1+ supported
+- **JavaScript**: ES modules bundled with esbuild (ES2020 target)
+- **Package Manager**: pnpm 11 (pinned via `packageManager` in `package.json`; use Corepack)
+- **Node.js**: 24 LTS (`lts/krypton` in `.nvmrc`)
 
 ## Getting Started
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (version 22.17.1+ recommended)
-- [pnpm](https://pnpm.io/) (for dependency management)
+- [Node.js](https://nodejs.org/) 24 LTS (see `.nvmrc`: `lts/krypton`)
+- [pnpm](https://pnpm.io/) 11.x via [Corepack](https://nodejs.org/api/corepack.html) (`corepack enable` reads the version from `package.json`)
 
 ### Installation
 
@@ -80,7 +80,7 @@ pnpm images
 
 ### Deployment
 
-The build process generates static files in the `dist/` directory that can be deployed to any static hosting provider (e.g., Vercel, Netlify, GitHub Pages).
+The build process generates static files in the `dist/` directory. Production deploys run on push to `main` via GitHub Actions (Node 24 + pnpm, `pnpm build`, rsync to VPS; `nginx.conf` is excluded from sync). The output is also suitable for other static hosts (e.g., Netlify, Vercel, GitHub Pages).
 
 ## Project Structure
 
@@ -106,7 +106,7 @@ Content is organized in the `src/content/` directory with language-specific subd
 
 ## Build Process
 
-The build system uses Gulp with the following features:
+The build system uses Gulp 5 with the following features:
 - **Sass compilation** with PostCSS processing (autoprefixer, cssnano)
 - **JavaScript bundling** with esbuild (native ES2020 output)
 - **HTML generation** with Metalsmith and Handlebars
