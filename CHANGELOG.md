@@ -8,6 +8,9 @@ Notes:
 
 ## [Unreleased]
 
+### Changed
+- Hole background now bakes HTML to a texture and scrolls via WebGL UV parallax (solid backstage fallback if WebGL is unavailable).
+
 ## [1.10.10] - 2026-05-19
 
 ### Changed

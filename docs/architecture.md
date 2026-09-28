@@ -39,6 +39,7 @@ Use it for context; use `AGENTS.md` for day-to-day operational instructions.
 - Entry point: `src/scripts/main.js`.
 - Module responsibilities are split in `src/scripts/modules/`.
 - Current modules include theme management, i18n, error-code handling, and hole effect logic.
+- The hole fill bakes page HTML to a Canvas 2D texture on init/resize, then displays it with a small WebGL UV-parallax shader; logo mask/shadow stay CSS/SVG. If WebGL is unavailable, the hole shows only the solid backstage color.
 - Browser APIs are used directly (no runtime framework).
 
 ## Styling model
