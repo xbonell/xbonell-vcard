@@ -53,7 +53,7 @@ const dir = {
 const siteMeta = {
   version: pkg.version,
   name: 'Xavier Bonell',
-  desc: 'Front-End Web Developer',
+  desc: 'Frontend Web Developer',
   author: 'Xavier Bonell',
   contact: 'https://x.com/xbonell',
   domain: PRODUCTION ? 'https://xbonell.com' : 'https://localhost',

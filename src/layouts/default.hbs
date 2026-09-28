@@ -47,7 +47,7 @@
     <article>
       <header role="banner">
         <h1 class="logo">
-          <img src="/assets/images/logo.svg" alt="Xavier Bonell - Front-End Web Developer" width="520" height="98">
+          <img src="/assets/images/logo.svg" alt="Xavier Bonell - Frontend Web Developer" width="520" height="98">
         </h1>
       </header>
       <main role="main">
@@ -98,11 +98,13 @@
           </ul>
         </section>
         {{/if}}
-        {{#if toolkit}}
-        <section class="toolkit">
-          <h3>Toolkit</h3>
+        {{#if stack}}
+        <section class="stack">
+          {{#if (eq lang 'ca')}}<h3>Stack</h3>{{/if}}
+          {{#if (eq lang 'es')}}<h3>Stack</h3>{{/if}}
+          {{#if (eq lang 'en')}}<h3>Stack</h3>{{/if}}
           <ul>
-            {{#each toolkit}}
+            {{#each stack}}
               <li>{{{this}}}</li>
             {{/each}}
           </ul>

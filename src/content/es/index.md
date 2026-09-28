@@ -1,11 +1,11 @@
 ---
-title: Xavier Bonell - Front-End Web Developer
+title: Xavier Bonell - Frontend Web Developer
 slug: home
 lang: es
 changefreq: weekly
 priority: 1
-description: Desarrollador front-end especializado en React, Vue.js y WordPress. Creación de aplicaciones web modernas, accesibles y de alto rendimiento en Barcelona.
-keywords: xavier bonell, desarrollador front-end, react, vue.js, next.js, nuxt.js, wordpress, javascript, aplicaciones web, accesibilidad, rendimiento web, barcelona, desarrollo web
+description: Desarrollador frontend especializado en React y WordPress. Creación de aplicaciones web modernas, accesibles y de alto rendimiento en Barcelona.
+keywords: xavier bonell, desarrollador frontend, react, next.js, wordpress, javascript, aplicaciones web, accesibilidad, rendimiento web, barcelona, desarrollo web
 vcard:
   givenName: Xavier
   familyName: Bonell
@@ -15,29 +15,18 @@ vcard:
   email: mail@xbonell.com
   url: https://xbonell.com
 services:
-  - Desarrollo front-end
-  - Aplicaciones web responsive
-  - Optimización de rendimiento
-  - Implementación de accesibilidad
-  - Desarrollo WordPress
-  - Diseño y desarrollo web
-  - Desarrollo de plantillas de email
-toolkit:
-  - HTML5 / CSS / Sass / Tailwind
-  - JavaScript
-  - React / Next.js
-  - Vue.js / Nuxt.js
-  - Node.js / Npm / Yarn
-  - Vite / Webpack / Gulp
-  - Git / GitHub
-  - ESLint / Prettier
-  - Jest / Vitest
-  - Figma
-  - Visual Studio Code / Cursor
-  - Codex / Claude / OpenCode
+  - Interfaces de aplicaciones web
+  - Implementación de diseño a código
+  - Rendimiento y accesibilidad
+  - Temas y sitios WordPress
+  - Landing pages y sitios de marketing
+  - Plantillas de email HTML
+stack:
+  - React y Next.js
+  - CSS moderno (Sass, Tailwind)
   - WordPress
-  - Netlify / Vercel
-  - Docker
+  - Desarrollo asistido por IA
+  - Netlify, Vercel y Cloudflare
 networks:
   - name: linkedin
     label: LinkedIn
@@ -47,4 +36,4 @@ networks:
     url: https://github.com/xbonell
 ---
 
-**Desarrollador front-end** especializado en la creación de aplicaciones web modernas y eficientes. _Experiencia en transformar diseños en código robusto y accesible_, optimizando el rendimiento y manteniendo estándares de calidad elevados. Especializado en **React**, **Vue.js** y **WordPress**, con un enfoque particular en aplicaciones que necesitan velocidad, accesibilidad y escalabilidad.
+**Desarrollador frontend** que crea aplicaciones web modernas y accesibles con **React** y **WordPress**. Enfoque en convertir diseños en código sólido y de alto rendimiento.

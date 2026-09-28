@@ -18,7 +18,7 @@ It should feel professional, fast, and intentional while staying lightweight and
 
 - Present professional identity clearly and credibly.
 - Make contact paths obvious and low friction.
-- Showcase current frontend specialization (React, Vue.js, WordPress).
+- Showcase current frontend specialization (React, Next.js, WordPress).
 - Deliver excellent performance and accessibility.
 
 ## Product Principles
@@ -39,7 +39,7 @@ It should feel professional, fast, and intentional while staying lightweight and
 
 - Multilingual content (`en`, `es`, `ca`).
 - Theme system with `light` / `dark` / `system` modes.
-- Professional profile, services, toolkit (including AI-assisted development tools), and social links.
+- Professional profile, services, stack (including AI-assisted development tools), and social links.
 - Interactive hole/logo viewer effect in the page background.
 - Error page with dynamic status code rendering.
 - Static output suitable for simple hosting.
@@ -47,7 +47,7 @@ It should feel professional, fast, and intentional while staying lightweight and
 ## Content Priorities
 
 - Accurate role and specialization messaging.
-- Up-to-date toolkit/services entries.
+- Up-to-date stack/services entries.
 - Contact info and social links kept current.
 - SEO metadata maintained for all language variants.
 

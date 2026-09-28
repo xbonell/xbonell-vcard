@@ -2,9 +2,9 @@
 @use '../utils/functions' as functions;
 @use '../utils/mixins' as mixins;
 
-/* Toolkit */
+/* Stack */
 
-.toolkit {
+.stack {
   ul {
     display: flex;
     flex-flow: row wrap;
@@ -26,7 +26,7 @@
 }
 
 [data-theme="light"] {
-  .toolkit {
+  .stack {
     li {
       color: var(--color-black);
       background: rgba(variables.$color-yellow, 0.3);

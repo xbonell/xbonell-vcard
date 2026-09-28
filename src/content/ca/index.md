@@ -1,11 +1,11 @@
 ---
-title: Xavier Bonell - Front-End Web Developer
+title: Xavier Bonell - Frontend Web Developer
 slug: home
 lang: ca
 changefreq: weekly
 priority: 1
-description: Desenvolupador front-end especialitzat en React, Vue.js i WordPress. Creació d'aplicacions web modernes, accessibles i d'alt rendiment a Barcelona.
-keywords: xavier bonell, desenvolupador front-end, react, vue.js, next.js, nuxt.js, wordpress, javascript, aplicacions web, accessibilitat, rendiment web, barcelona, desenvolupament web
+description: Desenvolupador frontend especialitzat en React i WordPress. Creació d'aplicacions web modernes, accessibles i d'alt rendiment a Barcelona.
+keywords: xavier bonell, desenvolupador frontend, react, next.js, wordpress, javascript, aplicacions web, accessibilitat, rendiment web, barcelona, desenvolupament web
 vcard:
   givenName: Xavier
   familyName: Bonell
@@ -15,29 +15,18 @@ vcard:
   email: mail@xbonell.com
   url: https://xbonell.com
 services:
-  - Desenvolupament front-end
-  - Aplicacions web responsive
-  - Optimització de rendiment
-  - Implementació d'accessibilitat
-  - Desenvolupament WordPress
-  - Disseny i desenvolupament web
-  - Desenvolupament de plantilles d'email
-toolkit:
-  - HTML5 / CSS / Sass / Tailwind
-  - JavaScript
-  - React / Next.js
-  - Vue.js / Nuxt.js
-  - Node.js / Npm / Yarn
-  - Vite / Webpack / Gulp
-  - Git / GitHub
-  - ESLint / Prettier
-  - Jest / Vitest
-  - Figma
-  - Visual Studio Code / Cursor
-  - Codex / Claude / OpenCode
+  - Interfícies d'aplicacions web
+  - Implementació de disseny a codi
+  - Rendiment i accessibilitat
+  - Temes i llocs WordPress
+  - Landing pages i llocs de màrqueting
+  - Plantilles d'email HTML
+stack:
+  - React i Next.js
+  - CSS modern (Sass, Tailwind)
   - WordPress
-  - Netlify / Vercel
-  - Docker
+  - Desenvolupament assistit per IA
+  - Netlify, Vercel i Cloudflare
 networks:
   - name: linkedin
     label: LinkedIn
@@ -47,4 +36,4 @@ networks:
     url: https://github.com/xbonell
 ---
 
-**Desenvolupador front-end** especialitzat en la creació d'aplicacions web modernes i eficients. _Experiència en transformar dissenys en codi robust i accessible_, optimitzant el rendiment i mantenint estàndards de qualitat elevats. Especialitzat en **React**, **Vue.js** i **WordPress**, amb un enfocament particular en aplicacions que necessiten velocitat, accessibilitat i escalabilitat.
+**Desenvolupador frontend** que crea aplicacions web modernes i accessibles amb **React** i **WordPress**. Enfocament a convertir dissenys en codi sòlid i d'alt rendiment.

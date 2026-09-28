@@ -1,11 +1,11 @@
 ---
-title: Xavier Bonell - Front-End Web Developer
+title: Xavier Bonell - Frontend Web Developer
 slug: home
 lang: en
 changefreq: weekly
 priority: 1
-description: Front-end developer specializing in React, Vue.js, and WordPress. Building modern, accessible, and high-performance web applications in Barcelona.
-keywords: xavier bonell, front-end developer, react, vue.js, next.js, nuxt.js, wordpress, javascript, web applications, accessibility, web performance, barcelona, web development
+description: Frontend developer specializing in React and WordPress. Building modern, accessible, and high-performance web applications in Barcelona.
+keywords: xavier bonell, frontend developer, react, next.js, wordpress, javascript, web applications, accessibility, web performance, barcelona, web development
 vcard:
   givenName: Xavier
   familyName: Bonell
@@ -15,29 +15,18 @@ vcard:
   email: mail@xbonell.com
   url: https://xbonell.com
 services:
-  - Front-end Development
-  - Responsive Web Applications
-  - Performance Optimization
-  - Accessibility Implementation
-  - WordPress Development
-  - Web Design & Development
-  - Email Template Development
-toolkit:
-  - HTML5 / CSS / Sass / Tailwind
-  - JavaScript
-  - React / Next.js
-  - Vue.js / Nuxt.js
-  - Node.js / Npm / Yarn
-  - Vite / Webpack / Gulp
-  - Git / GitHub
-  - ESLint / Prettier
-  - Jest / Vitest
-  - Figma
-  - Visual Studio Code / Cursor
-  - Codex / Claude / OpenCode
+  - Web application UI
+  - Design-to-code implementation
+  - Performance & accessibility
+  - WordPress themes & sites
+  - Landing & marketing pages
+  - HTML email templates
+stack:
+  - React & Next.js
+  - Modern CSS (Sass, Tailwind)
   - WordPress
-  - Netlify / Vercel
-  - Docker
+  - AI-assisted workflow
+  - Netlify, Vercel & Cloudflare
 networks:
   - name: linkedin
     label: LinkedIn
@@ -47,4 +36,4 @@ networks:
     url: https://github.com/xbonell
 ---
 
-**Front-end developer** specializing in building modern, efficient web applications. _Experience in transforming designs into robust, accessible code_ while optimizing performance and maintaining high quality standards. Specialized in **React**, **Vue.js**, and **WordPress**, with particular focus on applications requiring speed, accessibility, and scalability.
+**Frontend developer** building modern, accessible web applications with **React** and **WordPress**. Focus on turning designs into solid, performant code.

@@ -10,6 +10,10 @@ Notes:
 
 ### Changed
 - Hole background now bakes HTML to a texture and scrolls via WebGL UV parallax (solid backstage fallback if WebGL is unavailable).
+- Renamed Toolkit to Stack and curated a shorter hybrid capability list across `en`, `es`, and `ca`.
+- Standardized wording from `front-end` / `Front-End` to `frontend` / `Frontend` across content and metadata.
+- Rewrote Services as outcome-focused offers to reduce overlap with bio and Stack (`en`, `es`, `ca`).
+- Focused positioning on React/Next.js and WordPress; removed Vue/Nuxt from bio, Stack, and SEO; shortened bios.
 
 ## [1.10.10] - 2026-05-19
 
