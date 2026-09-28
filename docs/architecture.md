@@ -13,7 +13,7 @@ Use it for context; use `AGENTS.md` for day-to-day operational instructions.
 ## Main technology choices
 
 - Node.js 24 LTS (`lts/krypton` in `.nvmrc`).
-- pnpm 11 with Corepack (`packageManager` in `package.json`).
+- pnpm 12 with Corepack (`packageManager` in `package.json`).
 - Native ESM build (`"type": "module"`, `gulpfile.js`).
 - Static site generation with Metalsmith.
 - Handlebars layouts for HTML templates.
@@ -23,9 +23,9 @@ Use it for context; use `AGENTS.md` for day-to-day operational instructions.
 
 ## Dependency install policy
 
-- `pnpm-workspace.yaml` lists packages allowed to run install scripts under `allowBuilds` (pnpm 11).
-- Required for esbuild, metalsmith, `@parcel/watcher`, and optional image optimization binaries.
-- CI and local clean installs depend on this map; `onlyBuiltDependencies` is not used on pnpm 11.
+- `pnpm-workspace.yaml` lists packages allowed to run install scripts under `allowBuilds` (pnpm 12).
+- Required for esbuild, metalsmith, `@parcel/watcher`, and sharp (image optimization).
+- CI and local clean installs depend on this map; `onlyBuiltDependencies` is not used on pnpm 12.
 
 ## Content and template model
 

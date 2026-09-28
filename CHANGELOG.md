@@ -8,6 +8,19 @@ Notes:
 
 ## [Unreleased]
 
+## [1.11.1] - 2026-09-29
+
+### Fixed
+- Replaced `gulp-image` with `sharp` + `gulp-svgmin` so `pnpm images` works on Apple Silicon (no more x86_64-only imagemin binaries / `spawn` error `-86`).
+
+### Changed
+- Upgraded pnpm from `11.9.0` to `12.6.0` (pinned in `package.json` via Corepack).
+- Simplified `pnpm-workspace.yaml` `allowBuilds` for current native deps (`esbuild`, `metalsmith`, `@parcel/watcher`, `sharp`).
+- Regenerated optimized static images under `src/_static/assets/images/`.
+
+### Documentation
+- Aligned `README.md`, `AGENTS.md`, and `docs/architecture.md` with pnpm 12 and the sharp-based image pipeline.
+
 ## [1.11.0] - 2026-09-28
 
 ### Changed
@@ -170,7 +183,8 @@ Notes:
 ### Added
 - Interactive HTML viewer with circular viewport.
 
-[Unreleased]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.0...HEAD
+[Unreleased]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.1...HEAD
+[1.11.1]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.0...v1.11.1
 [1.11.0]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.10...v1.11.0
 [1.10.10]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.9...v1.10.10
 [1.10.9]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.8...v1.10.9

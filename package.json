@@ -1,6 +1,6 @@
 {
   "name": "xbonell-vcard",
-  "version": "1.11.0",
+  "version": "1.11.1",
   "description": "Source for the xbonell.com vcard site.",
   "type": "module",
   "main": "gulpfile.js",
@@ -49,14 +49,12 @@
     "postcss-combine-media-query": "^2.0.0",
     "rimraf": "^6.0.0",
     "sass": "^1.89.2",
+    "sharp": "^0.34.5",
     "yargs": "^18.0.0"
-  },
-  "optionalDependencies": {
-    "gulp-image": "6.3.1"
   },
   "browserslist": [
     "last 2 versions",
     "> 2%"
   ],
-  "packageManager": "pnpm@11.9.0+sha512.bd682d5d03fe525ef7c9fd6780c6884d1e756ac4c9c9fe00c538782824310dcf90e3ddc4f53835f06dfaebd5085e41855e0bcbb3b60de2ac5bbab89e5036f03b"
+  "packageManager": "pnpm@12.6.0+sha512.3ef68f951cb111ac204b4a5a16f0b2ddf0da56a96e0413e81d855d9f0b55ef926714709028e1cd00c405c2c5fb7b9e8ec4dc46777c805d0373c2f2ff00fd20ec"
 }

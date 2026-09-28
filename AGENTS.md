@@ -13,8 +13,8 @@ Related context docs:
 
 - Type: static personal vCard site (`xbonell.com`)
 - Stack: Gulp 5 + Metalsmith + Handlebars + SCSS + ES modules + esbuild
-- Package manager: `pnpm` 11.x (locked via `packageManager` in `package.json`; enable Corepack locally)
-- Native install scripts: approved in `pnpm-workspace.yaml` under `allowBuilds` (pnpm 11; do not revert to `onlyBuiltDependencies`)
+- Package manager: `pnpm` 12.x (locked via `packageManager` in `package.json`; enable Corepack locally)
+- Native install scripts: approved in `pnpm-workspace.yaml` under `allowBuilds` (pnpm 12; do not revert to `onlyBuiltDependencies`; includes `sharp` for `pnpm images`)
 - Languages: `en`, `es`, `ca`
 - Output: generated static site in `dist/`
 
@@ -83,7 +83,7 @@ If any of these files appear later, treat them as high priority project instruct
 - `src/svg/` -> source SVG icons for sprite generation
 - `src/_static/` -> copied static assets
 - `gulpfile.js` -> build pipeline and task orchestration
-- `pnpm-workspace.yaml` -> pnpm 11 `allowBuilds` for native dependency install scripts
+- `pnpm-workspace.yaml` -> pnpm 12 `allowBuilds` for native dependency install scripts
 
 ## 6) JavaScript style guide
 

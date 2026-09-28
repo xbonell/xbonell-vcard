@@ -8,7 +8,7 @@ This project is the source code for the personal vCard website of xbonell.com. I
 
 For version history and notable changes, see [CHANGELOG.md](CHANGELOG.md).
 
-**Current Version**: 1.11.0
+**Current Version**: 1.11.1
 
 ## Features
 
@@ -27,7 +27,7 @@ For version history and notable changes, see [CHANGELOG.md](CHANGELOG.md).
 - **Templating**: Handlebars
 - **Styling**: SCSS/Sass with PostCSS
 - **JavaScript**: ES modules bundled with esbuild (ES2020 target)
-- **Package Manager**: pnpm 11 (pinned via `packageManager` in `package.json`; use Corepack)
+- **Package Manager**: pnpm 12 (pinned via `packageManager` in `package.json`; use Corepack)
 - **Node.js**: 24 LTS (`lts/krypton` in `.nvmrc`)
 
 ## Getting Started
@@ -35,7 +35,7 @@ For version history and notable changes, see [CHANGELOG.md](CHANGELOG.md).
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) 24 LTS (see `.nvmrc`: `lts/krypton`)
-- [pnpm](https://pnpm.io/) 11.x via [Corepack](https://nodejs.org/api/corepack.html) (`corepack enable` reads the version from `package.json`)
+- [pnpm](https://pnpm.io/) 12.x via [Corepack](https://nodejs.org/api/corepack.html) (`corepack enable` reads the version from `package.json`)
 
 ### Installation
 
