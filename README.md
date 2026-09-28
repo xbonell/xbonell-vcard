@@ -8,7 +8,7 @@ This project is the source code for the personal vCard website of xbonell.com. I
 
 For version history and notable changes, see [CHANGELOG.md](CHANGELOG.md).
 
-**Current Version**: 1.10.10
+**Current Version**: 1.11.0
 
 ## Features
 

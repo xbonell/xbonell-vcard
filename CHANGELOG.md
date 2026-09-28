@@ -8,6 +8,8 @@ Notes:
 
 ## [Unreleased]
 
+## [1.11.0] - 2026-09-28
+
 ### Changed
 - Hole background now bakes HTML to a texture and scrolls via WebGL UV parallax (solid backstage fallback if WebGL is unavailable).
 - Renamed Toolkit to Stack and curated a shorter hybrid capability list across `en`, `es`, and `ca`.
@@ -168,7 +170,8 @@ Notes:
 ### Added
 - Interactive HTML viewer with circular viewport.
 
-[Unreleased]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.10...HEAD
+[Unreleased]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.0...HEAD
+[1.11.0]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.10...v1.11.0
 [1.10.10]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.9...v1.10.10
 [1.10.9]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.8...v1.10.9
 [1.10.8]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.7...v1.10.8
