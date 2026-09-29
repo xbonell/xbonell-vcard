@@ -105,6 +105,20 @@
     }
   }
 
+  .email {
+    .icon {
+      background-color: var(--color-red);
+      fill: var(--color-white);
+      transition: background-color var(--theme-transition), fill var(--theme-transition);
+    }
+
+    .label {
+      background: var(--color-red) linear-gradient(rgba(0, 0, 0, 0.5));
+      color: var(--color-white);
+      transition: background var(--theme-transition), color var(--theme-transition);
+    }
+  }
+
   .mastodon {
     .icon {
       background-color: var(--color-mastodon);

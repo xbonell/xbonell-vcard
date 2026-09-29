@@ -39,7 +39,7 @@ It should feel professional, fast, and intentional while staying lightweight and
 
 - Multilingual content (`en`, `es`, `ca`).
 - Theme system with `light` / `dark` / `system` modes.
-- Professional profile, services, stack (including AI-assisted development tools), and social links.
+- Professional profile with a tenure tagline in the hcard, services, stack (including AI-assisted development tools), and contact/social actions (email, LinkedIn, GitHub).
 - Interactive hole/logo viewer effect in the page background.
 - Error page with dynamic status code rendering.
 - Static output suitable for simple hosting.

@@ -8,6 +8,16 @@ Notes:
 
 ## [Unreleased]
 
+## [1.11.3] - 2026-09-29
+
+### Changed
+- Replaced hcard email and website contact rows with a tenure tagline (`Pushing pixels since 1996`) styled in accent red with Kalam script.
+- Moved email into the social icons row as the first action (localized label, red flip icon with darkened reverse side).
+- Kept Person schema `email` / `url` via `meta` / `link` inside the hcard; `rel="me"` only on LinkedIn and GitHub.
+
+### Documentation
+- Bumped version references in `README.md` and `package.json`; noted the hcard/social contact pattern in `docs/product-context.md`.
+
 ## [1.11.2] - 2026-09-29
 
 ### Fixed
@@ -194,7 +204,8 @@ Notes:
 ### Added
 - Interactive HTML viewer with circular viewport.
 
-[Unreleased]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.2...HEAD
+[Unreleased]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.3...HEAD
+[1.11.3]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.2...v1.11.3
 [1.11.2]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.1...v1.11.2
 [1.11.1]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.0...v1.11.1
 [1.11.0]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.10...v1.11.0

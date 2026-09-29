@@ -14,6 +14,7 @@ vcard:
   addressCountry: ES
   email: mail@xbonell.com
   url: https://xbonell.com
+  tagline: 'Pushing pixels since 1996'
 services:
   - Interfaces de aplicaciones web
   - Implementación de diseño a código
@@ -28,12 +29,17 @@ stack:
   - Desarrollo asistido por IA
   - Netlify, Vercel y Cloudflare
 networks:
+  - name: email
+    label: Email
+    url: mailto:mail@xbonell.com
   - name: linkedin
     label: LinkedIn
     url: https://linkedin.com/in/xbonell
+    rel: me
   - name: github
     label: GitHub
     url: https://github.com/xbonell
+    rel: me
 ---
 
 **Desarrollador frontend** que crea aplicaciones web modernas y accesibles con **React** y **WordPress**. Enfoque en convertir diseños en código sólido y de alto rendimiento.

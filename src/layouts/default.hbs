@@ -40,7 +40,7 @@
     {{/if}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@100;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Libre+Franklin:wght@100;400;700&display=swap" rel="stylesheet">
     <link href="/assets/css/style.css" rel="stylesheet" media="screen">
   </head>
   <body>
@@ -69,18 +69,9 @@
                     <span itemprop="addressRegion">{{vcard.addressRegion}}</span>
                     <span itemprop="addressCountry">{{vcard.addressCountry}}</span>
                   </div>
-                  <a class="contact mail" href="mailto:{{vcard.email}}" itemprop="email">
-                    <svg class="icon email" aria-hidden="true">
-                      <use xlink:href="/assets/images/sprite.svg#email"></use>
-                    </svg>
-                    <span>{{vcard.email}}</span>
-                  </a>
-                  <a class="contact web" href="{{vcard.url}}" itemprop="url">
-                    <svg class="icon web" aria-hidden="true">
-                      <use xlink:href="/assets/images/sprite.svg#web"></use>
-                    </svg>
-                    <span>{{vcard.url}}</span>
-                  </a>
+                  <p class="tagline">{{vcard.tagline}}</p>
+                  <meta itemprop="email" content="{{vcard.email}}">
+                  <link itemprop="url" href="{{vcard.url}}">
                 </div>
               </div>
             </div>
@@ -115,7 +106,7 @@
           <ul class="social__icons">
             {{#each networks}}
               <li class="{{name}}">
-                <a href="{{url}}" rel="me">
+                <a href="{{url}}"{{#if rel}} rel="{{rel}}"{{/if}}>
                   <svg class="icon icon-{{name}}" aria-hidden="true">
                     <use xlink:href="/assets/images/sprite.svg#{{name}}"></use>
                   </svg>
