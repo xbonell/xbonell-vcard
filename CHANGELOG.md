@@ -8,11 +8,16 @@ Notes:
 
 ## [Unreleased]
 
+## [1.11.2] - 2026-09-29
+
 ### Fixed
 - Upgraded `sharp` to `0.35.5` so `pnpm install` succeeds on machines with a system `libvips` (0.34.x tried a source build and failed without `node-gyp`).
 
 ### Changed
 - Dropped `sharp` from `pnpm-workspace.yaml` `allowBuilds` (no install script as of 0.35).
+
+### Documentation
+- Updated `AGENTS.md` and `docs/architecture.md` for the sharp 0.35 install-script removal.
 
 ## [1.11.1] - 2026-09-29
 
@@ -189,7 +194,8 @@ Notes:
 ### Added
 - Interactive HTML viewer with circular viewport.
 
-[Unreleased]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.1...HEAD
+[Unreleased]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.2...HEAD
+[1.11.2]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.1...v1.11.2
 [1.11.1]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.0...v1.11.1
 [1.11.0]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.10...v1.11.0
 [1.10.10]: https://github.com/xbonell/xbonell-vcard/compare/v1.10.9...v1.10.10
