@@ -8,6 +8,15 @@ Notes:
 
 ## [Unreleased]
 
+## [1.11.4] - 2026-09-29
+
+### Changed
+- Underlined `since 1996` in the hcard tagline for emphasis.
+- Expanded the WordPress services line to sites, themes & plugins (`en`, `es`, `ca`).
+
+### Documentation
+- Bumped version references in `README.md` and `package.json`.
+
 ## [1.11.3] - 2026-09-29
 
 ### Changed
@@ -204,7 +213,8 @@ Notes:
 ### Added
 - Interactive HTML viewer with circular viewport.
 
-[Unreleased]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.3...HEAD
+[Unreleased]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.4...HEAD
+[1.11.4]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.3...v1.11.4
 [1.11.3]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.2...v1.11.3
 [1.11.2]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.1...v1.11.2
 [1.11.1]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.0...v1.11.1

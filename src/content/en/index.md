@@ -14,12 +14,12 @@ vcard:
   addressCountry: ES
   email: mail@xbonell.com
   url: https://xbonell.com
-  tagline: 'Pushing pixels since 1996'
+  tagline: 'Pushing pixels <span class="tagline__emphasis">since 1996</span>'
 services:
   - Web application UI
   - Design-to-code implementation
   - Performance & accessibility
-  - WordPress themes & sites
+  - WordPress sites, themes & plugins
   - Landing & marketing pages
   - HTML email templates
 stack:

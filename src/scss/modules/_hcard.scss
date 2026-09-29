@@ -82,5 +82,11 @@
     letter-spacing: 0;
     color: var(--color-red);
     transition: color var(--theme-transition);
+
+    &__emphasis {
+      text-decoration: underline;
+      text-decoration-thickness: from-font;
+      text-underline-offset: 0.12em;
+    }
   }
 }
