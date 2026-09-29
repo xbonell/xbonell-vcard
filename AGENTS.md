@@ -14,7 +14,7 @@ Related context docs:
 - Type: static personal vCard site (`xbonell.com`)
 - Stack: Gulp 5 + Metalsmith + Handlebars + SCSS + ES modules + esbuild
 - Package manager: `pnpm` 12.x (locked via `packageManager` in `package.json`; enable Corepack locally)
-- Native install scripts: approved in `pnpm-workspace.yaml` under `allowBuilds` (pnpm 12; do not revert to `onlyBuiltDependencies`; includes `sharp` for `pnpm images`)
+- Native install scripts: approved in `pnpm-workspace.yaml` under `allowBuilds` (pnpm 12; do not revert to `onlyBuiltDependencies`)
 - Languages: `en`, `es`, `ca`
 - Output: generated static site in `dist/`
 

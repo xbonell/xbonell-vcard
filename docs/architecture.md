@@ -24,7 +24,7 @@ Use it for context; use `AGENTS.md` for day-to-day operational instructions.
 ## Dependency install policy
 
 - `pnpm-workspace.yaml` lists packages allowed to run install scripts under `allowBuilds` (pnpm 12).
-- Required for esbuild, metalsmith, `@parcel/watcher`, and sharp (image optimization).
+- Required for esbuild, metalsmith, and `@parcel/watcher`.
 - CI and local clean installs depend on this map; `onlyBuiltDependencies` is not used on pnpm 12.
 
 ## Content and template model

@@ -8,6 +8,12 @@ Notes:
 
 ## [Unreleased]
 
+### Fixed
+- Upgraded `sharp` to `0.35.5` so `pnpm install` succeeds on machines with a system `libvips` (0.34.x tried a source build and failed without `node-gyp`).
+
+### Changed
+- Dropped `sharp` from `pnpm-workspace.yaml` `allowBuilds` (no install script as of 0.35).
+
 ## [1.11.1] - 2026-09-29
 
 ### Fixed
