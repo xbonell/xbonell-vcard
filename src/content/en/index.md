@@ -14,7 +14,7 @@ vcard:
   addressCountry: ES
   email: mail@xbonell.com
   url: https://xbonell.com
-  tagline: 'Pushing pixels <span class="tagline__emphasis">since 1996</span>'
+  tagline: 'On the web <span class="tagline__emphasis">since 1996</span>'
 services:
   - Web application UI
   - Design-to-code implementation
