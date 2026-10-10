@@ -8,6 +8,18 @@ Notes:
 
 ## [Unreleased]
 
+## [1.11.5] - 2026-10-10
+
+### Changed
+- Replaced the email social icon (`@` glyph) with a stroke envelope SVG colored via `currentColor` / CSS `stroke`.
+
+### Removed
+- Unused sprite sources: `twitter.svg`, `mastodon.svg`, `web.svg`.
+- Orphaned `.twitter` / `.mastodon` icon styles and `--color-twitter` / `--color-mastodon` tokens; dropped unused `$social` SCSS map.
+
+### Documentation
+- Bumped version references in `README.md` and `package.json`; noted active sprite icons in `docs/architecture.md`.
+
 ## [1.11.4] - 2026-09-29
 
 ### Changed
@@ -213,7 +225,8 @@ Notes:
 ### Added
 - Interactive HTML viewer with circular viewport.
 
-[Unreleased]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.4...HEAD
+[Unreleased]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.5...HEAD
+[1.11.5]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.4...v1.11.5
 [1.11.4]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.3...v1.11.4
 [1.11.3]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.2...v1.11.3
 [1.11.2]: https://github.com/xbonell/xbonell-vcard/compare/v1.11.1...v1.11.2

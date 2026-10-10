@@ -73,6 +73,7 @@ Development task (`pnpm start` / `pnpm dev`):
 ## Asset behavior
 
 - SVG icons in `src/svg/` are compiled into `dist/assets/images/sprite.svg`.
+  Active symbols: social (`email`, `linkedin`, `github`) and theme switcher (`sun`, `moon`, `contrast`).
 - CSS/JS/images are revisioned in production via `gulp-rev`.
 - Reference rewriting is handled by a custom fs pass in `hashAssets`.
 

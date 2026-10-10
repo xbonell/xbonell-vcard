@@ -77,20 +77,6 @@
     }
   }
 
-  .twitter {
-    .icon {
-      background-color: var(--color-twitter);
-      fill: var(--color-white);
-      transition: background-color var(--theme-transition), fill var(--theme-transition);
-    }
-
-    .label {
-      background: var(--color-twitter) linear-gradient(rgba(0,0,0,0.5));
-      color: var(--color-white);
-      transition: background var(--theme-transition), color var(--theme-transition);
-    }
-  }
-
   .linkedin {
     .icon {
       background-color: var(--color-linkedin);
@@ -108,26 +94,15 @@
   .email {
     .icon {
       background-color: var(--color-red);
-      fill: var(--color-white);
-      transition: background-color var(--theme-transition), fill var(--theme-transition);
+      color: var(--color-white);
+      fill: none;
+      stroke: var(--color-white);
+      transition: background-color var(--theme-transition), color var(--theme-transition),
+        stroke var(--theme-transition);
     }
 
     .label {
       background: var(--color-red) linear-gradient(rgba(0, 0, 0, 0.5));
-      color: var(--color-white);
-      transition: background var(--theme-transition), color var(--theme-transition);
-    }
-  }
-
-  .mastodon {
-    .icon {
-      background-color: var(--color-mastodon);
-      fill: var(--color-white);
-      transition: background-color var(--theme-transition), fill var(--theme-transition);
-    }
-
-    .label {
-      background: var(--color-mastodon) linear-gradient(rgba(0,0,0,0.5));;
       color: var(--color-white);
       transition: background var(--theme-transition), color var(--theme-transition);
     }

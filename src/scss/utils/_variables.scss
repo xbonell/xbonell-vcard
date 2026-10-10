@@ -19,9 +19,7 @@ $color-yellow: #f4c430;
   --color-yellow: #{$color-yellow};
   --color-yellowBg: #{rgba($color-yellow, 0.1)};
   --color-github: #111;
-  --color-twitter: #00aced;
   --color-linkedin: #007bb6;
-  --color-mastodon: #2f93d7;
   --color-black: #000;
   --color-white: #{$color-white};
   --color-shadow: rgba(0, 0, 0, 0.5);
@@ -65,12 +63,4 @@ $fontstack-script: 'Kalam', cursive;
 // Breakpoints map
 $breakpoints: (
   mobile: 480,
-);
-
-// Social networks
-$social: (
-  github: var(--color-github, #111),
-  twitter: var(--color-twitter, #00aced),
-  linkedin: var(--color-linkedin, #007bb6),
-  mastodon: var(--color-mastodon, #2f93d7),
 );
